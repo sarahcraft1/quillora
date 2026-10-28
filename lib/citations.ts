@@ -39,7 +39,7 @@ export function citationParts(a: Article, style: string) {
     const names = authors.map(apaName);
     const author = names.length > 20 ? names.slice(0, 19).join(', ') + ', … ' + names[names.length - 1]
       : names.length > 1 ? names.slice(0, -1).join(', ') + ', & ' + names[names.length - 1] : names[0];
-    const before = author ? `${period(author)} (${a.year || 'n.d.'}). ${titlePeriod(title)} ` : `${period(title)} (${a.year || 'n.d.'}). `;
+    const before = author ? `${period(author)} (${a.year || 'n.d.'}). ${titlePeriod(title)} ` : `${titlePeriod(title)} (${a.year || 'n.d.'}). `;
     const location = number ? 'Article ' + number : pages.replace(/(?<=\d)-(?=\d)/g, '–');
     return { before, italic: [journal, a.volume].filter(Boolean).join(', '), after:
       (a.issue ? (journal && !a.volume ? ', ' : '') + '(' + a.issue + ')' : '') +
@@ -62,6 +62,7 @@ export function citationWarnings(a: Article, style = 'APA') {
     !a.title.trim() || a.title === 'Untitled record' ? 'Title missing; a bracketed description is used. Check the original record.' : '',
     !a.journal.trim() || a.journal === 'Journal not listed' ? 'Journal missing.' : '',
     `Title capitalization is preserved to protect proper nouns and acronyms. Review ${style === 'APA' ? 'APA sentence case' : 'MLA title case'} before submitting.`,
-    style === 'MLA' && clean(a.articleNumber) ? 'MLA omits the article identifier and article-local page numbers; the DOI locates the original record.' : '',
+    style === 'MLA' && (clean(a.articleNumber)||/^e\d+$/i.test(clean(a.pages))) ? 'MLA omits the article identifier and article-local page numbers; the DOI locates the original record.' : '',
+    style === 'MLA' && /\d{3,}[–-]\d{3,}/.test(clean(a.pages)) ? 'Review MLA page-range abbreviation against your handbook; full publisher page numbers are retained.' : '',
     'Plain-text copying does not preserve italics.'].filter(Boolean);
 }

@@ -1,3 +1,5 @@
+> Architecture decision: Render + Cloudflare Access with browser-local work/manual backup is approved for local preparation only. Supabase/cloud migration and new scholarly integrations remain deferred. See [P0_LOCAL_READINESS.md](P0_LOCAL_READINESS.md) for implementation, validation and gates. Historical alternative costs below are not spending authorization.
+
 # Phase 2 — private beta architecture plan
 
 Assessment date: October 28, 2026. This is a plan, not implemented infrastructure. No accounts, credentials, subscriptions, cloud writes, OpenAlex/Unpaywall requests, or deployments were created in this pass. Costs below are current published starting points, not quotes or incurred charges.

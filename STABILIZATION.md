@@ -1,3 +1,11 @@
+# P0 local pilot preparation — October 28, 2026
+
+See [P0_LOCAL_READINESS.md](docs/P0_LOCAL_READINESS.md) for access verification, unassigned legacy-data safeguards, upload bounds, genuine browser quota/recovery steps, citation review, container configuration, privacy limitations and approval gates. Branch: codex/p0-local-pilot. No cloud services, spending, deployment, invitations or data migration. PR #1 was already merged externally; this branch does not merge anything.
+
+Final verification: 139/139 automated tests passed; production build passed without warnings; TypeScript and git diff whitespace checks passed; production dependency audit found zero known vulnerabilities. Production HTTP deny-by-default smoke passed. Valid PDF/DOCX integration and three live Crossref searches passed. Real Chromium quota, failed-save export/retry, queued-write interruption, failed-import retry, conflict copies and source restoration passed on disposable origin 127.0.0.1:3017. Docker/Linux, real Cloudflare login/origin enforcement, browser crash/disk-flush behavior and external MLA 9 review remain unverified. Historical sections below are retained as history and do not override the current report.
+
+---
+
 # Private beta preparation from d692764
 
 This development pass supersedes earlier verification counts. See [QA_REPORT.md](docs/QA_REPORT.md) for 49 real-source provenance, confirmed fixes, 118-test coverage, browser checks, remaining risks and exact reproduction steps. See [IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) for the staged Supabase/OpenAlex/Unpaywall/private-hosting assessment, costs and migration safeguards.

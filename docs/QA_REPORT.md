@@ -1,3 +1,5 @@
+> Current local P0 work supersedes relevant historical launch gates below: see [P0_LOCAL_READINESS.md](P0_LOCAL_READINESS.md). Access and resource safeguards are implemented locally; real provider/Linux validation and independent MLA 9 review remain open. No launch is authorized.
+
 # Private beta QA report
 
 Baseline: d692764. Development branch: codex/private-beta-qa. The starting tree was clean; main is retained. No AGENTS.md was found at the project or checked ancestors. Existing documentation and tests were read before edits. There are no credentials, cloud migrations, new scholarly provider integrations, paid APIs, or deployments in this branch.
