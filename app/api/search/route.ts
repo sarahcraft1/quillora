@@ -5,7 +5,7 @@ export async function GET(req:Request){
  if(!q)return NextResponse.json({error:'Enter a topic to begin.'},{status:400});
  if(q.length>1000)return NextResponse.json({error:'Please shorten your research question to 1,000 characters.'},{status:400});
  try{
-  const r=await fetch(`https://api.crossref.org/works?query=${encodeURIComponent(q)}&filter=type:journal-article&rows=24`,{headers:{'User-Agent':'Quillora/1.0 (scholarly discovery)'},signal:AbortSignal.timeout(18000)});
+  const r=await fetch(`https://api.crossref.org/works?query=${encodeURIComponent(q)}&filter=type:journal-article&rows=24`,{cache:'no-store',headers:{'User-Agent':'Quillora/1.0 (scholarly discovery)'},signal:AbortSignal.timeout(18000)});
   if(!r.ok)throw Error();
   const data=await r.json();
   if(!Array.isArray(data?.message?.items))throw Error();
@@ -15,6 +15,6 @@ export async function GET(req:Request){
    year:(x['published-print']?.['date-parts']?.[0]||x.published?.['date-parts']?.[0]||x['published-online']?.['date-parts']?.[0]||[])[0],
    journal:clean(x['container-title']?.[0]||'Journal not listed'),url:articleUrl(x.DOI),abstract:clean(x.abstract||''),volume:x.volume,issue:x.issue,pages:x['article-number']===x.page?undefined:x.page,articleNumber:x['article-number'],free:false
   }))});
- }catch{return NextResponse.json({error:'Crossref is unavailable right now. Please try your search again in a moment.'},{status:503});}
+ }catch(error){console.error('Crossref search failed:',error instanceof Error?error.name+': '+error.message:'Unknown error');return NextResponse.json({error:'Crossref is unavailable right now. Please try your search again in a moment.'},{status:503});}
 }
 function clean(text:string){return text.replace(/<[^>]*>/g,' ').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/\s+/g,' ').trim();}

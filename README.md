@@ -11,3 +11,5 @@ Academic source discovery using Next.js App Router, TypeScript, Tailwind, and Cr
 Use Node.js 24. PDF/DOCX fixtures are committed under `tests/fixtures`; their optional regeneration script uses python-docx and reportlab.
 
 Read [STABILIZATION.md](STABILIZATION.md) for verification evidence, backup behavior, known limits, recovery checkpoint, and private hosting requirements.
+
+Checklist completion is manual and saved per assignment. Storage failures retain previously saved work; export attempted changes or retry before refreshing. Tests include controlled quota failures and JSDOM component checks, not real browser quota exhaustion. Integration checks update recorded fixtures only with UPDATE_FIXTURES=1.
