@@ -21,3 +21,5 @@ Private beta preparation: [QA report](docs/QA_REPORT.md), [implementation plan](
 Production is fail-closed without Access configuration; `QUILLORA_ACCESS_MODE=local` never bypasses production verification. Read [local P0 readiness](docs/P0_LOCAL_READINESS.md) before running or reviewing the container. `GET /api/health` is only a public liveness check. No hosting or invitations are authorized. Existing unassigned browser work remains untouched; bring a reviewed backup explicitly rather than automatically linking it.
 
 Disposable browser recovery harness: `node scripts/browser-recovery-harness.mjs` on loopback port 3017; use synthetic data only. Production deny-by-default smoke: `node tests/production-access.mjs` against local production port 3019.
+
+Local Linux checks: `node scripts/prepare-linux-qa.mjs`, build `quillora:p0-local`, then `node scripts/validate-linux-container.mjs`. This intentionally exhausts memory only in a separate disposable capped container and uses synthetic fixtures. See [Linux validation evidence and limitations](docs/LINUX_VALIDATION.md).

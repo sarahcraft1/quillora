@@ -1,3 +1,5 @@
+> UPDATE: [Linux production validation](LINUX_VALIDATION.md) passes with 8 upload regressions and 10 integration checks; 139 Windows regressions pass. Independent MLA review and real provider/staging verification remain open.
+
 > Current local P0 work supersedes relevant historical launch gates below: see [P0_LOCAL_READINESS.md](P0_LOCAL_READINESS.md). Access and resource safeguards are implemented locally; real provider/Linux validation and independent MLA 9 review remain open. No launch is authorized.
 
 # Private beta QA report

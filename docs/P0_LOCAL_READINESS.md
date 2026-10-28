@@ -1,3 +1,5 @@
+> UPDATE: the local Docker/Linux validation pass is now complete; see [LINUX_VALIDATION.md](LINUX_VALIDATION.md). Earlier Docker-unavailable statements below are historical. No cloud/staging authorization or independent MLA sign-off is implied.
+
 # Local P0 preparation — 28 October 2026
 
 ## Scope and repository state

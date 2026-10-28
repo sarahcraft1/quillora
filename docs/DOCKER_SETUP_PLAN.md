@@ -1,3 +1,5 @@
+> COMPLETED UPDATE: WSL prerequisites/restart and Docker-specific setup were subsequently approved. Docker Desktop 4.97.0 is installed per-user, virtualization is enabled and Linux validation passes. User personally accepted the agreement. See [LINUX_VALIDATION.md](LINUX_VALIDATION.md). The original preparation-only instructions below remain historical.
+
 # Local Docker prerequisite plan — preparation only
 
 User has approved preparing setup steps, **not executing administrator-level changes, WSL changes or a restart**. None were performed. Docker was not installed because its Linux prerequisites are absent. No paid software, cloud service or deployment is involved.

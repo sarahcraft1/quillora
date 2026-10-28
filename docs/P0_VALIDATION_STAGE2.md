@@ -1,3 +1,5 @@
+> UPDATE: Docker/Linux blocker resolved after separately approved setup. [LINUX_VALIDATION.md](LINUX_VALIDATION.md) supersedes the earlier NOT RUN table: production build/start, limits, extraction, OOM and restart tests pass. Real Cloudflare and independent MLA review remain open.
+
 # WSL prerequisite installation — October 28, 2026
 
 After the user authorized proceeding with administrator-level WSL prerequisite installation (but no restart), `wsl --install --no-distribution` completed with exit code 0. Microsoft WSL 3.0.3 was installed and VirtualMachinePlatform was enabled. Windows explicitly reports changes require reboot. A read-only `wsl --version` confirms WSL 3.0.3.0 / kernel 6.18.54.1-1. No Ubuntu distribution was requested.
