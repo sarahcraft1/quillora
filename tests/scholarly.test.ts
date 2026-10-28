@@ -1,0 +1,10 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {normalizeCrossref} from '../lib/scholarly';
+import {doiKey,parseWork} from '../lib/work';
+import {formatCitation} from '../lib/citations';
+const base={DOI:'10.1234/example',title:['Research &amp; NASA'],author:[{given:'Jane',family:'Doe'}],'container-title':['Journal'],published:{'date-parts':[[2024]]}};
+test('scalar titles and malformed optional fields do not break discovery or truncate titles',()=>{const a=normalizeCrossref({...base,title:'NASA research',author:{family:'Bad'},abstract:42,'container-title':'Full journal title',volume:4,page:12})!;assert.equal(a.title,'NASA research');assert.equal(a.journal,'Full journal title');assert.deepEqual(a.authors,[]);assert.equal(a.abstract,'');assert.equal(a.volume,'4');});
+test('XML/HTML scientific typography and entities preserve text, not markup',()=>{const a=normalizeCrossref({...base,title:['CO<sub>2</sub>, &beta;-catenin and iPhone &#x2014; NASA']})!;assert.equal(a.title,'CO2, β-catenin and iPhone — NASA');});
+test('invalid records are skipped without inventing a DOI and unknown status stays unknown',()=>{assert.equal(normalizeCrossref(null),null);assert.equal(normalizeCrossref({...base,DOI:'bad'}),null);const a=normalizeCrossref({...base,license:[{URL:'https://creativecommons.org/licenses/by/4.0/'}],is_referenced_by_count:10000})!;assert.equal(a.free,false);assert.equal((a as any).peerReviewed,undefined);assert.equal((a as any).credibility,undefined);});
+test('DOI variants canonicalize across citation, backup parsing and deduplication',()=>{const a=normalizeCrossref(base)!;for(const id of ['10.1234/EXAMPLE',' doi:10.1234/example ','HTTPS://DOI.ORG/10.1234%2FEXAMPLE','http://dx.doi.org/10.1234/example']){assert.equal(doiKey(id),a.id);assert.ok(formatCitation({...a,id},'APA').endsWith('https://doi.org/10.1234/example'));assert.equal(parseWork({saved:[a,{...a,id}],assignments:[]}).saved.length,1);}});

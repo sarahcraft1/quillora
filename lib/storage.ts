@@ -15,3 +15,9 @@ export function persistWork(storage: StoragePort, previousRaw: string | null, ne
       : 'Not saved: browser storage is unavailable. Previously saved work was not replaced. Export attempted changes, allow site storage, then retry.'};
   }
 }
+/** Cooperating beta tabs serialize the read/compare/write section on secure origins. */
+export async function persistWorkLocked(storage:StoragePort,previousRaw:string|null,next:Work,locks?:Pick<LockManager,'request'>):Promise<SaveResult>{
+  if(!locks)return persistWork(storage,previousRaw,next);
+  try{return await locks.request('quillora-work-write',{signal:AbortSignal.timeout(5000)},()=>persistWork(storage,previousRaw,next));}
+  catch{return {ok:false,reason:'unavailable',message:'Not saved: browser save coordination is unavailable. Previously saved work was not replaced. Export attempted changes, then retry.'};}
+}

@@ -7,7 +7,7 @@ export const STORAGE_KEY = 'quillora-work';
 export const MAX_BACKUP_BYTES = 10_000_000;
 const string = (v: unknown): v is string => typeof v === 'string';
 const object = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v);
-export function doiKey(id: string) { return id.toLowerCase().replace(/^https?:\/\/(?:dx\.)?doi\.org\//, ''); }
+export function doiKey(id: string) { let value=id.trim().replace(/^doi:\s*/i,'');if(/^https?:\/\/(?:dx\.)?doi\.org\//i.test(value)){value=value.replace(/^https?:\/\/(?:dx\.)?doi\.org\//i,'');try{value=decodeURIComponent(value);}catch{}}return value.toLowerCase(); }
 export function articleUrl(id: string) { return 'https://doi.org/' + doiKey(id).split('/').map(encodeURIComponent).join('/'); }
 function article(v: unknown): Article {
   if (!object(v) || !string(v.id) || !/^10\.\d{4,9}\/\S+$/i.test(doiKey(v.id)) || !string(v.title) || !Array.isArray(v.authors) || !v.authors.every(string) || !string(v.journal) || !string(v.abstract) || (v.year !== undefined && (!Number.isInteger(v.year) || Number(v.year) < 1000 || Number(v.year) > 3000))) throw Error('A source in this backup is invalid. Nothing was imported.');

@@ -1,3 +1,11 @@
+# Private beta preparation from d692764
+
+This development pass supersedes earlier verification counts. See [QA_REPORT.md](docs/QA_REPORT.md) for 49 real-source provenance, confirmed fixes, 118-test coverage, browser checks, remaining risks and exact reproduction steps. See [IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) for the staged Supabase/OpenAlex/Unpaywall/private-hosting assessment, costs and migration safeguards.
+
+Stable main remains at d692764; changes belong to codex/private-beta-qa and must be reviewed before merge. No cloud integration, credentials, deployment, paid API, AI writing or student-data migration was introduced.
+
+---
+
 # Current stabilization pass — October 28, 2026
 
 This section supersedes completion claims in the historical audit below. Work was verified in the standalone Desktop Quillora repository on main, initially clean and synced at afeae86. No AGENTS.md exists in the project, its app/lib/tests directories, or ancestor folders checked. README.md, REPOSITORY.md, the previous audit, current source, and available tests were read before edits. No pre-existing uncommitted work was present. No AI features, credentials, hosting, or visual redesign were added.
