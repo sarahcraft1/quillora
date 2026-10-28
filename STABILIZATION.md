@@ -1,3 +1,13 @@
+# WSL prerequisite installation — October 28, 2026
+
+After the user authorized proceeding with administrator-level WSL prerequisite installation (but no restart), `wsl --install --no-distribution` completed with exit code 0. Microsoft WSL 3.0.3 was installed and VirtualMachinePlatform was enabled. Windows explicitly reports changes require reboot. A read-only `wsl --version` confirms WSL 3.0.3.0 / kernel 6.18.54.1-1. No Ubuntu distribution was requested.
+
+No restart, firmware change, Docker installation, deployment or student-data operation was performed. Firmware virtualization still reports false. The next action requires an explicitly approved restart and user-controlled BIOS/UEFI virtualization enablement, followed by read-only verification. Docker/Linux tests remain NOT RUN. Installer output is retained locally in `%TEMP%/quillora-wsl-prerequisites/install.log`; completion status is in `result.json`. Only the expected WSL/Windows prerequisite operation was authorized; unrelated settings must remain unchanged.
+
+This update supersedes the earlier statement that WSL was absent. Commit 90045ea remains the only authorized/pushed follow-up code commit; subsequent review/setup documentation remains local.
+
+---
+
 # P0 validation stage 2 — October 28, 2026
 
 Commit 90045ea was pushed and verified on origin/codex/p0-local-pilot; main was untouched. All 139 Windows regression tests passed again. Linux tests are NOT RUN: firmware virtualization is disabled and WSL is absent. No installation, administrator/WSL change or restart occurred. User approved preparing setup steps only. See [stage-2 report](docs/P0_VALIDATION_STAGE2.md), [setup plan](docs/DOCKER_SETUP_PLAN.md) and [independent MLA 9 package](docs/mla9-review/README.md). No independent reviewer approval is claimed.
