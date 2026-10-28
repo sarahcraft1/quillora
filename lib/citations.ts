@@ -1,5 +1,6 @@
-import type { Article, Author } from './work';
+import { doiKey, type Article, type Author } from './work';
 const period = (s: string) => /[.!?]$/.test(s) ? s : s + '.';
+function titlePeriod(s:string){const match=s.match(/([”’"]+)$/);if(!match)return period(s);const body=s.slice(0,-match[0].length);return period(body)+match[0];}
 const clean = (s?: string) => s?.trim() || '';
 export function citationAuthors(a: Article): Author[] {
   const details = (a.authorDetails || []).filter(n => clean(n.family) || clean(n.name) || clean(n.given));
@@ -30,15 +31,15 @@ export function citationParts(a: Article, style: string) {
   // A label describes the missing field; it is not an invented article title.
   const title = missingTitle ? '[Journal article; title unavailable]' : a.title.trim();
   const journal = a.journal === 'Journal not listed' ? '' : a.journal.trim();
-  const doi = 'https://doi.org/' + a.id;
+  const doi = 'https://doi.org/' + doiKey(a.id);
   // Some deposits put an e-locator in both fields. It must never become a page.
-  const number = clean(a.articleNumber);
+  const number = clean(a.articleNumber) || (/^e\d+$/i.test(clean(a.pages)) ? clean(a.pages) : '');
   const pages = clean(a.pages) === number ? '' : clean(a.pages);
   if (style === 'APA') {
     const names = authors.map(apaName);
     const author = names.length > 20 ? names.slice(0, 19).join(', ') + ', … ' + names[names.length - 1]
       : names.length > 1 ? names.slice(0, -1).join(', ') + ', & ' + names[names.length - 1] : names[0];
-    const before = author ? `${period(author)} (${a.year || 'n.d.'}). ${period(title)} ` : `${period(title)} (${a.year || 'n.d.'}). `;
+    const before = author ? `${period(author)} (${a.year || 'n.d.'}). ${titlePeriod(title)} ` : `${period(title)} (${a.year || 'n.d.'}). `;
     const location = number ? 'Article ' + number : pages.replace(/(?<=\d)-(?=\d)/g, '–');
     return { before, italic: [journal, a.volume].filter(Boolean).join(', '), after:
       (a.issue ? (journal && !a.volume ? ', ' : '') + '(' + a.issue + ')' : '') +
@@ -47,7 +48,7 @@ export function citationParts(a: Article, style: string) {
   }
   const author = authors.length >= 3 ? full(authors[0], true) + ', et al.'
     : authors.length === 2 ? full(authors[0], true) + ', and ' + full(authors[1]) : authors.length === 1 ? full(authors[0], true) : '';
-  const before = (author ? period(author) + ' ' : '') + (missingTitle ? title + '. ' : '“' + (/[!?]$/.test(title) ? title : title.replace(/[.]$/, '') + '.') + '” ');
+  const before = (author ? period(author) + ' ' : '') + (missingTitle ? title + '. ' : '“' + titlePeriod(title.replace(/“/g,'‘').replace(/”/g,'’')) + '” ');
   const details = [a.volume ? 'vol. ' + a.volume : '', a.issue ? 'no. ' + a.issue : '', a.year ? String(a.year) : '',
     !number && pages ? (/[–-]/.test(pages) ? 'pp. ' : 'p. ') + pages.replace(/(?<=\d)-(?=\d)/g, '–') : ''].filter(Boolean);
   return { before, italic: journal, after: (journal && details.length ? ', ' : '') + details.join(', ') + (journal || details.length ? ', ' : '') + doi + '.' };

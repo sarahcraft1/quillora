@@ -3,3 +3,4 @@
 .backup{border-top:1px solid var(--line);padding-top:16px;margin-top:32px}.backup-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.backup input{max-width:210px;font-size:10px}.backup button:disabled{opacity:.5;cursor:not-allowed}.article-actions{flex-wrap:wrap}
 .modal form>input{display:block;width:100%;padding:12px;border:1px solid var(--line);background:white;margin:12px 0 20px;border-radius:4px}
 .rubric-checklist{border:0;padding:0;margin:20px 0}.rubric-checklist legend{font-size:12px;font-weight:600}.rubric-checklist label{display:flex;align-items:flex-start;gap:10px;margin:12px 0;font-size:12px;line-height:1.6}.rubric-checklist input{accent-color:var(--green);margin-top:4px;flex-shrink:0}.rubric-checklist:disabled{opacity:.65}
+.citation-title{display:grid!important;gap:8px!important;margin-top:18px}.citation-title input{width:100%;padding:10px;border:1px solid var(--line);background:#fffef9;border-radius:4px}
