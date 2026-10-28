@@ -1,3 +1,9 @@
+# P0 validation stage 2 — October 28, 2026
+
+Commit 90045ea was pushed and verified on origin/codex/p0-local-pilot; main was untouched. All 139 Windows regression tests passed again. Linux tests are NOT RUN: firmware virtualization is disabled and WSL is absent. No installation, administrator/WSL change or restart occurred. User approved preparing setup steps only. See [stage-2 report](docs/P0_VALIDATION_STAGE2.md), [setup plan](docs/DOCKER_SETUP_PLAN.md) and [independent MLA 9 package](docs/mla9-review/README.md). No independent reviewer approval is claimed.
+
+---
+
 # P0 local pilot preparation — October 28, 2026
 
 See [P0_LOCAL_READINESS.md](docs/P0_LOCAL_READINESS.md) for access verification, unassigned legacy-data safeguards, upload bounds, genuine browser quota/recovery steps, citation review, container configuration, privacy limitations and approval gates. Branch: codex/p0-local-pilot. No cloud services, spending, deployment, invitations or data migration. PR #1 was already merged externally; this branch does not merge anything.

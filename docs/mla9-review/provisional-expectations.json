@@ -1,0 +1,165 @@
+{
+  "status": "Prepared for independent review; no reviewer approval yet",
+  "cases": [
+    {
+      "caseId": "MLA-01",
+      "expectedBehavior": "Preserve supplied names/proper nouns; do not invent missing facts; omit unavailable optional fields; confirm MLA 9 location/number and punctuation rules.",
+      "provisionalExpected": "Su, Jiahong, and Weipeng Yang. “Artificial Intelligence in Early Childhood Education: A Scoping Review.” Computers and Education: Artificial Intelligence, vol. 3, 2022, https://doi.org/10.1016/j.caeai.2022.100049.",
+      "explicitTitleEdit": "Artificial Intelligence in Early Childhood Education: A Scoping Review",
+      "reviewerExpected": null,
+      "reviewerRuleSection": null,
+      "verdict": "pending",
+      "note": "A null expected citation means unresolved, not passing. Provisional Su/Yang example is hand-prepared; article-number handling must be confirmed against MLA 9."
+    },
+    {
+      "caseId": "MLA-02",
+      "expectedBehavior": "Preserve supplied names/proper nouns; do not invent missing facts; omit unavailable optional fields; confirm MLA 9 location/number and punctuation rules.",
+      "provisionalExpected": null,
+      "explicitTitleEdit": null,
+      "reviewerExpected": null,
+      "reviewerRuleSection": null,
+      "verdict": "pending",
+      "note": "A null expected citation means unresolved, not passing. Provisional Su/Yang example is hand-prepared; article-number handling must be confirmed against MLA 9."
+    },
+    {
+      "caseId": "MLA-03",
+      "expectedBehavior": "Preserve supplied names/proper nouns; do not invent missing facts; omit unavailable optional fields; confirm MLA 9 location/number and punctuation rules.",
+      "provisionalExpected": null,
+      "explicitTitleEdit": null,
+      "reviewerExpected": null,
+      "reviewerRuleSection": null,
+      "verdict": "pending",
+      "note": "A null expected citation means unresolved, not passing. Provisional Su/Yang example is hand-prepared; article-number handling must be confirmed against MLA 9."
+    },
+    {
+      "caseId": "MLA-04",
+      "expectedBehavior": "Preserve supplied names/proper nouns; do not invent missing facts; omit unavailable optional fields; confirm MLA 9 location/number and punctuation rules.",
+      "provisionalExpected": null,
+      "explicitTitleEdit": null,
+      "reviewerExpected": null,
+      "reviewerRuleSection": null,
+      "verdict": "pending",
+      "note": "A null expected citation means unresolved, not passing. Provisional Su/Yang example is hand-prepared; article-number handling must be confirmed against MLA 9."
+    },
+    {
+      "caseId": "MLA-05",
+      "expectedBehavior": "Preserve supplied names/proper nouns; do not invent missing facts; omit unavailable optional fields; confirm MLA 9 location/number and punctuation rules.",
+      "provisionalExpected": null,
+      "explicitTitleEdit": null,
+      "reviewerExpected": null,
+      "reviewerRuleSection": null,
+      "verdict": "pending",
+      "note": "A null expected citation means unresolved, not passing. Provisional Su/Yang example is hand-prepared; article-number handling must be confirmed against MLA 9."
+    },
+    {
+      "caseId": "MLA-06",
+      "expectedBehavior": "Preserve supplied names/proper nouns; do not invent missing facts; omit unavailable optional fields; confirm MLA 9 location/number and punctuation rules.",
+      "provisionalExpected": null,
+      "explicitTitleEdit": null,
+      "reviewerExpected": null,
+      "reviewerRuleSection": null,
+      "verdict": "pending",
+      "note": "A null expected citation means unresolved, not passing. Provisional Su/Yang example is hand-prepared; article-number handling must be confirmed against MLA 9."
+    },
+    {
+      "caseId": "MLA-07",
+      "expectedBehavior": "Preserve supplied names/proper nouns; do not invent missing facts; omit unavailable optional fields; confirm MLA 9 location/number and punctuation rules.",
+      "provisionalExpected": null,
+      "explicitTitleEdit": null,
+      "reviewerExpected": null,
+      "reviewerRuleSection": null,
+      "verdict": "pending",
+      "note": "A null expected citation means unresolved, not passing. Provisional Su/Yang example is hand-prepared; article-number handling must be confirmed against MLA 9."
+    },
+    {
+      "caseId": "MLA-08",
+      "expectedBehavior": "Preserve supplied names/proper nouns; do not invent missing facts; omit unavailable optional fields; confirm MLA 9 location/number and punctuation rules.",
+      "provisionalExpected": null,
+      "explicitTitleEdit": null,
+      "reviewerExpected": null,
+      "reviewerRuleSection": null,
+      "verdict": "pending",
+      "note": "A null expected citation means unresolved, not passing. Provisional Su/Yang example is hand-prepared; article-number handling must be confirmed against MLA 9."
+    },
+    {
+      "caseId": "MLA-09",
+      "expectedBehavior": "Preserve supplied names/proper nouns; do not invent missing facts; omit unavailable optional fields; confirm MLA 9 location/number and punctuation rules.",
+      "provisionalExpected": null,
+      "explicitTitleEdit": null,
+      "reviewerExpected": null,
+      "reviewerRuleSection": null,
+      "verdict": "pending",
+      "note": "A null expected citation means unresolved, not passing. Provisional Su/Yang example is hand-prepared; article-number handling must be confirmed against MLA 9."
+    },
+    {
+      "caseId": "MLA-10",
+      "expectedBehavior": "Preserve supplied names/proper nouns; do not invent missing facts; omit unavailable optional fields; confirm MLA 9 location/number and punctuation rules.",
+      "provisionalExpected": null,
+      "explicitTitleEdit": null,
+      "reviewerExpected": null,
+      "reviewerRuleSection": null,
+      "verdict": "pending",
+      "note": "A null expected citation means unresolved, not passing. Provisional Su/Yang example is hand-prepared; article-number handling must be confirmed against MLA 9."
+    },
+    {
+      "caseId": "MLA-11",
+      "expectedBehavior": "Preserve supplied names/proper nouns; do not invent missing facts; omit unavailable optional fields; confirm MLA 9 location/number and punctuation rules.",
+      "provisionalExpected": null,
+      "explicitTitleEdit": null,
+      "reviewerExpected": null,
+      "reviewerRuleSection": null,
+      "verdict": "pending",
+      "note": "A null expected citation means unresolved, not passing. Provisional Su/Yang example is hand-prepared; article-number handling must be confirmed against MLA 9."
+    },
+    {
+      "caseId": "MLA-12",
+      "expectedBehavior": "Preserve supplied names/proper nouns; do not invent missing facts; omit unavailable optional fields; confirm MLA 9 location/number and punctuation rules.",
+      "provisionalExpected": null,
+      "explicitTitleEdit": null,
+      "reviewerExpected": null,
+      "reviewerRuleSection": null,
+      "verdict": "pending",
+      "note": "A null expected citation means unresolved, not passing. Provisional Su/Yang example is hand-prepared; article-number handling must be confirmed against MLA 9."
+    },
+    {
+      "caseId": "MLA-13",
+      "expectedBehavior": "Preserve supplied names/proper nouns; do not invent missing facts; omit unavailable optional fields; confirm MLA 9 location/number and punctuation rules.",
+      "provisionalExpected": null,
+      "explicitTitleEdit": null,
+      "reviewerExpected": null,
+      "reviewerRuleSection": null,
+      "verdict": "pending",
+      "note": "A null expected citation means unresolved, not passing. Provisional Su/Yang example is hand-prepared; article-number handling must be confirmed against MLA 9."
+    },
+    {
+      "caseId": "MLA-14",
+      "expectedBehavior": "Preserve supplied names/proper nouns; do not invent missing facts; omit unavailable optional fields; confirm MLA 9 location/number and punctuation rules.",
+      "provisionalExpected": null,
+      "explicitTitleEdit": null,
+      "reviewerExpected": null,
+      "reviewerRuleSection": null,
+      "verdict": "pending",
+      "note": "A null expected citation means unresolved, not passing. Provisional Su/Yang example is hand-prepared; article-number handling must be confirmed against MLA 9."
+    },
+    {
+      "caseId": "MLA-15",
+      "expectedBehavior": "Preserve supplied names/proper nouns; do not invent missing facts; omit unavailable optional fields; confirm MLA 9 location/number and punctuation rules.",
+      "provisionalExpected": null,
+      "explicitTitleEdit": null,
+      "reviewerExpected": null,
+      "reviewerRuleSection": null,
+      "verdict": "pending",
+      "note": "A null expected citation means unresolved, not passing. Provisional Su/Yang example is hand-prepared; article-number handling must be confirmed against MLA 9."
+    },
+    {
+      "caseId": "MLA-16",
+      "expectedBehavior": "Preserve supplied names/proper nouns; do not invent missing facts; omit unavailable optional fields; confirm MLA 9 location/number and punctuation rules.",
+      "provisionalExpected": null,
+      "explicitTitleEdit": null,
+      "reviewerExpected": null,
+      "reviewerRuleSection": null,
+      "verdict": "pending",
+      "note": "A null expected citation means unresolved, not passing. Provisional Su/Yang example is hand-prepared; article-number handling must be confirmed against MLA 9."
+    }
+  ]
+}
