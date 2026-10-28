@@ -1,0 +1,78 @@
+[
+  {
+    "id": "10.1093/geroni/igaf122.2051",
+    "title": "Living Well With Cognitive Impairment: Social Connection, Well-Being, and Cognition in Very Old Age",
+    "authors": [
+      "Selina Vogel",
+      "Susanne Zank"
+    ],
+    "authorDetails": [
+      {
+        "given": "Selina",
+        "family": "Vogel"
+      },
+      {
+        "given": "Susanne",
+        "family": "Zank"
+      }
+    ],
+    "year": 2025,
+    "journal": "Innovation in Aging",
+    "url": "https://doi.org/10.1093/geroni/igaf122.2051",
+    "abstract": "Abstract Research emphasizes that social relationships protect against cognitive impairment. However, their role for individuals already experiencing cognitive impairment is less understood. For them, social connections may be crucial to maintain well-being. Therefore, the present study examined the associations between cognitive impairment, social relationships, and psychological well-being in very old adults (80+ years), a high-risk group for cognitive decline. We analyzed data from proxy- and target-person interviews of 1.561 participants recruited for the Study on Quality of Life and Well-Being in North-Rhine Westphalia (NRW80+). Participants were classified as having no cognitive impairment (66.80%), mild cognitive impairment (16.00%), or major cognitive impairment (17.20%). We compared the groups on three social factors (close network, social activities, and loneliness) and two well-being measures (depressive symptoms and positive affect). Moreover, we investigated whether cognitive impairment moderated the associations between social factors and well-being. As anticipated, cognitive impairment was associated with lower social outcomes and reduced well-being. Additionally, social factors were associated with higher well-being, and these associations were partly moderated by cognitive status. Notably, the association between social engagement and depressive symptoms was more pronounced for individuals with major cognitive impairment compared to the other groups. The findings underscore the significance of social relationships for psychological well-being, especially in the presence of major cognitive impairment. They also demonstrate the general risk of reduced social and mental health faced by individuals with cognitive impairment. Further research is needed, as the topic is increasingly relevant due to the growing rates of cognitive impairment in our aging society.",
+    "volume": "9",
+    "issue": "Supplement_2",
+    "articleNumber": "igaf122.2051",
+    "free": false
+  },
+  {
+    "id": "10.1016/j.uclim.2025.102290",
+    "title": "Urban stormwater resilience: Global insights and strategies for climate adaptation",
+    "authors": [
+      "Mohammad Fereshtehpour",
+      "Mohammad Reza Najafi"
+    ],
+    "authorDetails": [
+      {
+        "given": "Mohammad",
+        "family": "Fereshtehpour"
+      },
+      {
+        "given": "Mohammad Reza",
+        "family": "Najafi"
+      }
+    ],
+    "year": 2025,
+    "journal": "Urban Climate",
+    "url": "https://doi.org/10.1016/j.uclim.2025.102290",
+    "abstract": "",
+    "volume": "59",
+    "articleNumber": "102290",
+    "free": false
+  },
+  {
+    "id": "10.1016/j.caeai.2022.100049",
+    "title": "Artificial intelligence in early childhood education: A scoping review",
+    "authors": [
+      "Jiahong Su",
+      "Weipeng Yang"
+    ],
+    "authorDetails": [
+      {
+        "given": "Jiahong",
+        "family": "Su"
+      },
+      {
+        "given": "Weipeng",
+        "family": "Yang"
+      }
+    ],
+    "year": 2022,
+    "journal": "Computers and Education: Artificial Intelligence",
+    "url": "https://doi.org/10.1016/j.caeai.2022.100049",
+    "abstract": "",
+    "volume": "3",
+    "articleNumber": "100049",
+    "free": false
+  }
+]

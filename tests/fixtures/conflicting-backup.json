@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "exportedAt": "2026-10-28T19:38:37.837Z",
+  "saved": [
+    {
+      "id": "10.1016/j.caeai.2022.100049",
+      "title": "Artificial intelligence in early childhood education: A scoping review",
+      "authors": [
+        "Jiahong Su",
+        "Weipeng Yang"
+      ],
+      "journal": "Computers and Education: Artificial Intelligence",
+      "abstract": "",
+      "url": "https://doi.org/10.1016/j.caeai.2022.100049",
+      "free": false,
+      "year": 2022,
+      "volume": "3",
+      "articleNumber": "100049",
+      "searchQuery": "Artificial intelligence in early childhood education",
+      "authorDetails": [
+        {
+          "given": "Jiahong",
+          "family": "Su"
+        },
+        {
+          "given": "Weipeng",
+          "family": "Yang"
+        }
+      ]
+    }
+  ],
+  "assignments": [
+    {
+      "id": "91dd53e6-f890-4600-b059-a212d30ee300",
+      "name": "Stability audit — test assignment",
+      "question": "Artificial intelligence in early childhood education",
+      "rubric": "Conflicting imported instructions — test fixture",
+      "requirements": "Source count mentioned (check minimum/exact wording): five\nPublication-date wording: Sources must be published between 2020 and 2025\nCitation style mentioned: APA\nPeer-review wording: Use at least five peer-reviewed journal articles\nTopic / research question: How does social connection affect well-being?",
+      "sources": [
+        {
+          "id": "10.1016/j.caeai.2022.100049",
+          "title": "Artificial intelligence in early childhood education: A scoping review",
+          "authors": [
+            "Jiahong Su",
+            "Weipeng Yang"
+          ],
+          "journal": "Computers and Education: Artificial Intelligence",
+          "abstract": "",
+          "url": "https://doi.org/10.1016/j.caeai.2022.100049",
+          "free": false,
+          "year": 2022,
+          "volume": "3",
+          "articleNumber": "100049",
+          "searchQuery": "Artificial intelligence in early childhood education",
+          "authorDetails": [
+            {
+              "given": "Jiahong",
+              "family": "Su"
+            },
+            {
+              "given": "Weipeng",
+              "family": "Yang"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
