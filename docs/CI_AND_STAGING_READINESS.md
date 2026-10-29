@@ -1,0 +1,21 @@
+# CI and private staging readiness
+
+Branch: codex/private-staging-readiness, based on merged PR #3 in the pilot branch. PR #2 remains unmerged. This stage focuses on regression automation and synthetic-data staging preparation, not a public application launch.
+
+## Implemented
+
+- GitHub Actions CI uses commit-pinned official checkout/setup-node actions, Node 24 on standard Ubuntu, read-only contents permission, no persisted checkout credential and a 15-minute limit. Runs tests, TypeScript, production build and a loopback-only fail-closed HTTP smoke check. No pull_request_target, user-supplied shell interpolation, deployment, production secrets, caches, artifact uploads or paid/larger runners. Concurrency cancels obsolete runs.
+- Job runs only while the repository is public. GitHub documents standard hosted compute for public repositories as free. If visibility changes to private, this workflow deliberately skips rather than consuming an unapproved allowance; skip is **not** successful validation. Reassess billing and the guard through owner approval then. The CI file is not staging access control.
+- With explicit owner approval, GitHub secret scanning and push protection were enabled and read back as enabled. Private vulnerability reporting remains enabled. No AI secret detection, validity checks, paid security enrollment, Dependabot changes, branch rules or production credentials were changed. These scanners do not certify all sensitive values absent.
+- Confirmed/fixed staging configuration defect: missing/invalid public origin could allow reads while every upload failed. Production now fails closed until a canonical HTTPS origin is present. Valid signed app tokens are tested through the same request gate; alternate hosts, foreign-origin writes and forged identity fail. Tests generate keys locally; no real Access account or credential is used, and no HTTP test bypass exists.
+- Added a full automated synthetic student workflow through real rubric/search adapters: PDF parsing, frozen real Crossref record response, assignment creation/edit save, source linking, unknown review/access labels, APA/MLA clipboard stub, manual checklist, Blob backup export, source removal/import restore and component remount persistence. This is a JSDOM/adapter integration check, **not a real browser download, live discovery service or hosted Access acceptance test**. Existing parser/negative/storage regressions remain.
+- Added reviewed placeholder-only .env.example and [private staging acceptance checklist](PRIVATE_STAGING_CHECKLIST.md). No account, host, domain, deployment or student record was created or migrated.
+
+## Remaining blockers, in order
+
+1. Approve exact Render/Cloudflare account/region/domain configuration, recurring cost ceiling and a synthetic-data staging deployment. Architecture approval alone is not spending or deployment approval. No production credentials should be changed.
+2. Complete real provider authentication/JWKS/lifecycle/host/proxy/Origin acceptance and log-privacy/resource/restart checks. Locally generated signatures and Docker checks do not verify Cloudflare, Render, TLS or DNS.
+3. Complete hosted five-session/browser workflow and recovery tests. Current admission/rate limiting is one-process; namespaces are not encryption against shared-profile/device access. Real browser quota/crash matrices remain limited to documented disposable checks.
+4. Before students: independent MLA 9/APA edge review, publisher/source-verification exercise, agreed privacy/support/export contract and explicit five-student invitation approval. Unknown peer-review/access labels remain intentionally conservative. Full MLA 9 validation is not claimed.
+
+Local verification: 146 tests pass, including the new signed-request gate and complete synthetic workflow checks; TypeScript and production build pass. Actual GitHub CI results are recorded in the review PR after pushing; local evidence alone must not be labeled GitHub checks. CI does not yet protect PR #2 until this change is separately reviewed/merged into the pilot branch. See [CI security guidance](https://docs.github.com/en/actions/reference/security/secure-use) and [Actions billing](https://docs.github.com/en/billing/concepts/product-billing/github-actions). No merge/deploy/visibility/history operation is included in this branch.

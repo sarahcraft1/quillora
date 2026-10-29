@@ -1,0 +1,21 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {generateKeyPair,SignJWT} from 'jose';
+import {NextRequest} from 'next/server';
+import {requestGate,validPublicOrigin} from '../lib/access-gate';
+import {verifyAccess} from '../lib/access';
+const env={NODE_ENV:'production',CF_ACCESS_ISSUER:'https://synthetic.cloudflareaccess.com',CF_ACCESS_AUD:'synthetic-audience',QUILLORA_ALLOWED_EMAILS:'synthetic@example.invalid',QUILLORA_PUBLIC_ORIGIN:'https://pilot.example.invalid'};
+test('staging origin requires a canonical HTTPS origin, without credentials/path/query',()=>{for(const value of [undefined,'http://pilot.example.invalid','https://pilot.example.invalid/','https://pilot.example.invalid/path','https://user:password@pilot.example.invalid','https://pilot.example.invalid?x=1','not a URL'])assert.equal(validPublicOrigin(value),null);assert.equal(validPublicOrigin(env.QUILLORA_PUBLIC_ORIGIN),env.QUILLORA_PUBLIC_ORIGIN);});
+test('production rejects missing/invalid origin configuration even before a valid token is used',async()=>{for(const value of [undefined,'http://pilot.example.invalid','https://pilot.example.invalid/path']){let called=false;const r=await requestGate(new NextRequest(env.QUILLORA_PUBLIC_ORIGIN),{...env,QUILLORA_PUBLIC_ORIGIN:value},async()=>{called=true;throw Error();});assert.equal(r.status,503);assert.equal(called,false);}});
+test('signed app tokens allow only approved host/origin, isolate users and strip forged identity',async()=>{
+ const keys=await generateKeyPair('RS256');const make=(subject:string)=>new SignJWT({email:'synthetic@example.invalid',type:'app'}).setProtectedHeader({alg:'RS256'}).setIssuer(env.CF_ACCESS_ISSUER).setAudience(env.CF_ACCESS_AUD).setSubject(subject).setIssuedAt().setExpirationTime('5m').sign(keys.privateKey);
+ const token=await make('student-A'),tokenB=await make('student-B');
+ const verify:typeof verifyAccess=(jwt,config)=>verifyAccess(jwt,config,async()=>keys.publicKey);
+ const req=(host='pilot.example.invalid',origin=env.QUILLORA_PUBLIC_ORIGIN,method='GET',jwt=token)=>new NextRequest('https://'+host+'/api/rubric',{method,headers:{host,origin,'cf-access-jwt-assertion':jwt,'x-quillora-storage-key':'forged'}});
+ const a=await requestGate(req(),env,verify);assert.equal(a.status,200);const key=a.headers.get('x-middleware-request-x-quillora-storage-key');assert.match(key!,/^quillora-work:user:[a-f0-9]{64}$/);assert.notEqual(key,'forged');assert.equal(a.headers.get('cache-control'),'private, no-store');
+ assert.equal((await requestGate(req('pilot.example.invalid',env.QUILLORA_PUBLIC_ORIGIN,'POST'),env,verify)).status,200);
+ assert.equal((await requestGate(req('pilot.example.invalid','https://outsider.example.invalid','POST'),env,verify)).status,403);
+ assert.equal((await requestGate(req('alternate.example.invalid'),env,verify)).status,403);
+ const b=await requestGate(req('pilot.example.invalid',env.QUILLORA_PUBLIC_ORIGIN,'GET',tokenB),env,verify);assert.notEqual(b.headers.get('x-middleware-request-x-quillora-storage-key'),key);
+ assert.equal((await requestGate(req('pilot.example.invalid',env.QUILLORA_PUBLIC_ORIGIN,'GET','forged'),env,verify)).status,401);
+});

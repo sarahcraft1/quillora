@@ -1,5 +1,7 @@
 > Architecture decision: Render + Cloudflare Access with browser-local work/manual backup is approved for local preparation only. Supabase/cloud migration and new scholarly integrations remain deferred. See [P0_LOCAL_READINESS.md](P0_LOCAL_READINESS.md) for implementation, validation and gates. Historical alternative costs below are not spending authorization.
 
+> Active private-pilot sequence: use [CI/staging readiness](CI_AND_STAGING_READINESS.md) and the [acceptance checklist](PRIVATE_STAGING_CHECKLIST.md). Historical Supabase/SMTP/cloud-migration steps below are deferred options, not prerequisites or authorization for this browser-local Render + Cloudflare pilot.
+
 # Phase 2 — private beta architecture plan
 
 Assessment date: October 28, 2026. This is a plan, not implemented infrastructure. No accounts, credentials, subscriptions, cloud writes, OpenAlex/Unpaywall requests, or deployments were created in this pass. Costs below are current published starting points, not quotes or incurred charges.

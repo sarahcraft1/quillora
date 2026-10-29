@@ -18,7 +18,7 @@ test('production cannot enable local bypass; malformed issuer and empty allowlis
 test('unauthorized pages, APIs and spoofed identity are rejected; health exposes no configuration',async()=>{
  const saved={...process.env};try{Object.assign(process.env,{NODE_ENV:'production'});delete process.env.CF_ACCESS_ISSUER;
  for(const path of ['/','/api/search?q=private','/api/rubric','/api/session']){const r=await middleware(new NextRequest('https://pilot.invalid'+path,{headers:{'x-quillora-storage-key':'forged'}}));assert.equal(r.status,503);assert.ok(!(await r.text()).includes('forged'));}
- process.env.CF_ACCESS_ISSUER=config.issuer;process.env.CF_ACCESS_AUD=config.audience;process.env.QUILLORA_ALLOWED_EMAILS=config.emails[0];for(const path of ['/','/api/search','/api/rubric','/api/session'])assert.equal((await middleware(new NextRequest('https://origin.invalid'+path))).status,401);
+ process.env.QUILLORA_PUBLIC_ORIGIN='https://pilot.invalid';process.env.CF_ACCESS_ISSUER=config.issuer;process.env.CF_ACCESS_AUD=config.audience;process.env.QUILLORA_ALLOWED_EMAILS=config.emails[0];for(const path of ['/','/api/search','/api/rubric','/api/session'])assert.equal((await middleware(new NextRequest('https://origin.invalid'+path))).status,401);
  assert.equal((await middleware(new NextRequest('https://origin.invalid/api/health'))).status,200);
  }finally{for(const k of Object.keys(process.env))if(!(k in saved))delete process.env[k];Object.assign(process.env,saved);}
 });
