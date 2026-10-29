@@ -1,4 +1,10 @@
-# Current private staging preparation
+# Current local functionality milestone — October 29, 2026
+
+Hosting work is paused. On the pilot branch, assignment-context cancellation, upload retry handling, draft protection, editable names/notes, non-destructive assignment unlinking and keyboard focus were improved. The suite now has 160 passing tests, including 14 new regressions. Live Crossref/PDF/DOCX and real browser clipboard/backup/checklist/refresh checks passed; actual browser quota exhaustion preserved exact saved bytes and recovered a note after retry. See [detailed local audit](docs/LOCAL_FUNCTIONAL_AUDIT.md) and [local persistence decision](docs/LOCAL_PERSISTENCE_DECISION.md) for evidence, reproductions and remaining limits. No database, accounts, hosting, purchases or deployment were introduced. Earlier sections remain historical.
+
+---
+
+# Historical private staging preparation
 
 CI, stricter origin/host access checks, and a synthetic student-workflow regression are prepared on codex/private-staging-readiness. See [current readiness](docs/CI_AND_STAGING_READINESS.md) and [hosted acceptance checklist](docs/PRIVATE_STAGING_CHECKLIST.md). Secret scanning/push protection were enabled only after explicit approval. No deployment, paid provisioning, main merge or credential change is authorized. Historical assessment sections below are retained as history.
 
