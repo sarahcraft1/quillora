@@ -31,6 +31,29 @@ test('older search completion cannot replace newer results',async()=>{const app=
 test('late rubric upload cannot replace a newly selected assignment',async()=>{const app=await mount(),originalFetch=globalThis.fetch;try{let finish!:(r:Response)=>void;globalThis.fetch=(()=>new Promise<Response>(resolve=>finish=resolve)) as typeof fetch;await app.click('Upload your rubric Optional');const input=app.container.querySelector('input[accept=".pdf,.docx"]') as HTMLInputElement;Object.defineProperty(input,'files',{configurable:true,value:[new File(['test'],'rubric.pdf')]});await act(async()=>input.dispatchEvent(new app.dom.window.Event('change',{bubbles:true})));await app.click('Checklist audit B');await act(async()=>finish(Response.json({text:'STALE RUBRIC MUST NOT APPEAR'})));await app.click('Search');const text=app.container.querySelector('textarea') as HTMLTextAreaElement;assert.ok(!text.value.includes('STALE'));assert.equal(text.value,seed.assignments[1].rubric);}finally{globalThis.fetch=originalFetch;await app.close();}});
 test('citation title capitalization edits remain style-local and leave source metadata intact',async()=>{const app=await mount();try{await app.click('Saved sources1');await app.click('❞ Cite');const select=app.container.querySelector('select') as HTMLSelectElement;await act(async()=>{select.value='MLA';select.dispatchEvent(new app.dom.window.Event('change',{bubbles:true}));});const input=app.container.querySelector('.citation-title input') as HTMLInputElement;const corrected='Artificial Intelligence in Early Childhood Education: A Scoping Review';await act(async()=>{Object.getOwnPropertyDescriptor(app.dom.window.HTMLInputElement.prototype,'value')!.set!.call(input,corrected);input.dispatchEvent(new app.dom.window.Event('input',{bubbles:true}));});assert.match(app.container.querySelector('.citation')!.textContent!,/Artificial Intelligence in Early Childhood/);assert.equal(JSON.parse(app.raw).saved[0].title,seed.saved[0].title);await act(async()=>{select.value='APA';select.dispatchEvent(new app.dom.window.Event('change',{bubbles:true}));});assert.equal((app.container.querySelector('.citation-title input') as HTMLInputElement).value,seed.saved[0].title);}finally{await app.close();}});
 
+test('assignment switch cancels pending research and never shows old-context results',async()=>{
+ const app=await mount(),original=globalThis.fetch;let finish!:(r:Response)=>void;let signal:AbortSignal|undefined;
+ try{globalThis.fetch=((_input:any,options:any)=>{signal=options.signal;return new Promise<Response>(r=>finish=r);}) as typeof fetch;
+ await app.click('AI in education');await app.click('Checklist audit B');assert.equal(signal?.aborted,true);
+ await act(async()=>finish(Response.json({articles:[{...seed.saved[0],title:'Wrong assignment result'}]})));await app.click('Search');
+ assert.ok(!app.container.textContent!.includes('Wrong assignment result'));assert.equal(app.container.querySelectorAll('article').length,0);assert.ok(!app.container.textContent!.includes('Looking through the literature'));
+ }finally{globalThis.fetch=original;await app.close();}
+});
+
+test('leaving an assignment resets its rubric and question instead of attaching them to new work',async()=>{
+ const app=await mount();try{await app.click('Checklist audit A');await app.click('Search');await app.click('Upload your rubric Optional');await app.click('Leave assignment');
+ assert.equal((app.container.querySelector('#topic') as HTMLInputElement).value,'');assert.equal((app.container.querySelector('textarea') as HTMLTextAreaElement).value,'');assert.ok(!app.container.textContent!.includes('Requirements confirmed'));
+ }finally{await app.close();}
+});
+
+test('oversized rubric is rejected before transmission; the same file input remains reusable',async()=>{
+ const app=await mount(),original=globalThis.fetch;let requests=0;
+ try{globalThis.fetch=(async()=>{requests++;return Response.json({text:'Use APA'});}) as typeof fetch;await app.click('Upload your rubric Optional');const input=app.container.querySelector('input[accept=".pdf,.docx"]') as HTMLInputElement;
+ Object.defineProperty(input,'files',{configurable:true,value:[{name:'large.pdf',size:10_000_001}]});await act(async()=>input.dispatchEvent(new app.dom.window.Event('change',{bubbles:true})));assert.equal(requests,0);assert.match(app.container.textContent!,/smaller than 10 MB/);assert.equal(input.value,'');
+ Object.defineProperty(input,'files',{configurable:true,value:[new File(['synthetic'],'rubric.pdf')]});await act(async()=>input.dispatchEvent(new app.dom.window.Event('change',{bubbles:true})));assert.equal(requests,1);assert.ok(app.container.textContent!.includes('Confirm requirements'));
+ }finally{globalThis.fetch=original;await app.close();}
+});
+
 test('verified user space never automatically loads or exports unassigned legacy work',async()=>{const app=await mount('quillora-work:user:synthetic-a');try{assert.equal(JSON.parse(app.raw).assignments.length,0);assert.ok(!app.container.textContent!.includes('Checklist audit A'));assert.ok(!app.container.textContent!.includes('Export earlier browser work'));assert.equal(app.storage.getItem(STORAGE_KEY),JSON.stringify(seed));}finally{await app.close();}});
 
 test('a changed verified session hides the previous user UI and refuses saves',async()=>{const original=globalThis.fetch;globalThis.fetch=(async()=>Response.json({storageKey:'different-user'})) as typeof fetch;try{const app=await mount(STORAGE_KEY,true);try{assert.match(app.container.textContent!,/session changed or could not be verified/);assert.ok(!app.container.textContent!.includes('Checklist audit A'));assert.equal(app.raw,JSON.stringify(seed));}finally{await app.close();}}finally{globalThis.fetch=original;}});
