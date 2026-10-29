@@ -62,7 +62,7 @@ export function citationWarnings(a: Article, style = 'APA') {
     !a.title.trim() || a.title === 'Untitled record' ? 'Title missing; a bracketed description is used. Check the original record.' : '',
     !a.journal.trim() || a.journal === 'Journal not listed' ? 'Journal missing.' : '',
     `Title capitalization is preserved to protect proper nouns and acronyms. Review ${style === 'APA' ? 'APA sentence case' : 'MLA title case'} before submitting.`,
-    style === 'MLA' && (clean(a.articleNumber)||/^e\d+$/i.test(clean(a.pages))) ? 'MLA omits the article identifier and article-local page numbers; the DOI locates the original record.' : '',
+    style === 'MLA' && (clean(a.articleNumber)||/^e\d+$/i.test(clean(a.pages))) ? 'This draft omits the article identifier and article-local page numbers. Verify their treatment against MLA 9; the DOI locates the original record.' : '',
     style === 'MLA' && /\d{3,}[–-]\d{3,}/.test(clean(a.pages)) ? 'Review MLA page-range abbreviation against your handbook; full publisher page numbers are retained.' : '',
     'Plain-text copying does not preserve italics.'].filter(Boolean);
 }

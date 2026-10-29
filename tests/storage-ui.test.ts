@@ -83,6 +83,20 @@ test('assignment removal unlinks a source without deleting the reading shelf',as
  const app=await mount();try{await app.click('Assignments');await app.click('Remove from assignment');assert.equal(JSON.parse(app.raw).saved.length,1);assert.equal(JSON.parse(app.raw).assignments[0].sources.length,0);await app.click('Saved sources1');assert.equal(app.container.querySelectorAll('article').length,1);}finally{await app.close();}
 });
 
+test('new assignment from an existing project starts clean; cancelling preserves the original',async()=>{
+ const app=await mount();try{await app.click('Checklist audit A');const before=app.raw;await app.click('New assignment');await act(async()=>(app.container.querySelector('button[aria-label="Cancel assignment"]') as HTMLButtonElement).click());assert.equal(app.raw,before);
+ await app.click('New assignment');await editField(app,'#assignment-name','Separate project');await app.click('Create assignment');const work=JSON.parse(app.raw);const a=work.assignments[2];assert.equal(a.question,'');assert.equal(a.rubric,'');assert.equal(a.requirements,'');assert.equal(a.notes,'');assert.equal(a.sources.length,0);assert.deepEqual(work.assignments[0],seed.assignments[0]);
+ }finally{await app.close();}
+});
+
+test('assignment dialog focuses its name, traps keyboard focus, and Escape restores the trigger',{timeout:10000},async()=>{
+ const app=await mount();try{const trigger=app.container.querySelector('.new-assignment') as HTMLButtonElement;trigger.focus();await app.click('New assignment');assert.equal(app.dom.window.document.activeElement?.id,'assignment-name');const modal=app.container.querySelector('[role="dialog"]')!;const buttons=modal.querySelectorAll('button');const first=buttons[0] as HTMLButtonElement,last=buttons[buttons.length-1] as HTMLButtonElement;
+ last.focus();await act(async()=>app.dom.window.document.dispatchEvent(new app.dom.window.KeyboardEvent('keydown',{key:'Tab',bubbles:true,cancelable:true})));assert.equal(app.dom.window.document.activeElement,first);
+ first.focus();await act(async()=>app.dom.window.document.dispatchEvent(new app.dom.window.KeyboardEvent('keydown',{key:'Tab',shiftKey:true,bubbles:true,cancelable:true})));assert.equal(app.dom.window.document.activeElement,last);
+ act(()=>{app.dom.window.document.dispatchEvent(new app.dom.window.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));});assert.equal(app.container.querySelector('[role="dialog"]'),null);assert.equal(app.dom.window.document.activeElement,trigger);assert.equal(app.container.querySelector('.skip-link')?.getAttribute('href'),'#research-main');
+ }finally{await app.close();}
+});
+
 test('a changed verified session hides the previous user UI and refuses saves',async()=>{const original=globalThis.fetch;globalThis.fetch=(async()=>Response.json({storageKey:'different-user'})) as typeof fetch;try{const app=await mount(STORAGE_KEY,true);try{assert.match(app.container.textContent!,/session changed or could not be verified/);assert.ok(!app.container.textContent!.includes('Checklist audit A'));assert.equal(app.raw,JSON.stringify(seed));}finally{await app.close();}}finally{globalThis.fetch=original;}});
 
 test('student workflow: actual rubric/search adapters, manual checklist, APA/MLA copy and non-destructive backup restore',async()=>{
