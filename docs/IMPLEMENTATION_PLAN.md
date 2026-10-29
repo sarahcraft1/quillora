@@ -1,4 +1,4 @@
-> Architecture decision: Render + Cloudflare Access with browser-local work/manual backup is approved for local preparation only. Supabase/cloud migration and new scholarly integrations remain deferred. See [P0_LOCAL_READINESS.md](P0_LOCAL_READINESS.md) for implementation, validation and gates. Historical alternative costs below are not spending authorization.
+> Current priority (October 29, 2026): hosting is paused. Complete the [local feature/quality audit](LOCAL_FUNCTIONAL_AUDIT.md) and follow the [persistence decision](LOCAL_PERSISTENCE_DECISION.md). No database/auth migration is recommended solely for completeness. The Render + Cloudflare architecture remains a deferred proposal; none of the historical steps below authorizes provisioning, spending or deployment.
 
 > Active private-pilot sequence: use [CI/staging readiness](CI_AND_STAGING_READINESS.md) and the [acceptance checklist](PRIVATE_STAGING_CHECKLIST.md). Historical Supabase/SMTP/cloud-migration steps below are deferred options, not prerequisites or authorization for this browser-local Render + Cloudflare pilot.
 

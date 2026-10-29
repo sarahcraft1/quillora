@@ -48,7 +48,7 @@ export function citationParts(a: Article, style: string) {
   }
   const author = authors.length >= 3 ? full(authors[0], true) + ', et al.'
     : authors.length === 2 ? full(authors[0], true) + ', and ' + full(authors[1]) : authors.length === 1 ? full(authors[0], true) : '';
-  const before = (author ? period(author) + ' ' : '') + (missingTitle ? title + '. ' : '“' + titlePeriod(title.replace(/“/g,'‘').replace(/”/g,'’')) + '” ');
+  const before = (author ? period(author) + ' ' : '') + (missingTitle ? title + '. ' : '“' + titlePeriod(title.replace(/(^|[\s([{:\u2014\u2013])"([^"\r\n]+)"/g,'$1‘$2’').replace(/“/g,'‘').replace(/”/g,'’')) + '” ');
   const details = [a.volume ? 'vol. ' + a.volume : '', a.issue ? 'no. ' + a.issue : '', a.year ? String(a.year) : '',
     !number && pages ? (/[–-]/.test(pages) ? 'pp. ' : 'p. ') + pages.replace(/(?<=\d)-(?=\d)/g, '–') : ''].filter(Boolean);
   return { before, italic: journal, after: (journal && details.length ? ', ' : '') + details.join(', ') + (journal || details.length ? ', ' : '') + doi + '.' };
@@ -62,7 +62,7 @@ export function citationWarnings(a: Article, style = 'APA') {
     !a.title.trim() || a.title === 'Untitled record' ? 'Title missing; a bracketed description is used. Check the original record.' : '',
     !a.journal.trim() || a.journal === 'Journal not listed' ? 'Journal missing.' : '',
     `Title capitalization is preserved to protect proper nouns and acronyms. Review ${style === 'APA' ? 'APA sentence case' : 'MLA title case'} before submitting.`,
-    style === 'MLA' && (clean(a.articleNumber)||/^e\d+$/i.test(clean(a.pages))) ? 'MLA omits the article identifier and article-local page numbers; the DOI locates the original record.' : '',
+    style === 'MLA' && (clean(a.articleNumber)||/^e\d+$/i.test(clean(a.pages))) ? 'This draft omits the article identifier and article-local page numbers. Verify their treatment against MLA 9; the DOI locates the original record.' : '',
     style === 'MLA' && /\d{3,}[–-]\d{3,}/.test(clean(a.pages)) ? 'Review MLA page-range abbreviation against your handbook; full publisher page numbers are retained.' : '',
     'Plain-text copying does not preserve italics.'].filter(Boolean);
 }

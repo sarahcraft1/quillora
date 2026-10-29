@@ -2,6 +2,8 @@
 
 Academic source discovery using Next.js App Router, TypeScript, Tailwind, and Crossref.
 
+**Current priority: local product readiness. Hosting, paid provisioning and deployment are paused.** See the [feature audit and current validation](docs/LOCAL_FUNCTIONAL_AUDIT.md) and [persistence decision](docs/LOCAL_PERSISTENCE_DECISION.md). Assignment notes/names are edited in Continue research and saved with Save assignment details; backups include notes. Older hosting proposals are historical preparation, not authorization to proceed.
+
 - `npm ci`
 - `QUILLORA_ACCESS_MODE=local npm run dev` for loopback-only local development (PowerShell: set `$env:QUILLORA_ACCESS_MODE='local'`, then `npm run dev`)
 - `npm test` for regression tests

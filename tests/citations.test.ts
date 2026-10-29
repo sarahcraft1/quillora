@@ -18,3 +18,17 @@ test('APA missing-author title ending in quotes puts terminal punctuation inside
 test('APA missing date/author/title follows disclosed bracketed-description template',()=>assert.equal(formatCitation({...a,title:'',authors:[],authorDetails:[],year:undefined,journal:'',volume:undefined,articleNumber:undefined,pages:undefined},'APA'),'[Journal article; title unavailable]. (n.d.). https://doi.org/10.1234/test'));
 test('APA suffix after initials and group author remain distinguishable without inferred names',()=>{assert.ok(formatCitation({...a,authorDetails:[{family:'Smith',given:'James',suffix:'Jr.'}]},'APA').startsWith('Smith, J., Jr. (2024).'));assert.ok(formatCitation({...a,authors:['NASA Research Group'],authorDetails:[{name:'NASA Research Group'}]},'APA').startsWith('NASA Research Group. (2024).'));});
 test('MLA e-locator in page field has the same review warning as explicit article number',()=>assert.ok(citationWarnings({...a,articleNumber:undefined,pages:'e123'},'MLA').some(w=>w.includes('article identifier'))));
+
+// MLA Style Center: punctuation-and-quotation-marks (cites MLA Handbook 9).
+// This is a synthetic punctuation variant, not a new scholarly source.
+test('MLA nests paired straight quotation marks as single marks without changing APA metadata',()=>{
+ const title='Research on "NASA" and "iPhone"';
+ assert.ok(formatCitation({...a,title},'MLA').includes('“Research on ‘NASA’ and ‘iPhone.’”'));
+ assert.ok(formatCitation({...a,title},'APA').includes('Research on "NASA" and "iPhone."'));
+ assert.equal(title,'Research on "NASA" and "iPhone"');
+});
+
+test('MLA leaves unpaired inch symbols alone and preserves question punctuation inside nested quotes',()=>{
+ assert.ok(formatCitation({...a,title:'A 6" Screen'},'MLA').includes('“A 6" Screen.”'));
+ assert.ok(formatCitation({...a,title:'Research on "Why NASA?"'},'MLA').includes('“Research on ‘Why NASA?’”'));
+});
