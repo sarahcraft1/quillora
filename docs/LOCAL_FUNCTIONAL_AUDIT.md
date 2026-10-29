@@ -2,6 +2,8 @@
 
 Reviewed October 29, 2026, starting from pilot merge `c025726`. Active branch: `codex/p0-local-pilot`. Hosting work is paused by the owner. No Render/Cloudflare setup, domain purchase, deployment, paid integration, database migration or student invitation is part of this work. PR #2 must stay open; main must stay unchanged. Earlier reports are historical evidence, not substitutes for the checks below.
 
+**Repository-state exception found at final verification:** GitHub reports PR #2 already merged at `2026-10-29T13:44:14Z` (8:44 a.m. Central), producing main commit `5d07704379a6c31d20d5dc1d39184f7f101b6c73`. Its parents are the earlier main `23145cb` and pilot `c025726`. This precedes the first local improvement commit (`6012d24`, 8:49 a.m. Central). This work only pushed `codex/p0-local-pilot`; it did not merge PR #2 or push main. The requested open-PR/main baseline therefore cannot be confirmed. Main and the closed PR were left untouched; no revert, rewrite, deletion or reopening was attempted. The initial baseline should have been rechecked against GitHub before implementation instead of relying on the previous turn's state.
+
 ## Feature completeness
 
 “Implemented” below means the path exists and has the stated evidence, not that every platform or scholarly edge case has been certified.
@@ -44,6 +46,7 @@ Reviewed October 29, 2026, starting from pilot merge `c025726`. Active branch: `
 
 - **160/160 offline automated tests pass** (146 baseline plus 14 focused regressions). Coverage includes storage quota/write-denial simulations, malformed/oversized uploads, real inflate-bomb rejection, worker timeout/exit, 61-page PDF rejection, stale requests, duplicate/conflicting imports, names/notes/checklists, namespace isolation, JWT/Origin/host checks and dialog keyboard behavior.
 - Standalone TypeScript check, production build and the separate loopback production HTTP security smoke all passed. Local Windows validation is not a fresh Linux container certification.
+- [GitHub CI on the completed implementation](https://github.com/sarahcraft1/quillora/actions/runs/40889036110) passed for `2d4ae5d`; the subsequent documentation-only correction records the repository-state exception above. New pilot changes are not part of the already-closed PR #2.
 - `npm audit --json`: **zero reported vulnerabilities**, including development dependencies, at this check. This is a registry advisory result, not proof that all code is vulnerability-free.
 - Current tracked high-confidence private-key/token patterns: no findings. Existing repository regression checks confirm ignore exclusions and sanitized Markdown. No real student data was used; downloaded synthetic backups stayed outside Git. Historical disclosure remains accepted and unchanged; no history audit/rewrite was repeated.
 - Live local endpoint checks passed PDF/DOCX, invalid PDF, unsupported file, missing file and query validation, plus three searches returning 24 records each with an individual Crossref record comparison. Frozen tests use real captured records; their response/clipboard/storage failure mocks do not replace the production services.
