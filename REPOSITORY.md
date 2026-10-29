@@ -1,6 +1,6 @@
 # Standalone repository
 
-The working project is now `C:\Users\sarah\OneDrive\Desktop\Quillora`.
+Work from the root of your local Quillora checkout; no particular username, drive, or parent folder is required.
 
 Quillora was extracted from the parent portfolio repository with `git subtree split --prefix=quillora`, preserving its three project commits without including other portfolio projects. The original portfolio checkout remains a recovery copy.
 

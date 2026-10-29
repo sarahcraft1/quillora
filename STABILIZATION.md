@@ -1,3 +1,41 @@
+# Current private staging preparation
+
+CI, stricter origin/host access checks, and a synthetic student-workflow regression are prepared on codex/private-staging-readiness. See [current readiness](docs/CI_AND_STAGING_READINESS.md) and [hosted acceptance checklist](docs/PRIVATE_STAGING_CHECKLIST.md). Secret scanning/push protection were enabled only after explicit approval. No deployment, paid provisioning, main merge or credential change is authorized. Historical assessment sections below are retained as history.
+
+---
+
+# Current repository privacy cleanup — October 28, 2026
+
+Current documentation is sanitized; Git/Docker ignore rules protect common credentials and browser exports. SECURITY.md and a separate historical-risk assessment are added. Future commits in this checkout use a repository-local GitHub noreply identity; global settings and old history are unchanged. Private vulnerability reporting was enabled only after explicit approval. See [privacy hardening evidence](docs/PRIVACY_HARDENING.md) and [history assessment](docs/HISTORY_PRIVACY_RISK.md). Historical personal information remains in earlier commits and refs. No merge, rewrite, force push, visibility change, deployment or student-data deletion is included.
+
+---
+
+> Production Linux validation now passes; see [LINUX_VALIDATION.md](docs/LINUX_VALIDATION.md) for exact image, 8 Linux upload regressions, 10 integration checks, resource/OOM/restart evidence and limits. Docker installed per-user after approved prerequisite setup. Windows 139 tests pass. No deployment, main merge or further GitHub push. Historical WSL/Docker blocker statements below are superseded.
+
+# WSL prerequisite installation — October 28, 2026
+
+After the user authorized proceeding with administrator-level WSL prerequisite installation (but no restart), `wsl --install --no-distribution` completed with exit code 0. A supported WSL release was installed and its required virtualization component was enabled. Windows explicitly reports changes require reboot. Read-only checks confirmed installation; exact host/kernel inventory is intentionally omitted. No Ubuntu distribution was requested.
+
+No restart, firmware change, Docker installation, deployment or student-data operation was performed. Firmware virtualization still reports false. The next action requires an explicitly approved restart and user-controlled BIOS/UEFI virtualization enablement, followed by read-only verification. Docker/Linux tests remain NOT RUN. Installer output is retained locally in `%TEMP%/quillora-wsl-prerequisites/install.log`; completion status is in `result.json`. Only the expected WSL/Windows prerequisite operation was authorized; unrelated settings must remain unchanged.
+
+This update supersedes the earlier statement that WSL was absent. Commit 90045ea remains the only authorized/pushed follow-up code commit; subsequent review/setup documentation remains local.
+
+---
+
+# P0 validation stage 2 — October 28, 2026
+
+Commit 90045ea was pushed and verified on origin/codex/p0-local-pilot; main was untouched. All 139 Windows regression tests passed again. Linux tests are NOT RUN: firmware virtualization is disabled and WSL is absent. No installation, administrator/WSL change or restart occurred. User approved preparing setup steps only. See [stage-2 report](docs/P0_VALIDATION_STAGE2.md), [setup plan](docs/DOCKER_SETUP_PLAN.md) and [independent MLA 9 package](docs/mla9-review/README.md). No independent reviewer approval is claimed.
+
+---
+
+# P0 local pilot preparation — October 28, 2026
+
+See [P0_LOCAL_READINESS.md](docs/P0_LOCAL_READINESS.md) for access verification, unassigned legacy-data safeguards, upload bounds, genuine browser quota/recovery steps, citation review, container configuration, privacy limitations and approval gates. Branch: codex/p0-local-pilot. No cloud services, spending, deployment, invitations or data migration. PR #1 was already merged externally; this branch does not merge anything.
+
+Final verification: 139/139 automated tests passed; production build passed without warnings; TypeScript and git diff whitespace checks passed; production dependency audit found zero known vulnerabilities. Production HTTP deny-by-default smoke passed. Valid PDF/DOCX integration and three live Crossref searches passed. Real Chromium quota, failed-save export/retry, queued-write interruption, failed-import retry, conflict copies and source restoration passed on disposable origin 127.0.0.1:3017. Docker/Linux, real Cloudflare login/origin enforcement, browser crash/disk-flush behavior and external MLA 9 review remain unverified. Historical sections below are retained as history and do not override the current report.
+
+---
+
 # Private beta preparation from d692764
 
 This development pass supersedes earlier verification counts. See [QA_REPORT.md](docs/QA_REPORT.md) for 49 real-source provenance, confirmed fixes, 118-test coverage, browser checks, remaining risks and exact reproduction steps. See [IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) for the staged Supabase/OpenAlex/Unpaywall/private-hosting assessment, costs and migration safeguards.

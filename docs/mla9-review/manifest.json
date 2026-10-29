@@ -1,0 +1,12 @@
+{
+  "baseline": "90045ea",
+  "realCases": 13,
+  "syntheticCases": 3,
+  "files": {
+    "original-metadata.json": "e6df4b01ad1c4c12414056bbe945a4800f28f455fc67d27b26dc164ab420a924",
+    "cases.json": "9063493ba2421ee09270f757533780f3d1a04225a685320a9ffa4da13cda6be5",
+    "application-outputs.json": "0628820e73bc01d4913002fc5cd255c7c0087a40af13678bba7659dd98178a17",
+    "provisional-expectations.json": "45453c234639bd0db89aebe76105230814fd55275bbae5997701d356c6f5fc6a",
+    "REVIEW_WORKSHEET.md": "a10abd5cacca2ec4efa0601fb9bf905c885949be3b7ef14afa42b0596a077d63"
+  }
+}

@@ -1,16 +1,18 @@
-import { NextResponse } from 'next/server';
+import {NextResponse} from 'next/server';
+import {boundedBody,MAX_UPLOAD,singleUpload,UploadError} from '../../../lib/upload';
+import {extractInWorker} from '../../../lib/extraction';
+import {allowRequest} from '../../../lib/rate-limit';
+import {operationalLog} from '../../../lib/privacy-log';
 export const runtime='nodejs';
 export async function POST(req:Request){
- try{
- const length=Number(req.headers.get('content-length'));if(length>10_100_000)return NextResponse.json({error:'Choose a file smaller than 10 MB.'},{status:413});
- const form=await req.formData();const file=form.get('file');
- if(!(file instanceof File))return NextResponse.json({error:'Choose a PDF or DOCX file, or paste your rubric.'},{status:400});
- if(!file.size||file.size>10_000_000)return NextResponse.json({error:'Choose a nonempty file smaller than 10 MB.'},{status:400});
- const buffer=Buffer.from(await file.arrayBuffer());let text='';
- if(file.name.toLowerCase().endsWith('.docx')){const mammoth=await import('mammoth');text=(await mammoth.extractRawText({buffer})).value;}
- else if(file.name.toLowerCase().endsWith('.pdf')){const {PDFParse}=await import('pdf-parse');const parser=new PDFParse({data:new Uint8Array(buffer)});try{text=(await parser.getText()).text;}finally{await parser.destroy();}}
- else return NextResponse.json({error:'Choose a PDF or DOCX file, or paste your rubric.'},{status:400});
- if(!text.trim())throw Error();if(text.length>200_000)return NextResponse.json({error:'This rubric is too long. Paste only the assignment instructions (up to 200,000 characters).'},{status:422});
- return NextResponse.json({text});
- }catch{return NextResponse.json({error:'We could not read this file. Scanned or protected files may need text pasted instead.'},{status:422});}
+ try{return await singleUpload(async()=>{
+ if(!allowRequest('rubric:'+ (req.headers.get('x-quillora-storage-key')||'local'),6))throw new UploadError('Too many rubric uploads. Wait a minute, or paste the instructions.',429);
+ if(!req.headers.get('content-type')?.startsWith('multipart/form-data;'))throw new UploadError('Choose a PDF or DOCX file, or paste your rubric.',400);
+ const bytes=await boundedBody(req);let form:FormData;try{form=await new Request('http://local.invalid',{method:'POST',headers:{'Content-Type':req.headers.get('content-type')!},body:bytes}).formData();}catch{throw new UploadError('The upload was malformed. Choose the file again or paste your instructions.',400);}
+ const files=form.getAll('file'),file=files[0];if(files.length!==1||!(file instanceof File))throw new UploadError('Choose one PDF or DOCX file, or paste your rubric.',400);
+ if(!file.size||file.size>MAX_UPLOAD)throw new UploadError('Choose a nonempty file smaller than 10 MB.',413);
+ const name=file.name.toLowerCase(),kind=name.endsWith('.pdf')?'pdf':name.endsWith('.docx')?'docx':null;
+ if(!kind)throw new UploadError('Choose a PDF or DOCX file, or paste your rubric.',400);
+ const text=await extractInWorker(Buffer.from(await file.arrayBuffer()),kind);return NextResponse.json({text},{headers:{'Cache-Control':'no-store'}});
+ });}catch(e){const known=e instanceof UploadError;operationalLog(known?'rubric_rejected':'rubric_unavailable');return NextResponse.json({error:known?e.message:'We could not safely read this file. Paste your assignment instructions instead.'},{status:known?e.status:422,headers:{'Cache-Control':'no-store',...(known&&e.status===429?{'Retry-After':'60'}:{})}});}
 }

@@ -1,3 +1,6 @@
 *.pdf binary
 *.docx binary
 *.png binary
+
+# Keep citation-review artifact checksums portable across Windows/Linux.
+docs/mla9-review/* text eol=lf

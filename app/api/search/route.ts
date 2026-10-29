@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
 import { normalizeCrossref } from '../../../lib/scholarly';
+import {allowRequest} from '../../../lib/rate-limit';
 import { unique } from '../../../lib/work';
 export async function GET(req:Request){
+ if(!allowRequest('search:'+(req.headers.get('x-quillora-storage-key')||'local'),30))return NextResponse.json({error:'Too many searches. Wait a minute, then try again.'},{status:429,headers:{'Retry-After':'60'}});
  const q=new URL(req.url).searchParams.get('q')?.trim();
  if(!q)return NextResponse.json({error:'Enter a topic to begin.'},{status:400});
  if(q.length>1000)return NextResponse.json({error:'Please shorten your research question to 1,000 characters.'},{status:400});

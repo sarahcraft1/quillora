@@ -2,9 +2,9 @@ import {readFile,writeFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 const base=process.env.TEST_URL||'http://localhost:3000';
 const report=[];
-async function upload(name,status){const form=new FormData();form.set('file',new File([await readFile('tests/fixtures/'+name)],name));const r=await fetch(base+'/api/rubric',{method:'POST',body:form});const d=await r.json();assert.equal(r.status,status,JSON.stringify(d));if(status===200){assert.match(d.text,/five peer-reviewed/);assert.match(d.text,/2020 and 2025/);}report.push({check:'rubric '+name,status:r.status});}
+async function upload(name,status){const form=new FormData();form.set('file',new File([await readFile('tests/fixtures/'+name)],name));const r=await fetch(base+'/api/rubric',{method:'POST',headers:{Origin:new URL(base).origin},body:form});const d=await r.json();assert.equal(r.status,status,JSON.stringify(d));if(status===200){assert.match(d.text,/five peer-reviewed/);assert.match(d.text,/2020 and 2025/);}report.push({check:'rubric '+name,status:r.status});}
 for(const [name,status] of [['rubric.pdf',200],['rubric.docx',200],['invalid.pdf',422],['unsupported.txt',400]])await upload(name,status);
-assert.equal((await fetch(base+'/api/rubric',{method:'POST',body:new FormData()})).status,400);
+assert.equal((await fetch(base+'/api/rubric',{method:'POST',headers:{Origin:new URL(base).origin},body:new FormData()})).status,400);
 assert.equal((await fetch(base+'/api/search?q=%20')).status,400);
 assert.equal((await fetch(base+'/api/search?q='+('x'.repeat(1001)))).status,400);
 const records=[];

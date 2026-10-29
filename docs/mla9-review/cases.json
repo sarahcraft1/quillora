@@ -1,0 +1,2231 @@
+{
+  "baseline": "90045ea",
+  "metadataNote": "Frozen Crossref deposits; verify facts against linked publisher record. Synthetic cases explicitly omit fields.",
+  "cases": [
+    {
+      "caseId": "MLA-01",
+      "doi": "10.1016/j.caeai.2022.100049",
+      "focus": [
+        "author ordering, capitalization and journal details",
+        "explicit article identifier",
+        "missing issue"
+      ],
+      "synthetic": false,
+      "recordUrl": "https://api.crossref.org/works/10.1016%2Fj.caeai.2022.100049",
+      "publisherResolver": "https://doi.org/10.1016/j.caeai.2022.100049",
+      "metadataSha256": "81a4840cbf33b3c05dac2eb6a342562f34a5c66aaae8e7acde5b89c1ff0e5ba7",
+      "input": {
+        "id": "10.1016/j.caeai.2022.100049",
+        "title": "Artificial intelligence in early childhood education: A scoping review",
+        "authors": [
+          "Jiahong Su",
+          "Weipeng Yang"
+        ],
+        "authorDetails": [
+          {
+            "given": "Jiahong",
+            "family": "Su"
+          },
+          {
+            "given": "Weipeng",
+            "family": "Yang"
+          }
+        ],
+        "year": 2022,
+        "journal": "Computers and Education: Artificial Intelligence",
+        "url": "https://doi.org/10.1016/j.caeai.2022.100049",
+        "abstract": "",
+        "volume": "3",
+        "articleNumber": "100049",
+        "free": false
+      }
+    },
+    {
+      "caseId": "MLA-02",
+      "doi": "10.1371/journal.pone.0193972",
+      "focus": [
+        "author ordering, capitalization and journal details"
+      ],
+      "synthetic": false,
+      "recordUrl": "https://api.crossref.org/works/10.1371%2Fjournal.pone.0193972",
+      "publisherResolver": "https://doi.org/10.1371/journal.pone.0193972",
+      "metadataSha256": "a2eb1070cf1fef2139a2fd5e598d589e622fb1c220167c0f9a0453f126d3d1c1",
+      "input": {
+        "id": "10.1371/journal.pone.0193972",
+        "title": "Teaching medicine with the help of “Dr. House”",
+        "authors": [
+          "Andreas Jerrentrup",
+          "Tobias Mueller",
+          "Ulrich Glowalla",
+          "Meike Herder",
+          "Nadine Henrichs",
+          "Andreas Neubauer",
+          "Juergen R. Schaefer"
+        ],
+        "authorDetails": [
+          {
+            "given": "Andreas",
+            "family": "Jerrentrup"
+          },
+          {
+            "given": "Tobias",
+            "family": "Mueller"
+          },
+          {
+            "given": "Ulrich",
+            "family": "Glowalla"
+          },
+          {
+            "given": "Meike",
+            "family": "Herder"
+          },
+          {
+            "given": "Nadine",
+            "family": "Henrichs"
+          },
+          {
+            "given": "Andreas",
+            "family": "Neubauer"
+          },
+          {
+            "given": "Juergen R.",
+            "family": "Schaefer"
+          }
+        ],
+        "year": 2018,
+        "journal": "PLOS ONE",
+        "url": "https://doi.org/10.1371/journal.pone.0193972",
+        "abstract": "",
+        "volume": "13",
+        "issue": "3",
+        "pages": "e0193972",
+        "free": false
+      }
+    },
+    {
+      "caseId": "MLA-03",
+      "doi": "10.1037/ppm0000185",
+      "focus": [
+        "author ordering, capitalization and journal details"
+      ],
+      "synthetic": false,
+      "recordUrl": "https://api.crossref.org/works/10.1037%2Fppm0000185",
+      "publisherResolver": "https://doi.org/10.1037/ppm0000185",
+      "metadataSha256": "f2894333721f568a6d4fafb7de175c590ba1603c718a96b36d523898d9b7eb76",
+      "input": {
+        "id": "10.1037/ppm0000185",
+        "title": "Emotions in storybooks: A comparison of storybooks that represent ethnic and racial groups in the United States.",
+        "authors": [
+          "Jessica Stoltzfus Grady",
+          "Malina Her",
+          "Geena Moreno",
+          "Catherine Perez",
+          "Jillian Yelinek"
+        ],
+        "authorDetails": [
+          {
+            "given": "Jessica Stoltzfus",
+            "family": "Grady"
+          },
+          {
+            "given": "Malina",
+            "family": "Her"
+          },
+          {
+            "given": "Geena",
+            "family": "Moreno"
+          },
+          {
+            "given": "Catherine",
+            "family": "Perez"
+          },
+          {
+            "given": "Jillian",
+            "family": "Yelinek"
+          }
+        ],
+        "year": 2019,
+        "journal": "Psychology of Popular Media Culture",
+        "url": "https://doi.org/10.1037/ppm0000185",
+        "abstract": "",
+        "volume": "8",
+        "issue": "3",
+        "pages": "207-217",
+        "free": false
+      }
+    },
+    {
+      "caseId": "MLA-04",
+      "doi": "10.1002/andp.19053221004",
+      "focus": [
+        "author ordering, capitalization and journal details",
+        "single author",
+        "page-range abbreviation"
+      ],
+      "synthetic": false,
+      "recordUrl": "https://api.crossref.org/works/10.1002%2Fandp.19053221004",
+      "publisherResolver": "https://doi.org/10.1002/andp.19053221004",
+      "metadataSha256": "6aded51bd3c4563700b3e0137820fed5bf0b594292e1cb16434866ececf319e4",
+      "input": {
+        "id": "10.1002/andp.19053221004",
+        "title": "Zur Elektrodynamik bewegter Körper",
+        "authors": [
+          "A. Einstein"
+        ],
+        "authorDetails": [
+          {
+            "given": "A.",
+            "family": "Einstein"
+          }
+        ],
+        "year": 1905,
+        "journal": "Annalen der Physik",
+        "url": "https://doi.org/10.1002/andp.19053221004",
+        "abstract": "",
+        "volume": "322",
+        "issue": "10",
+        "pages": "891-921",
+        "free": false
+      }
+    },
+    {
+      "caseId": "MLA-05",
+      "doi": "10.1016/s0140-6736(20)30183-5",
+      "focus": [
+        "21+ authors"
+      ],
+      "synthetic": false,
+      "recordUrl": "https://api.crossref.org/works/10.1016%2FS0140-6736(20)30183-5",
+      "publisherResolver": "https://doi.org/10.1016/s0140-6736(20)30183-5",
+      "metadataSha256": "8579ae683bcde663b97967a31cd47fec49fc1949a4ecce9881c9476cd902344f",
+      "input": {
+        "id": "10.1016/s0140-6736(20)30183-5",
+        "title": "Clinical features of patients infected with 2019 novel coronavirus in Wuhan, China",
+        "authors": [
+          "Chaolin Huang",
+          "Yeming Wang",
+          "Xingwang Li",
+          "Lili Ren",
+          "Jianping Zhao",
+          "Yi Hu",
+          "Li Zhang",
+          "Guohui Fan",
+          "Jiuyang Xu",
+          "Xiaoying Gu",
+          "Zhenshun Cheng",
+          "Ting Yu",
+          "Jiaan Xia",
+          "Yuan Wei",
+          "Wenjuan Wu",
+          "Xuelei Xie",
+          "Wen Yin",
+          "Hui Li",
+          "Min Liu",
+          "Yan Xiao",
+          "Hong Gao",
+          "Li Guo",
+          "Jungang Xie",
+          "Guangfa Wang",
+          "Rongmeng Jiang",
+          "Zhancheng Gao",
+          "Qi Jin",
+          "Jianwei Wang",
+          "Bin Cao"
+        ],
+        "authorDetails": [
+          {
+            "given": "Chaolin",
+            "family": "Huang"
+          },
+          {
+            "given": "Yeming",
+            "family": "Wang"
+          },
+          {
+            "given": "Xingwang",
+            "family": "Li"
+          },
+          {
+            "given": "Lili",
+            "family": "Ren"
+          },
+          {
+            "given": "Jianping",
+            "family": "Zhao"
+          },
+          {
+            "given": "Yi",
+            "family": "Hu"
+          },
+          {
+            "given": "Li",
+            "family": "Zhang"
+          },
+          {
+            "given": "Guohui",
+            "family": "Fan"
+          },
+          {
+            "given": "Jiuyang",
+            "family": "Xu"
+          },
+          {
+            "given": "Xiaoying",
+            "family": "Gu"
+          },
+          {
+            "given": "Zhenshun",
+            "family": "Cheng"
+          },
+          {
+            "given": "Ting",
+            "family": "Yu"
+          },
+          {
+            "given": "Jiaan",
+            "family": "Xia"
+          },
+          {
+            "given": "Yuan",
+            "family": "Wei"
+          },
+          {
+            "given": "Wenjuan",
+            "family": "Wu"
+          },
+          {
+            "given": "Xuelei",
+            "family": "Xie"
+          },
+          {
+            "given": "Wen",
+            "family": "Yin"
+          },
+          {
+            "given": "Hui",
+            "family": "Li"
+          },
+          {
+            "given": "Min",
+            "family": "Liu"
+          },
+          {
+            "given": "Yan",
+            "family": "Xiao"
+          },
+          {
+            "given": "Hong",
+            "family": "Gao"
+          },
+          {
+            "given": "Li",
+            "family": "Guo"
+          },
+          {
+            "given": "Jungang",
+            "family": "Xie"
+          },
+          {
+            "given": "Guangfa",
+            "family": "Wang"
+          },
+          {
+            "given": "Rongmeng",
+            "family": "Jiang"
+          },
+          {
+            "given": "Zhancheng",
+            "family": "Gao"
+          },
+          {
+            "given": "Qi",
+            "family": "Jin"
+          },
+          {
+            "given": "Jianwei",
+            "family": "Wang"
+          },
+          {
+            "given": "Bin",
+            "family": "Cao"
+          }
+        ],
+        "year": 2020,
+        "journal": "The Lancet",
+        "url": "https://doi.org/10.1016/s0140-6736(20)30183-5",
+        "abstract": "",
+        "volume": "395",
+        "issue": "10223",
+        "pages": "497-506",
+        "free": false
+      }
+    },
+    {
+      "caseId": "MLA-06",
+      "doi": "10.1038/35057062",
+      "focus": [
+        "21+ authors",
+        "Unicode author names"
+      ],
+      "synthetic": false,
+      "recordUrl": "https://api.crossref.org/works/10.1038%2F35057062",
+      "publisherResolver": "https://doi.org/10.1038/35057062",
+      "metadataSha256": "493964f2b0393be42b0a0535d7afc9142d52fc8d88b26861c76c98ebcb606f3c",
+      "input": {
+        "id": "10.1038/35057062",
+        "title": "Initial sequencing and analysis of the human genome",
+        "authors": [
+          "International Human Genome Sequencing Consortium",
+          "Whitehead Institute for Biomedical Research, Center for Genome Research:",
+          "Eric S. Lander",
+          "Lauren M. Linton",
+          "Bruce Birren",
+          "Chad Nusbaum",
+          "Michael C. Zody",
+          "Jennifer Baldwin",
+          "Keri Devon",
+          "Ken Dewar",
+          "Michael Doyle",
+          "William FitzHugh",
+          "Roel Funke",
+          "Diane Gage",
+          "Katrina Harris",
+          "Andrew Heaford",
+          "John Howland",
+          "Lisa Kann",
+          "Jessica Lehoczky",
+          "Rosie LeVine",
+          "Paul McEwan",
+          "Kevin McKernan",
+          "James Meldrim",
+          "Jill P. Mesirov",
+          "Cher Miranda",
+          "William Morris",
+          "Jerome Naylor",
+          "Christina Raymond",
+          "Mark Rosetti",
+          "Ralph Santos",
+          "Andrew Sheridan",
+          "Carrie Sougnez",
+          "Nicole Stange-Thomann",
+          "Nikola Stojanovic",
+          "Aravind Subramanian",
+          "Dudley Wyman",
+          "The Sanger Centre:",
+          "Jane Rogers",
+          "John Sulston",
+          "Rachael Ainscough",
+          "Stephan Beck",
+          "David Bentley",
+          "John Burton",
+          "Christopher Clee",
+          "Nigel Carter",
+          "Alan Coulson",
+          "Rebecca Deadman",
+          "Panos Deloukas",
+          "Andrew Dunham",
+          "Ian Dunham",
+          "Richard Durbin",
+          "Lisa French",
+          "Darren Grafham",
+          "Simon Gregory",
+          "Tim Hubbard",
+          "Sean Humphray",
+          "Adrienne Hunt",
+          "Matthew Jones",
+          "Christine Lloyd",
+          "Amanda McMurray",
+          "Lucy Matthews",
+          "Simon Mercer",
+          "Sarah Milne",
+          "James C. Mullikin",
+          "Andrew Mungall",
+          "Robert Plumb",
+          "Mark Ross",
+          "Ratna Shownkeen",
+          "Sarah Sims",
+          "Washington University Genome Sequencing Center",
+          "Robert H. Waterston",
+          "Richard K. Wilson",
+          "LaDeana W. Hillier",
+          "John D. McPherson",
+          "Marco A. Marra",
+          "Elaine R. Mardis",
+          "Lucinda A. Fulton",
+          "Asif T. Chinwalla",
+          "Kymberlie H. Pepin",
+          "Warren R. Gish",
+          "Stephanie L. Chissoe",
+          "Michael C. Wendl",
+          "Kim D. Delehaunty",
+          "Tracie L. Miner",
+          "Andrew Delehaunty",
+          "Jason B. Kramer",
+          "Lisa L. Cook",
+          "Robert S. Fulton",
+          "Douglas L. Johnson",
+          "Patrick J. Minx",
+          "Sandra W. Clifton",
+          "US DOE Joint Genome Institute:",
+          "Trevor Hawkins",
+          "Elbert Branscomb",
+          "Paul Predki",
+          "Paul Richardson",
+          "Sarah Wenning",
+          "Tom Slezak",
+          "Norman Doggett",
+          "Jan-Fang Cheng",
+          "Anne Olsen",
+          "Susan Lucas",
+          "Christopher Elkin",
+          "Edward Uberbacher",
+          "Marvin Frazier",
+          "Baylor College of Medicine Human Genome Sequencing Center:",
+          "Richard A. Gibbs",
+          "Donna M. Muzny",
+          "Steven E. Scherer",
+          "John B. Bouck",
+          "Erica J. Sodergren",
+          "Kim C. Worley",
+          "Catherine M. Rives",
+          "James H. Gorrell",
+          "Michael L. Metzker",
+          "Susan L. Naylor",
+          "Raju S. Kucherlapati",
+          "David L. Nelson",
+          "George M. Weinstock",
+          "RIKEN Genomic Sciences Center:",
+          "Yoshiyuki Sakaki",
+          "Asao Fujiyama",
+          "Masahira Hattori",
+          "Tetsushi Yada",
+          "Atsushi Toyoda",
+          "Takehiko Itoh",
+          "Chiharu Kawagoe",
+          "Hidemi Watanabe",
+          "Yasushi Totoki",
+          "Todd Taylor",
+          "Genoscope and CNRS UMR-8030:",
+          "Jean Weissenbach",
+          "Roland Heilig",
+          "William Saurin",
+          "Francois Artiguenave",
+          "Philippe Brottier",
+          "Thomas Bruls",
+          "Eric Pelletier",
+          "Catherine Robert",
+          "Patrick Wincker",
+          "Department of Genome Analysis, Institute of Molecular Biotechnology:",
+          "André Rosenthal",
+          "Matthias Platzer",
+          "Gerald Nyakatura",
+          "Stefan Taudien",
+          "Andreas Rump",
+          "GTC Sequencing Center:",
+          "Douglas R. Smith",
+          "Lynn Doucette-Stamm",
+          "Marc Rubenfield",
+          "Keith Weinstock",
+          "Hong Mei Lee",
+          "JoAnn Dubois",
+          "Beijing Genomics Institute/Human Genome Center:",
+          "Huanming Yang",
+          "Jun Yu",
+          "Jian Wang",
+          "Guyang Huang",
+          "Jun Gu",
+          "Multimegabase Sequencing Center, The Institute for Systems Biology:",
+          "Leroy Hood",
+          "Lee Rowen",
+          "Anup Madan",
+          "Shizen Qin",
+          "Stanford Genome Technology Center:",
+          "Ronald W. Davis",
+          "Nancy A. Federspiel",
+          "A. Pia Abola",
+          "Michael J. Proctor",
+          "University of Oklahoma's Advanced Center for Genome Technology:",
+          "Bruce A. Roe",
+          "Feng Chen",
+          "Huaqin Pan",
+          "Max Planck Institute for Molecular Genetics:",
+          "Juliane Ramser",
+          "Hans Lehrach",
+          "Richard Reinhardt",
+          "Cold Spring Harbor Laboratory, Lita Annenberg Hazen Genome Center:",
+          "W. Richard McCombie",
+          "Melissa de la Bastide",
+          "Neilay Dedhia",
+          "GBF—German Research Centre for Biotechnology:",
+          "Helmut Blöcker",
+          "Klaus Hornischer",
+          "Gabriele Nordsiek",
+          "*Genome Analysis Group (listed in alphabetical order, also includes individuals listed under other headings):",
+          "Richa Agarwala",
+          "L. Aravind",
+          "Jeffrey A. Bailey",
+          "Alex Bateman",
+          "Serafim Batzoglou",
+          "Ewan Birney",
+          "Peer Bork",
+          "Daniel G. Brown",
+          "Christopher B. Burge",
+          "Lorenzo Cerutti",
+          "Hsiu-Chuan Chen",
+          "Deanna Church",
+          "Michele Clamp",
+          "Richard R. Copley",
+          "Tobias Doerks",
+          "Sean R. Eddy",
+          "Evan E. Eichler",
+          "Terrence S. Furey",
+          "James Galagan",
+          "James G. R. Gilbert",
+          "Cyrus Harmon",
+          "Yoshihide Hayashizaki",
+          "David Haussler",
+          "Henning Hermjakob",
+          "Karsten Hokamp",
+          "Wonhee Jang",
+          "L. Steven Johnson",
+          "Thomas A. Jones",
+          "Simon Kasif",
+          "Arek Kaspryzk",
+          "Scot Kennedy",
+          "W. James Kent",
+          "Paul Kitts",
+          "Eugene V. Koonin",
+          "Ian Korf",
+          "David Kulp",
+          "Doron Lancet",
+          "Todd M. Lowe",
+          "Aoife McLysaght",
+          "Tarjei Mikkelsen",
+          "John V. Moran",
+          "Nicola Mulder",
+          "Victor J. Pollara",
+          "Chris P. Ponting",
+          "Greg Schuler",
+          "Jörg Schultz",
+          "Guy Slater",
+          "Arian F. A. Smit",
+          "Elia Stupka",
+          "Joseph Szustakowki",
+          "Danielle Thierry-Mieg",
+          "Jean Thierry-Mieg",
+          "Lukas Wagner",
+          "John Wallis",
+          "Raymond Wheeler",
+          "Alan Williams",
+          "Yuri I. Wolf",
+          "Kenneth H. Wolfe",
+          "Shiaw-Pyng Yang",
+          "Ru-Fang Yeh",
+          "Scientific management: National Human Genome Research Institute, US National Institutes of Health:",
+          "Francis Collins",
+          "Mark S. Guyer",
+          "Jane Peterson",
+          "Adam Felsenfeld",
+          "Kris A. Wetterstrand",
+          "Stanford Human Genome Center:",
+          "Richard M. Myers",
+          "Jeremy Schmutz",
+          "Mark Dickson",
+          "Jane Grimwood",
+          "David R. Cox",
+          "University of Washington Genome Center:",
+          "Maynard V. Olson",
+          "Rajinder Kaul",
+          "Christopher Raymond",
+          "Department of Molecular Biology, Keio University School of Medicine:",
+          "Nobuyoshi Shimizu",
+          "Kazuhiko Kawasaki",
+          "Shinsei Minoshima",
+          "University of Texas Southwestern Medical Center at Dallas:",
+          "Glen A. Evans",
+          "Maria Athanasiou",
+          "Roger Schultz",
+          "Office of Science, US Department of Energy:",
+          "Aristides Patrinos",
+          "The Wellcome Trust:",
+          "Michael J. Morgan"
+        ],
+        "authorDetails": [
+          {
+            "name": "International Human Genome Sequencing Consortium"
+          },
+          {
+            "name": "Whitehead Institute for Biomedical Research, Center for Genome Research:"
+          },
+          {
+            "given": "Eric S.",
+            "family": "Lander"
+          },
+          {
+            "given": "Lauren M.",
+            "family": "Linton"
+          },
+          {
+            "given": "Bruce",
+            "family": "Birren"
+          },
+          {
+            "given": "Chad",
+            "family": "Nusbaum"
+          },
+          {
+            "given": "Michael C.",
+            "family": "Zody"
+          },
+          {
+            "given": "Jennifer",
+            "family": "Baldwin"
+          },
+          {
+            "given": "Keri",
+            "family": "Devon"
+          },
+          {
+            "given": "Ken",
+            "family": "Dewar"
+          },
+          {
+            "given": "Michael",
+            "family": "Doyle"
+          },
+          {
+            "given": "William",
+            "family": "FitzHugh"
+          },
+          {
+            "given": "Roel",
+            "family": "Funke"
+          },
+          {
+            "given": "Diane",
+            "family": "Gage"
+          },
+          {
+            "given": "Katrina",
+            "family": "Harris"
+          },
+          {
+            "given": "Andrew",
+            "family": "Heaford"
+          },
+          {
+            "given": "John",
+            "family": "Howland"
+          },
+          {
+            "given": "Lisa",
+            "family": "Kann"
+          },
+          {
+            "given": "Jessica",
+            "family": "Lehoczky"
+          },
+          {
+            "given": "Rosie",
+            "family": "LeVine"
+          },
+          {
+            "given": "Paul",
+            "family": "McEwan"
+          },
+          {
+            "given": "Kevin",
+            "family": "McKernan"
+          },
+          {
+            "given": "James",
+            "family": "Meldrim"
+          },
+          {
+            "given": "Jill P.",
+            "family": "Mesirov"
+          },
+          {
+            "given": "Cher",
+            "family": "Miranda"
+          },
+          {
+            "given": "William",
+            "family": "Morris"
+          },
+          {
+            "given": "Jerome",
+            "family": "Naylor"
+          },
+          {
+            "given": "Christina",
+            "family": "Raymond"
+          },
+          {
+            "given": "Mark",
+            "family": "Rosetti"
+          },
+          {
+            "given": "Ralph",
+            "family": "Santos"
+          },
+          {
+            "given": "Andrew",
+            "family": "Sheridan"
+          },
+          {
+            "given": "Carrie",
+            "family": "Sougnez"
+          },
+          {
+            "given": "Nicole",
+            "family": "Stange-Thomann"
+          },
+          {
+            "given": "Nikola",
+            "family": "Stojanovic"
+          },
+          {
+            "given": "Aravind",
+            "family": "Subramanian"
+          },
+          {
+            "given": "Dudley",
+            "family": "Wyman"
+          },
+          {
+            "name": "The Sanger Centre:"
+          },
+          {
+            "given": "Jane",
+            "family": "Rogers"
+          },
+          {
+            "given": "John",
+            "family": "Sulston"
+          },
+          {
+            "given": "Rachael",
+            "family": "Ainscough"
+          },
+          {
+            "given": "Stephan",
+            "family": "Beck"
+          },
+          {
+            "given": "David",
+            "family": "Bentley"
+          },
+          {
+            "given": "John",
+            "family": "Burton"
+          },
+          {
+            "given": "Christopher",
+            "family": "Clee"
+          },
+          {
+            "given": "Nigel",
+            "family": "Carter"
+          },
+          {
+            "given": "Alan",
+            "family": "Coulson"
+          },
+          {
+            "given": "Rebecca",
+            "family": "Deadman"
+          },
+          {
+            "given": "Panos",
+            "family": "Deloukas"
+          },
+          {
+            "given": "Andrew",
+            "family": "Dunham"
+          },
+          {
+            "given": "Ian",
+            "family": "Dunham"
+          },
+          {
+            "given": "Richard",
+            "family": "Durbin"
+          },
+          {
+            "given": "Lisa",
+            "family": "French"
+          },
+          {
+            "given": "Darren",
+            "family": "Grafham"
+          },
+          {
+            "given": "Simon",
+            "family": "Gregory"
+          },
+          {
+            "given": "Tim",
+            "family": "Hubbard"
+          },
+          {
+            "given": "Sean",
+            "family": "Humphray"
+          },
+          {
+            "given": "Adrienne",
+            "family": "Hunt"
+          },
+          {
+            "given": "Matthew",
+            "family": "Jones"
+          },
+          {
+            "given": "Christine",
+            "family": "Lloyd"
+          },
+          {
+            "given": "Amanda",
+            "family": "McMurray"
+          },
+          {
+            "given": "Lucy",
+            "family": "Matthews"
+          },
+          {
+            "given": "Simon",
+            "family": "Mercer"
+          },
+          {
+            "given": "Sarah",
+            "family": "Milne"
+          },
+          {
+            "given": "James C.",
+            "family": "Mullikin"
+          },
+          {
+            "given": "Andrew",
+            "family": "Mungall"
+          },
+          {
+            "given": "Robert",
+            "family": "Plumb"
+          },
+          {
+            "given": "Mark",
+            "family": "Ross"
+          },
+          {
+            "given": "Ratna",
+            "family": "Shownkeen"
+          },
+          {
+            "given": "Sarah",
+            "family": "Sims"
+          },
+          {
+            "name": "Washington University Genome Sequencing Center"
+          },
+          {
+            "given": "Robert H.",
+            "family": "Waterston"
+          },
+          {
+            "given": "Richard K.",
+            "family": "Wilson"
+          },
+          {
+            "given": "LaDeana W.",
+            "family": "Hillier"
+          },
+          {
+            "given": "John D.",
+            "family": "McPherson"
+          },
+          {
+            "given": "Marco A.",
+            "family": "Marra"
+          },
+          {
+            "given": "Elaine R.",
+            "family": "Mardis"
+          },
+          {
+            "given": "Lucinda A.",
+            "family": "Fulton"
+          },
+          {
+            "given": "Asif T.",
+            "family": "Chinwalla"
+          },
+          {
+            "given": "Kymberlie H.",
+            "family": "Pepin"
+          },
+          {
+            "given": "Warren R.",
+            "family": "Gish"
+          },
+          {
+            "given": "Stephanie L.",
+            "family": "Chissoe"
+          },
+          {
+            "given": "Michael C.",
+            "family": "Wendl"
+          },
+          {
+            "given": "Kim D.",
+            "family": "Delehaunty"
+          },
+          {
+            "given": "Tracie L.",
+            "family": "Miner"
+          },
+          {
+            "given": "Andrew",
+            "family": "Delehaunty"
+          },
+          {
+            "given": "Jason B.",
+            "family": "Kramer"
+          },
+          {
+            "given": "Lisa L.",
+            "family": "Cook"
+          },
+          {
+            "given": "Robert S.",
+            "family": "Fulton"
+          },
+          {
+            "given": "Douglas L.",
+            "family": "Johnson"
+          },
+          {
+            "given": "Patrick J.",
+            "family": "Minx"
+          },
+          {
+            "given": "Sandra W.",
+            "family": "Clifton"
+          },
+          {
+            "name": "US DOE Joint Genome Institute:"
+          },
+          {
+            "given": "Trevor",
+            "family": "Hawkins"
+          },
+          {
+            "given": "Elbert",
+            "family": "Branscomb"
+          },
+          {
+            "given": "Paul",
+            "family": "Predki"
+          },
+          {
+            "given": "Paul",
+            "family": "Richardson"
+          },
+          {
+            "given": "Sarah",
+            "family": "Wenning"
+          },
+          {
+            "given": "Tom",
+            "family": "Slezak"
+          },
+          {
+            "given": "Norman",
+            "family": "Doggett"
+          },
+          {
+            "given": "Jan-Fang",
+            "family": "Cheng"
+          },
+          {
+            "given": "Anne",
+            "family": "Olsen"
+          },
+          {
+            "given": "Susan",
+            "family": "Lucas"
+          },
+          {
+            "given": "Christopher",
+            "family": "Elkin"
+          },
+          {
+            "given": "Edward",
+            "family": "Uberbacher"
+          },
+          {
+            "given": "Marvin",
+            "family": "Frazier"
+          },
+          {
+            "name": "Baylor College of Medicine Human Genome Sequencing Center:"
+          },
+          {
+            "given": "Richard A.",
+            "family": "Gibbs"
+          },
+          {
+            "given": "Donna M.",
+            "family": "Muzny"
+          },
+          {
+            "given": "Steven E.",
+            "family": "Scherer"
+          },
+          {
+            "given": "John B.",
+            "family": "Bouck"
+          },
+          {
+            "given": "Erica J.",
+            "family": "Sodergren"
+          },
+          {
+            "given": "Kim C.",
+            "family": "Worley"
+          },
+          {
+            "given": "Catherine M.",
+            "family": "Rives"
+          },
+          {
+            "given": "James H.",
+            "family": "Gorrell"
+          },
+          {
+            "given": "Michael L.",
+            "family": "Metzker"
+          },
+          {
+            "given": "Susan L.",
+            "family": "Naylor"
+          },
+          {
+            "given": "Raju S.",
+            "family": "Kucherlapati"
+          },
+          {
+            "given": "David L.",
+            "family": "Nelson"
+          },
+          {
+            "given": "George M.",
+            "family": "Weinstock"
+          },
+          {
+            "name": "RIKEN Genomic Sciences Center:"
+          },
+          {
+            "given": "Yoshiyuki",
+            "family": "Sakaki"
+          },
+          {
+            "given": "Asao",
+            "family": "Fujiyama"
+          },
+          {
+            "given": "Masahira",
+            "family": "Hattori"
+          },
+          {
+            "given": "Tetsushi",
+            "family": "Yada"
+          },
+          {
+            "given": "Atsushi",
+            "family": "Toyoda"
+          },
+          {
+            "given": "Takehiko",
+            "family": "Itoh"
+          },
+          {
+            "given": "Chiharu",
+            "family": "Kawagoe"
+          },
+          {
+            "given": "Hidemi",
+            "family": "Watanabe"
+          },
+          {
+            "given": "Yasushi",
+            "family": "Totoki"
+          },
+          {
+            "given": "Todd",
+            "family": "Taylor"
+          },
+          {
+            "name": "Genoscope and CNRS UMR-8030:"
+          },
+          {
+            "given": "Jean",
+            "family": "Weissenbach"
+          },
+          {
+            "given": "Roland",
+            "family": "Heilig"
+          },
+          {
+            "given": "William",
+            "family": "Saurin"
+          },
+          {
+            "given": "Francois",
+            "family": "Artiguenave"
+          },
+          {
+            "given": "Philippe",
+            "family": "Brottier"
+          },
+          {
+            "given": "Thomas",
+            "family": "Bruls"
+          },
+          {
+            "given": "Eric",
+            "family": "Pelletier"
+          },
+          {
+            "given": "Catherine",
+            "family": "Robert"
+          },
+          {
+            "given": "Patrick",
+            "family": "Wincker"
+          },
+          {
+            "name": "Department of Genome Analysis, Institute of Molecular Biotechnology:"
+          },
+          {
+            "given": "André",
+            "family": "Rosenthal"
+          },
+          {
+            "given": "Matthias",
+            "family": "Platzer"
+          },
+          {
+            "given": "Gerald",
+            "family": "Nyakatura"
+          },
+          {
+            "given": "Stefan",
+            "family": "Taudien"
+          },
+          {
+            "given": "Andreas",
+            "family": "Rump"
+          },
+          {
+            "name": "GTC Sequencing Center:"
+          },
+          {
+            "given": "Douglas R.",
+            "family": "Smith"
+          },
+          {
+            "given": "Lynn",
+            "family": "Doucette-Stamm"
+          },
+          {
+            "given": "Marc",
+            "family": "Rubenfield"
+          },
+          {
+            "given": "Keith",
+            "family": "Weinstock"
+          },
+          {
+            "given": "Hong Mei",
+            "family": "Lee"
+          },
+          {
+            "given": "JoAnn",
+            "family": "Dubois"
+          },
+          {
+            "name": "Beijing Genomics Institute/Human Genome Center:"
+          },
+          {
+            "given": "Huanming",
+            "family": "Yang"
+          },
+          {
+            "given": "Jun",
+            "family": "Yu"
+          },
+          {
+            "given": "Jian",
+            "family": "Wang"
+          },
+          {
+            "given": "Guyang",
+            "family": "Huang"
+          },
+          {
+            "given": "Jun",
+            "family": "Gu"
+          },
+          {
+            "name": "Multimegabase Sequencing Center, The Institute for Systems Biology:"
+          },
+          {
+            "given": "Leroy",
+            "family": "Hood"
+          },
+          {
+            "given": "Lee",
+            "family": "Rowen"
+          },
+          {
+            "given": "Anup",
+            "family": "Madan"
+          },
+          {
+            "given": "Shizen",
+            "family": "Qin"
+          },
+          {
+            "name": "Stanford Genome Technology Center:"
+          },
+          {
+            "given": "Ronald W.",
+            "family": "Davis"
+          },
+          {
+            "given": "Nancy A.",
+            "family": "Federspiel"
+          },
+          {
+            "given": "A. Pia",
+            "family": "Abola"
+          },
+          {
+            "given": "Michael J.",
+            "family": "Proctor"
+          },
+          {
+            "name": "University of Oklahoma's Advanced Center for Genome Technology:"
+          },
+          {
+            "given": "Bruce A.",
+            "family": "Roe"
+          },
+          {
+            "given": "Feng",
+            "family": "Chen"
+          },
+          {
+            "given": "Huaqin",
+            "family": "Pan"
+          },
+          {
+            "name": "Max Planck Institute for Molecular Genetics:"
+          },
+          {
+            "given": "Juliane",
+            "family": "Ramser"
+          },
+          {
+            "given": "Hans",
+            "family": "Lehrach"
+          },
+          {
+            "given": "Richard",
+            "family": "Reinhardt"
+          },
+          {
+            "name": "Cold Spring Harbor Laboratory, Lita Annenberg Hazen Genome Center:"
+          },
+          {
+            "given": "W. Richard",
+            "family": "McCombie"
+          },
+          {
+            "given": "Melissa",
+            "family": "de la Bastide"
+          },
+          {
+            "given": "Neilay",
+            "family": "Dedhia"
+          },
+          {
+            "name": "GBF—German Research Centre for Biotechnology:"
+          },
+          {
+            "given": "Helmut",
+            "family": "Blöcker"
+          },
+          {
+            "given": "Klaus",
+            "family": "Hornischer"
+          },
+          {
+            "given": "Gabriele",
+            "family": "Nordsiek"
+          },
+          {
+            "name": "*Genome Analysis Group (listed in alphabetical order, also includes individuals listed under other headings):"
+          },
+          {
+            "given": "Richa",
+            "family": "Agarwala"
+          },
+          {
+            "given": "L.",
+            "family": "Aravind"
+          },
+          {
+            "given": "Jeffrey A.",
+            "family": "Bailey"
+          },
+          {
+            "given": "Alex",
+            "family": "Bateman"
+          },
+          {
+            "given": "Serafim",
+            "family": "Batzoglou"
+          },
+          {
+            "given": "Ewan",
+            "family": "Birney"
+          },
+          {
+            "given": "Peer",
+            "family": "Bork"
+          },
+          {
+            "given": "Daniel G.",
+            "family": "Brown"
+          },
+          {
+            "given": "Christopher B.",
+            "family": "Burge"
+          },
+          {
+            "given": "Lorenzo",
+            "family": "Cerutti"
+          },
+          {
+            "given": "Hsiu-Chuan",
+            "family": "Chen"
+          },
+          {
+            "given": "Deanna",
+            "family": "Church"
+          },
+          {
+            "given": "Michele",
+            "family": "Clamp"
+          },
+          {
+            "given": "Richard R.",
+            "family": "Copley"
+          },
+          {
+            "given": "Tobias",
+            "family": "Doerks"
+          },
+          {
+            "given": "Sean R.",
+            "family": "Eddy"
+          },
+          {
+            "given": "Evan E.",
+            "family": "Eichler"
+          },
+          {
+            "given": "Terrence S.",
+            "family": "Furey"
+          },
+          {
+            "given": "James",
+            "family": "Galagan"
+          },
+          {
+            "given": "James G. R.",
+            "family": "Gilbert"
+          },
+          {
+            "given": "Cyrus",
+            "family": "Harmon"
+          },
+          {
+            "given": "Yoshihide",
+            "family": "Hayashizaki"
+          },
+          {
+            "given": "David",
+            "family": "Haussler"
+          },
+          {
+            "given": "Henning",
+            "family": "Hermjakob"
+          },
+          {
+            "given": "Karsten",
+            "family": "Hokamp"
+          },
+          {
+            "given": "Wonhee",
+            "family": "Jang"
+          },
+          {
+            "given": "L. Steven",
+            "family": "Johnson"
+          },
+          {
+            "given": "Thomas A.",
+            "family": "Jones"
+          },
+          {
+            "given": "Simon",
+            "family": "Kasif"
+          },
+          {
+            "given": "Arek",
+            "family": "Kaspryzk"
+          },
+          {
+            "given": "Scot",
+            "family": "Kennedy"
+          },
+          {
+            "given": "W. James",
+            "family": "Kent"
+          },
+          {
+            "given": "Paul",
+            "family": "Kitts"
+          },
+          {
+            "given": "Eugene V.",
+            "family": "Koonin"
+          },
+          {
+            "given": "Ian",
+            "family": "Korf"
+          },
+          {
+            "given": "David",
+            "family": "Kulp"
+          },
+          {
+            "given": "Doron",
+            "family": "Lancet"
+          },
+          {
+            "given": "Todd M.",
+            "family": "Lowe"
+          },
+          {
+            "given": "Aoife",
+            "family": "McLysaght"
+          },
+          {
+            "given": "Tarjei",
+            "family": "Mikkelsen"
+          },
+          {
+            "given": "John V.",
+            "family": "Moran"
+          },
+          {
+            "given": "Nicola",
+            "family": "Mulder"
+          },
+          {
+            "given": "Victor J.",
+            "family": "Pollara"
+          },
+          {
+            "given": "Chris P.",
+            "family": "Ponting"
+          },
+          {
+            "given": "Greg",
+            "family": "Schuler"
+          },
+          {
+            "given": "Jörg",
+            "family": "Schultz"
+          },
+          {
+            "given": "Guy",
+            "family": "Slater"
+          },
+          {
+            "given": "Arian F. A.",
+            "family": "Smit"
+          },
+          {
+            "given": "Elia",
+            "family": "Stupka"
+          },
+          {
+            "given": "Joseph",
+            "family": "Szustakowki"
+          },
+          {
+            "given": "Danielle",
+            "family": "Thierry-Mieg"
+          },
+          {
+            "given": "Jean",
+            "family": "Thierry-Mieg"
+          },
+          {
+            "given": "Lukas",
+            "family": "Wagner"
+          },
+          {
+            "given": "John",
+            "family": "Wallis"
+          },
+          {
+            "given": "Raymond",
+            "family": "Wheeler"
+          },
+          {
+            "given": "Alan",
+            "family": "Williams"
+          },
+          {
+            "given": "Yuri I.",
+            "family": "Wolf"
+          },
+          {
+            "given": "Kenneth H.",
+            "family": "Wolfe"
+          },
+          {
+            "given": "Shiaw-Pyng",
+            "family": "Yang"
+          },
+          {
+            "given": "Ru-Fang",
+            "family": "Yeh"
+          },
+          {
+            "name": "Scientific management: National Human Genome Research Institute, US National Institutes of Health:"
+          },
+          {
+            "given": "Francis",
+            "family": "Collins"
+          },
+          {
+            "given": "Mark S.",
+            "family": "Guyer"
+          },
+          {
+            "given": "Jane",
+            "family": "Peterson"
+          },
+          {
+            "given": "Adam",
+            "family": "Felsenfeld"
+          },
+          {
+            "given": "Kris A.",
+            "family": "Wetterstrand"
+          },
+          {
+            "name": "Stanford Human Genome Center:"
+          },
+          {
+            "given": "Richard M.",
+            "family": "Myers"
+          },
+          {
+            "given": "Jeremy",
+            "family": "Schmutz"
+          },
+          {
+            "given": "Mark",
+            "family": "Dickson"
+          },
+          {
+            "given": "Jane",
+            "family": "Grimwood"
+          },
+          {
+            "given": "David R.",
+            "family": "Cox"
+          },
+          {
+            "name": "University of Washington Genome Center:"
+          },
+          {
+            "given": "Maynard V.",
+            "family": "Olson"
+          },
+          {
+            "given": "Rajinder",
+            "family": "Kaul"
+          },
+          {
+            "given": "Christopher",
+            "family": "Raymond"
+          },
+          {
+            "name": "Department of Molecular Biology, Keio University School of Medicine:"
+          },
+          {
+            "given": "Nobuyoshi",
+            "family": "Shimizu"
+          },
+          {
+            "given": "Kazuhiko",
+            "family": "Kawasaki"
+          },
+          {
+            "given": "Shinsei",
+            "family": "Minoshima"
+          },
+          {
+            "name": "University of Texas Southwestern Medical Center at Dallas:"
+          },
+          {
+            "given": "Glen A.",
+            "family": "Evans"
+          },
+          {
+            "given": "Maria",
+            "family": "Athanasiou"
+          },
+          {
+            "given": "Roger",
+            "family": "Schultz"
+          },
+          {
+            "name": "Office of Science, US Department of Energy:"
+          },
+          {
+            "given": "Aristides",
+            "family": "Patrinos"
+          },
+          {
+            "name": "The Wellcome Trust:"
+          },
+          {
+            "given": "Michael J.",
+            "family": "Morgan"
+          }
+        ],
+        "year": 2001,
+        "journal": "Nature",
+        "url": "https://doi.org/10.1038/35057062",
+        "abstract": "",
+        "volume": "409",
+        "issue": "6822",
+        "pages": "860-921",
+        "free": false
+      }
+    },
+    {
+      "caseId": "MLA-07",
+      "doi": "10.33184/dokbsu-2018.1.8",
+      "focus": [
+        "absent author"
+      ],
+      "synthetic": false,
+      "recordUrl": "https://api.crossref.org/works/10.33184%2Fdokbsu-2018.1.8",
+      "publisherResolver": "https://doi.org/10.33184/dokbsu-2018.1.8",
+      "metadataSha256": "d28c1dbf0235ddb6047b23ee5b9e2e58c84cdbbb15e485b3ed74cd4149843735",
+      "input": {
+        "id": "10.33184/dokbsu-2018.1.8",
+        "title": "Connection of the visual system functional condition with person social well-being",
+        "authors": [],
+        "authorDetails": [],
+        "year": 2018,
+        "journal": "Доклады башкирского университета",
+        "url": "https://doi.org/10.33184/dokbsu-2018.1.8",
+        "abstract": "",
+        "pages": "49",
+        "free": false
+      }
+    },
+    {
+      "caseId": "MLA-08",
+      "doi": "10.1016/j.uclim.2025.102290",
+      "focus": [
+        "explicit article identifier"
+      ],
+      "synthetic": false,
+      "recordUrl": "https://api.crossref.org/works/10.1016%2Fj.uclim.2025.102290",
+      "publisherResolver": "https://doi.org/10.1016/j.uclim.2025.102290",
+      "metadataSha256": "48dba64bc4a85bb81b709e5921534a2f88f91723186d0c29ba7fe297310ceb06",
+      "input": {
+        "id": "10.1016/j.uclim.2025.102290",
+        "title": "Urban stormwater resilience: Global insights and strategies for climate adaptation",
+        "authors": [
+          "Mohammad Fereshtehpour",
+          "Mohammad Reza Najafi"
+        ],
+        "authorDetails": [
+          {
+            "given": "Mohammad",
+            "family": "Fereshtehpour"
+          },
+          {
+            "given": "Mohammad Reza",
+            "family": "Najafi"
+          }
+        ],
+        "year": 2025,
+        "journal": "Urban Climate",
+        "url": "https://doi.org/10.1016/j.uclim.2025.102290",
+        "abstract": "",
+        "volume": "59",
+        "articleNumber": "102290",
+        "free": false
+      }
+    },
+    {
+      "caseId": "MLA-09",
+      "doi": "10.1016/j.chb.2017.02.038",
+      "focus": [
+        "missing issue"
+      ],
+      "synthetic": false,
+      "recordUrl": "https://api.crossref.org/works/10.1016%2Fj.chb.2017.02.038",
+      "publisherResolver": "https://doi.org/10.1016/j.chb.2017.02.038",
+      "metadataSha256": "2f1baeda1219f0da9e58c8407c5deeedce975fe2b0b8c57af8434faab805e143",
+      "input": {
+        "id": "10.1016/j.chb.2017.02.038",
+        "title": "How do older and young adults start searching for information? Impact of age, domain knowledge and problem complexity on the different steps of information searching",
+        "authors": [
+          "M. Sanchiz",
+          "A. Chevalier",
+          "F. Amadieu"
+        ],
+        "authorDetails": [
+          {
+            "given": "M.",
+            "family": "Sanchiz"
+          },
+          {
+            "given": "A.",
+            "family": "Chevalier"
+          },
+          {
+            "given": "F.",
+            "family": "Amadieu"
+          }
+        ],
+        "year": 2017,
+        "journal": "Computers in Human Behavior",
+        "url": "https://doi.org/10.1016/j.chb.2017.02.038",
+        "abstract": "",
+        "volume": "72",
+        "pages": "67-78",
+        "free": false
+      }
+    },
+    {
+      "caseId": "MLA-10",
+      "doi": "10.1038/nbt.1754",
+      "focus": [
+        "Unicode author names"
+      ],
+      "synthetic": false,
+      "recordUrl": "https://api.crossref.org/works/10.1038%2Fnbt.1754",
+      "publisherResolver": "https://doi.org/10.1038/nbt.1754",
+      "metadataSha256": "2f94051f869200631027782c29e167ffd31ef1a064ff00b8d7da5ecf7c1bb057",
+      "input": {
+        "id": "10.1038/nbt.1754",
+        "title": "Integrative genomics viewer",
+        "authors": [
+          "James T Robinson",
+          "Helga Thorvaldsdóttir",
+          "Wendy Winckler",
+          "Mitchell Guttman",
+          "Eric S Lander",
+          "Gad Getz",
+          "Jill P Mesirov"
+        ],
+        "authorDetails": [
+          {
+            "given": "James T",
+            "family": "Robinson"
+          },
+          {
+            "given": "Helga",
+            "family": "Thorvaldsdóttir"
+          },
+          {
+            "given": "Wendy",
+            "family": "Winckler"
+          },
+          {
+            "given": "Mitchell",
+            "family": "Guttman"
+          },
+          {
+            "given": "Eric S",
+            "family": "Lander"
+          },
+          {
+            "given": "Gad",
+            "family": "Getz"
+          },
+          {
+            "given": "Jill P",
+            "family": "Mesirov"
+          }
+        ],
+        "year": 2011,
+        "journal": "Nature Biotechnology",
+        "url": "https://doi.org/10.1038/nbt.1754",
+        "abstract": "",
+        "volume": "29",
+        "issue": "1",
+        "pages": "24-26",
+        "free": false
+      }
+    },
+    {
+      "caseId": "MLA-11",
+      "doi": "10.1016/s0140-6736(20)30566-3",
+      "focus": [
+        "scientific typography/acronyms"
+      ],
+      "synthetic": false,
+      "recordUrl": "https://api.crossref.org/works/10.1016%2FS0140-6736(20)30566-3",
+      "publisherResolver": "https://doi.org/10.1016/s0140-6736(20)30566-3",
+      "metadataSha256": "35213deb6739be8c7b437920816cc5fd44a9ff7cc242ef9d40be677a921256ea",
+      "input": {
+        "id": "10.1016/s0140-6736(20)30566-3",
+        "title": "Clinical course and risk factors for mortality of adult inpatients with COVID-19 in Wuhan, China: a retrospective cohort study",
+        "authors": [
+          "Fei Zhou",
+          "Ting Yu",
+          "Ronghui Du",
+          "Guohui Fan",
+          "Ying Liu",
+          "Zhibo Liu",
+          "Jie Xiang",
+          "Yeming Wang",
+          "Bin Song",
+          "Xiaoying Gu",
+          "Lulu Guan",
+          "Yuan Wei",
+          "Hui Li",
+          "Xudong Wu",
+          "Jiuyang Xu",
+          "Shengjin Tu",
+          "Yi Zhang",
+          "Hua Chen",
+          "Bin Cao"
+        ],
+        "authorDetails": [
+          {
+            "given": "Fei",
+            "family": "Zhou"
+          },
+          {
+            "given": "Ting",
+            "family": "Yu"
+          },
+          {
+            "given": "Ronghui",
+            "family": "Du"
+          },
+          {
+            "given": "Guohui",
+            "family": "Fan"
+          },
+          {
+            "given": "Ying",
+            "family": "Liu"
+          },
+          {
+            "given": "Zhibo",
+            "family": "Liu"
+          },
+          {
+            "given": "Jie",
+            "family": "Xiang"
+          },
+          {
+            "given": "Yeming",
+            "family": "Wang"
+          },
+          {
+            "given": "Bin",
+            "family": "Song"
+          },
+          {
+            "given": "Xiaoying",
+            "family": "Gu"
+          },
+          {
+            "given": "Lulu",
+            "family": "Guan"
+          },
+          {
+            "given": "Yuan",
+            "family": "Wei"
+          },
+          {
+            "given": "Hui",
+            "family": "Li"
+          },
+          {
+            "given": "Xudong",
+            "family": "Wu"
+          },
+          {
+            "given": "Jiuyang",
+            "family": "Xu"
+          },
+          {
+            "given": "Shengjin",
+            "family": "Tu"
+          },
+          {
+            "given": "Yi",
+            "family": "Zhang"
+          },
+          {
+            "given": "Hua",
+            "family": "Chen"
+          },
+          {
+            "given": "Bin",
+            "family": "Cao"
+          }
+        ],
+        "year": 2020,
+        "journal": "The Lancet",
+        "url": "https://doi.org/10.1016/s0140-6736(20)30566-3",
+        "abstract": "",
+        "volume": "395",
+        "issue": "10229",
+        "pages": "1054-1062",
+        "free": false
+      }
+    },
+    {
+      "caseId": "MLA-12",
+      "doi": "10.1038/nmeth.1226",
+      "focus": [
+        "scientific typography/acronyms"
+      ],
+      "synthetic": false,
+      "recordUrl": "https://api.crossref.org/works/10.1038%2Fnmeth.1226",
+      "publisherResolver": "https://doi.org/10.1038/nmeth.1226",
+      "metadataSha256": "f62a3dfd4e78c574d75afa26db06ed34f552ef8546309f632b0fd04e9cd77829",
+      "input": {
+        "id": "10.1038/nmeth.1226",
+        "title": "Mapping and quantifying mammalian transcriptomes by RNA-Seq",
+        "authors": [
+          "Ali Mortazavi",
+          "Brian A Williams",
+          "Kenneth McCue",
+          "Lorian Schaeffer",
+          "Barbara Wold"
+        ],
+        "authorDetails": [
+          {
+            "given": "Ali",
+            "family": "Mortazavi"
+          },
+          {
+            "given": "Brian A",
+            "family": "Williams"
+          },
+          {
+            "given": "Kenneth",
+            "family": "McCue"
+          },
+          {
+            "given": "Lorian",
+            "family": "Schaeffer"
+          },
+          {
+            "given": "Barbara",
+            "family": "Wold"
+          }
+        ],
+        "year": 2008,
+        "journal": "Nature Methods",
+        "url": "https://doi.org/10.1038/nmeth.1226",
+        "abstract": "",
+        "volume": "5",
+        "issue": "7",
+        "pages": "621-628",
+        "free": false
+      }
+    },
+    {
+      "caseId": "MLA-13",
+      "doi": "10.1007/bf01397280",
+      "focus": [
+        "single author",
+        "page-range abbreviation"
+      ],
+      "synthetic": false,
+      "recordUrl": "https://api.crossref.org/works/10.1007%2FBF01397280",
+      "publisherResolver": "https://doi.org/10.1007/bf01397280",
+      "metadataSha256": "ca63fa02f54990c4472cc8c9c97ac5aeb5b32c48097e080feae4f4792747eea7",
+      "input": {
+        "id": "10.1007/bf01397280",
+        "title": "�ber den anschaulichen Inhalt der quantentheoretischen Kinematik und Mechanik",
+        "authors": [
+          "W. Heisenberg"
+        ],
+        "authorDetails": [
+          {
+            "given": "W.",
+            "family": "Heisenberg"
+          }
+        ],
+        "year": 1927,
+        "journal": "Zeitschrift f�r Physik",
+        "url": "https://doi.org/10.1007/bf01397280",
+        "abstract": "",
+        "volume": "43",
+        "issue": "3-4",
+        "pages": "172-198",
+        "free": false
+      }
+    },
+    {
+      "caseId": "MLA-14",
+      "doi": "10.1037/ppm0000185",
+      "focus": [
+        "synthetic omission: date"
+      ],
+      "synthetic": true,
+      "recordUrl": "https://api.crossref.org/works/10.1037%2Fppm0000185",
+      "publisherResolver": "https://doi.org/10.1037/ppm0000185",
+      "metadataSha256": "f2894333721f568a6d4fafb7de175c590ba1603c718a96b36d523898d9b7eb76",
+      "input": {
+        "id": "10.1037/ppm0000185",
+        "title": "Emotions in storybooks: A comparison of storybooks that represent ethnic and racial groups in the United States.",
+        "authors": [
+          "Jessica Stoltzfus Grady",
+          "Malina Her",
+          "Geena Moreno",
+          "Catherine Perez",
+          "Jillian Yelinek"
+        ],
+        "authorDetails": [
+          {
+            "given": "Jessica Stoltzfus",
+            "family": "Grady"
+          },
+          {
+            "given": "Malina",
+            "family": "Her"
+          },
+          {
+            "given": "Geena",
+            "family": "Moreno"
+          },
+          {
+            "given": "Catherine",
+            "family": "Perez"
+          },
+          {
+            "given": "Jillian",
+            "family": "Yelinek"
+          }
+        ],
+        "journal": "Psychology of Popular Media Culture",
+        "url": "https://doi.org/10.1037/ppm0000185",
+        "abstract": "",
+        "volume": "8",
+        "issue": "3",
+        "pages": "207-217",
+        "free": false
+      }
+    },
+    {
+      "caseId": "MLA-15",
+      "doi": "10.1037/ppm0000185",
+      "focus": [
+        "synthetic omission: author/title"
+      ],
+      "synthetic": true,
+      "recordUrl": "https://api.crossref.org/works/10.1037%2Fppm0000185",
+      "publisherResolver": "https://doi.org/10.1037/ppm0000185",
+      "metadataSha256": "f2894333721f568a6d4fafb7de175c590ba1603c718a96b36d523898d9b7eb76",
+      "input": {
+        "id": "10.1037/ppm0000185",
+        "title": "",
+        "authors": [],
+        "authorDetails": [],
+        "year": 2019,
+        "journal": "Psychology of Popular Media Culture",
+        "url": "https://doi.org/10.1037/ppm0000185",
+        "abstract": "",
+        "volume": "8",
+        "issue": "3",
+        "pages": "207-217",
+        "free": false
+      }
+    },
+    {
+      "caseId": "MLA-16",
+      "doi": "10.1037/ppm0000185",
+      "focus": [
+        "synthetic omission: volume/issue/pages"
+      ],
+      "synthetic": true,
+      "recordUrl": "https://api.crossref.org/works/10.1037%2Fppm0000185",
+      "publisherResolver": "https://doi.org/10.1037/ppm0000185",
+      "metadataSha256": "f2894333721f568a6d4fafb7de175c590ba1603c718a96b36d523898d9b7eb76",
+      "input": {
+        "id": "10.1037/ppm0000185",
+        "title": "Emotions in storybooks: A comparison of storybooks that represent ethnic and racial groups in the United States.",
+        "authors": [
+          "Jessica Stoltzfus Grady",
+          "Malina Her",
+          "Geena Moreno",
+          "Catherine Perez",
+          "Jillian Yelinek"
+        ],
+        "authorDetails": [
+          {
+            "given": "Jessica Stoltzfus",
+            "family": "Grady"
+          },
+          {
+            "given": "Malina",
+            "family": "Her"
+          },
+          {
+            "given": "Geena",
+            "family": "Moreno"
+          },
+          {
+            "given": "Catherine",
+            "family": "Perez"
+          },
+          {
+            "given": "Jillian",
+            "family": "Yelinek"
+          }
+        ],
+        "year": 2019,
+        "journal": "Psychology of Popular Media Culture",
+        "url": "https://doi.org/10.1037/ppm0000185",
+        "abstract": "",
+        "free": false
+      }
+    }
+  ]
+}
