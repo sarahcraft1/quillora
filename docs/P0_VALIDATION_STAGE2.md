@@ -2,7 +2,7 @@
 
 # WSL prerequisite installation — October 28, 2026
 
-After the user authorized proceeding with administrator-level WSL prerequisite installation (but no restart), `wsl --install --no-distribution` completed with exit code 0. Microsoft WSL 3.0.3 was installed and VirtualMachinePlatform was enabled. Windows explicitly reports changes require reboot. A read-only `wsl --version` confirms WSL 3.0.3.0 / kernel 6.18.54.1-1. No Ubuntu distribution was requested.
+After the user authorized proceeding with administrator-level WSL prerequisite installation (but no restart), `wsl --install --no-distribution` completed with exit code 0. A supported WSL release was installed and its required virtualization component was enabled. Windows explicitly reports changes require reboot. Read-only checks confirmed installation; exact host/kernel inventory is intentionally omitted. No Ubuntu distribution was requested.
 
 No restart, firmware change, Docker installation, deployment or student-data operation was performed. Firmware virtualization still reports false. The next action requires an explicitly approved restart and user-controlled BIOS/UEFI virtualization enablement, followed by read-only verification. Docker/Linux tests remain NOT RUN. Installer output is retained locally in `%TEMP%/quillora-wsl-prerequisites/install.log`; completion status is in `result.json`. Only the expected WSL/Windows prerequisite operation was authorized; unrelated settings must remain unchanged.
 
@@ -15,7 +15,7 @@ This update supersedes the earlier statement that WSL was absent. Commit 90045ea
 ## Completed
 
 - Pushed exactly `90045eaae6b75e78e7315ab2576daec2c4b1d78e` on `codex/p0-local-pilot` to the existing private GitHub repository. `git ls-remote` independently confirmed the remote hash. No main update, merge, deployment or new cloud service.
-- Read-only computer compatibility checks completed. Hardware supports CPU virtualization/SLAT and has about 32 GB RAM, but firmware virtualization is disabled and WSL is not installed. Docker installation and Linux execution are blocked by prerequisite changes requiring explicit approval. Preparing setup steps was subsequently approved; executing them was not.
+- Read-only computer compatibility checks completed. Hardware supports the required virtualization features, but firmware virtualization is disabled and WSL is not installed. Docker installation and Linux execution are blocked by prerequisite changes requiring explicit approval. Preparing setup steps was subsequently approved; executing them was not.
 - Prepared [Docker setup plan](DOCKER_SETUP_PLAN.md), with explicit firmware, administrator, WSL, terms and restart boundaries.
 - Prepared [independent MLA 9 review package](mla9-review/README.md): 13 real cases + 3 labeled synthetic omissions, untouched 49-record metadata with provenance, observed outputs/italic spans/warnings, provisional expected behavior, reviewer-expected fields, blind worksheet and reproducible manifest. No independent reviewer has completed it; no package sent externally.
 - Reran all 139 automated tests: pass, zero failures. These include signature/issuer/audience/expiry/required-claim checks, spoofed/unauthorized requests, session separation, body caps/deadline, valid/malformed extraction, ZIP inflation, PDF page limit, worker timeout/exit and concurrent admission. They ran on **Windows**, not in a Linux container.

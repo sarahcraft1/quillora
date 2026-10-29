@@ -23,3 +23,7 @@ Production is fail-closed without Access configuration; `QUILLORA_ACCESS_MODE=lo
 Disposable browser recovery harness: `node scripts/browser-recovery-harness.mjs` on loopback port 3017; use synthetic data only. Production deny-by-default smoke: `node tests/production-access.mjs` against local production port 3019.
 
 Local Linux checks: `node scripts/prepare-linux-qa.mjs`, build `quillora:p0-local`, then `node scripts/validate-linux-container.mjs`. This intentionally exhausts memory only in a separate disposable capped container and uses synthetic fixtures. See [Linux validation evidence and limitations](docs/LINUX_VALIDATION.md).
+
+## Security and repository privacy
+
+Report vulnerabilities through [SECURITY.md](SECURITY.md); never attach real student exports or credentials to public issues. Keep environment values and browser backups outside Git. Reviewed `.env.example`/`.npmrc.example` templates may contain placeholders only. See [historical privacy assessment](docs/HISTORY_PRIVACY_RISK.md): current cleanup does not remove older personal information or authorize a history rewrite.

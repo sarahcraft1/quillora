@@ -1,8 +1,14 @@
+# Current repository privacy cleanup — October 28, 2026
+
+Current documentation is sanitized; Git/Docker ignore rules protect common credentials and browser exports. SECURITY.md and a separate historical-risk assessment are added. Future commits in this checkout use a repository-local GitHub noreply identity; global settings and old history are unchanged. Private vulnerability reporting was enabled only after explicit approval. See [privacy hardening evidence](docs/PRIVACY_HARDENING.md) and [history assessment](docs/HISTORY_PRIVACY_RISK.md). Historical personal information remains in earlier commits and refs. No merge, rewrite, force push, visibility change, deployment or student-data deletion is included.
+
+---
+
 > Production Linux validation now passes; see [LINUX_VALIDATION.md](docs/LINUX_VALIDATION.md) for exact image, 8 Linux upload regressions, 10 integration checks, resource/OOM/restart evidence and limits. Docker installed per-user after approved prerequisite setup. Windows 139 tests pass. No deployment, main merge or further GitHub push. Historical WSL/Docker blocker statements below are superseded.
 
 # WSL prerequisite installation — October 28, 2026
 
-After the user authorized proceeding with administrator-level WSL prerequisite installation (but no restart), `wsl --install --no-distribution` completed with exit code 0. Microsoft WSL 3.0.3 was installed and VirtualMachinePlatform was enabled. Windows explicitly reports changes require reboot. A read-only `wsl --version` confirms WSL 3.0.3.0 / kernel 6.18.54.1-1. No Ubuntu distribution was requested.
+After the user authorized proceeding with administrator-level WSL prerequisite installation (but no restart), `wsl --install --no-distribution` completed with exit code 0. A supported WSL release was installed and its required virtualization component was enabled. Windows explicitly reports changes require reboot. Read-only checks confirmed installation; exact host/kernel inventory is intentionally omitted. No Ubuntu distribution was requested.
 
 No restart, firmware change, Docker installation, deployment or student-data operation was performed. Firmware virtualization still reports false. The next action requires an explicitly approved restart and user-controlled BIOS/UEFI virtualization enablement, followed by read-only verification. Docker/Linux tests remain NOT RUN. Installer output is retained locally in `%TEMP%/quillora-wsl-prerequisites/install.log`; completion status is in `result.json`. Only the expected WSL/Windows prerequisite operation was authorized; unrelated settings must remain unchanged.
 
