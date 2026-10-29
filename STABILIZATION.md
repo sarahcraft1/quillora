@@ -1,4 +1,10 @@
-# Current local functionality milestone — October 29, 2026
+# Current QA handoff — October 29, 2026
+
+The interrupted MLA nested-quotation and secondary-text contrast fixes were preserved and verified: 18 focused tests and all 164 regressions pass, as do TypeScript, production build, dependency audit, live PDF/DOCX/Crossref endpoint checks and both production denial modes. See [release QA evidence](docs/RELEASE_QA.md). Fresh Chrome/Edge acceptance was blocked by browser-address verification; Docker's Linux engine was unavailable. Simulated storage checks and historical actual-browser evidence are labeled separately. This milestone prepares a review PR only; no merge, deployment or hosting is authorized.
+
+---
+
+# Previous local functionality milestone — October 29, 2026
 
 Hosting work is paused. On the pilot branch, assignment-context cancellation, upload retry handling, draft protection, editable names/notes, non-destructive assignment unlinking and keyboard focus were improved. The suite now has 160 passing tests, including 14 new regressions. Live Crossref/PDF/DOCX and real browser clipboard/backup/checklist/refresh checks passed; actual browser quota exhaustion preserved exact saved bytes and recovered a note after retry. See [detailed local audit](docs/LOCAL_FUNCTIONAL_AUDIT.md) and [local persistence decision](docs/LOCAL_PERSISTENCE_DECISION.md) for evidence, reproductions and remaining limits. No database, accounts, hosting, purchases or deployment were introduced. Earlier sections remain historical.
 

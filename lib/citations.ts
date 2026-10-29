@@ -48,7 +48,7 @@ export function citationParts(a: Article, style: string) {
   }
   const author = authors.length >= 3 ? full(authors[0], true) + ', et al.'
     : authors.length === 2 ? full(authors[0], true) + ', and ' + full(authors[1]) : authors.length === 1 ? full(authors[0], true) : '';
-  const before = (author ? period(author) + ' ' : '') + (missingTitle ? title + '. ' : '“' + titlePeriod(title.replace(/“/g,'‘').replace(/”/g,'’')) + '” ');
+  const before = (author ? period(author) + ' ' : '') + (missingTitle ? title + '. ' : '“' + titlePeriod(title.replace(/(^|[\s([{:\u2014\u2013])"([^"\r\n]+)"/g,'$1‘$2’').replace(/“/g,'‘').replace(/”/g,'’')) + '” ');
   const details = [a.volume ? 'vol. ' + a.volume : '', a.issue ? 'no. ' + a.issue : '', a.year ? String(a.year) : '',
     !number && pages ? (/[–-]/.test(pages) ? 'pp. ' : 'p. ') + pages.replace(/(?<=\d)-(?=\d)/g, '–') : ''].filter(Boolean);
   return { before, italic: journal, after: (journal && details.length ? ', ' : '') + details.join(', ') + (journal || details.length ? ', ' : '') + doi + '.' };
