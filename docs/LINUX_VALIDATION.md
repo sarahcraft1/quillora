@@ -4,7 +4,7 @@
 
 User authorized local Docker installation/testing only; administrator/WSL/restart actions required separate permission. User approved WSL prerequisite installation, a restart into firmware settings, then Docker-specific WSL setup. User reported accepting Docker's agreement personally. No agreement was accepted by the agent. No further restart, paid subscription, cloud provisioning, deployment, invitations, student-data migration, main merge or credential changes occurred.
 
-Read-only checks after restart: firmware virtualization true, hypervisor present, WSL 3.0.3 defaults to WSL 2. WSL 1 is unavailable; that warning is irrelevant to this Linux backend. SLAT had reported true before hypervisor activation; the changed Windows report under an active hypervisor was not treated as loss of CPU support. Docker Desktop 4.97.0 was downloaded from Docker's official Windows-install page; Authenticode signature was Valid, publisher Docker Inc. Installed per-user with WSL 2 backend; installer log confirmed success. Engine 29.9.2 reports Linux/amd64. Other WSL distributions/resource configuration were not changed by the agent.
+Prerequisite checks confirmed a working WSL 2 Linux backend after separately approved setup. Docker's official installer signature was verified before per-user installation. The user personally accepted its agreement. Host-specific hardware, operating-system build and kernel inventory are intentionally omitted; application/runtime evidence below is retained for reproducibility.
 
 ## Final result: PASS for the local checks listed below
 
