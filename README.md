@@ -27,3 +27,7 @@ Local Linux checks: `node scripts/prepare-linux-qa.mjs`, build `quillora:p0-loca
 ## Security and repository privacy
 
 Report vulnerabilities through [SECURITY.md](SECURITY.md); never attach real student exports or credentials to public issues. Keep environment values and browser backups outside Git. Reviewed `.env.example`/`.npmrc.example` templates may contain placeholders only. See [historical privacy assessment](docs/HISTORY_PRIVACY_RISK.md): current cleanup does not remove older personal information or authorize a history rewrite.
+
+## Automated checks and private staging
+
+[CI and staging readiness](docs/CI_AND_STAGING_READINESS.md) describes the least-privilege GitHub workflow, its public-repository billing guard, local integration coverage and remaining gates. Use the [private staging checklist](docs/PRIVATE_STAGING_CHECKLIST.md) before requesting any deployment or invitations. .env.example contains placeholders only; real values belong in ignored local/provider configuration after authorization.

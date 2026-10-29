@@ -1,3 +1,9 @@
+# Current private staging preparation
+
+CI, stricter origin/host access checks, and a synthetic student-workflow regression are prepared on codex/private-staging-readiness. See [current readiness](docs/CI_AND_STAGING_READINESS.md) and [hosted acceptance checklist](docs/PRIVATE_STAGING_CHECKLIST.md). Secret scanning/push protection were enabled only after explicit approval. No deployment, paid provisioning, main merge or credential change is authorized. Historical assessment sections below are retained as history.
+
+---
+
 # Current repository privacy cleanup — October 28, 2026
 
 Current documentation is sanitized; Git/Docker ignore rules protect common credentials and browser exports. SECURITY.md and a separate historical-risk assessment are added. Future commits in this checkout use a repository-local GitHub noreply identity; global settings and old history are unchanged. Private vulnerability reporting was enabled only after explicit approval. See [privacy hardening evidence](docs/PRIVACY_HARDENING.md) and [history assessment](docs/HISTORY_PRIVACY_RISK.md). Historical personal information remains in earlier commits and refs. No merge, rewrite, force push, visibility change, deployment or student-data deletion is included.
