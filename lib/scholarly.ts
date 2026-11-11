@@ -12,7 +12,13 @@ export function normalizeCrossref(input:unknown):Article|null{
  const authorDetails:Author[]=(Array.isArray(input.author)?input.author:[]).filter(object).map(a=>Object.fromEntries(['given','family','name','suffix'].map(k=>[k,text(a[k])]).filter(([,v])=>v))).filter(a=>Object.keys(a).length);
  const authors=authorDetails.map(a=>[a.given,a.family,a.suffix].filter(Boolean).join(' ')||a.name||'').filter(Boolean);
  const articleNumber=scalar(input['article-number']),pages=scalar(input.page);
- return {id,title:firstText(input.title)||'Untitled record',authors,authorDetails,
+ const mainTitle=firstText(input.title),subtitle=firstText(input.subtitle);
+ // Crossref permits a distinct subtitle field. Avoid losing it or duplicating
+ // deposits that already include the subtitle in the main title.
+ const hasSubtitle=mainTitle.toLowerCase()===subtitle.toLowerCase() || [': ','? ','! '].some(separator=>mainTitle.toLowerCase().endsWith(separator+subtitle.toLowerCase()));
+ const title=mainTitle&&subtitle&&!hasSubtitle
+  ? mainTitle+(/[?!:]$/.test(mainTitle)?' ':': ')+subtitle : mainTitle;
+ return {id,title:title||'Untitled record',authors,authorDetails,
   year:year(input['published-print'])||year(input.published)||year(input['published-online']),journal:firstText(input['container-title'])||'Journal not listed',
   url:articleUrl(id),abstract:text(input.abstract),volume:scalar(input.volume),issue:scalar(input.issue),pages:pages===articleNumber?undefined:pages,articleNumber,free:false};
 }

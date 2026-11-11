@@ -2,6 +2,18 @@ import { doiKey, type Article, type Author } from './work';
 const period = (s: string) => /[.!?]$/.test(s) ? s : s + '.';
 function titlePeriod(s:string){const match=s.match(/([”’"]+)$/);if(!match)return period(s);const body=s.slice(0,-match[0].length);return period(body)+match[0];}
 const clean = (s?: string) => s?.trim() || '';
+/** MLA 9 numeric ranges (2.139 / 5.89) and nonconsecutive periodical pages (5.92).
+ * Only unambiguous full decimal ranges/lists are abbreviated; roman numerals,
+ * letter-prefixed pages and already-shortened ranges retain supplied wording. */
+function mlaPages(pages:string) {
+  if (/^\d+(?:[-\u2013]\d+)?(?:,\s*\d+(?:[-\u2013]\d+)?)+$/.test(pages)) return pages.match(/^\d+/)![0]+'+';
+  const match=pages.match(/^(\d+)[-\u2013](\d+)$/);
+  if (!match) return pages.replace(/(?<=\d)-(?=\d)/g,'\u2013');
+  const [,start,end]=match;
+  if (start.length!==end.length || Number(end)<=Number(start) || Number(end)<100) return start+'\u2013'+end;
+  let shared=0;while(shared<end.length-2 && start[shared]===end[shared])shared++;
+  return start+'\u2013'+end.slice(shared);
+}
 export function citationAuthors(a: Article): Author[] {
   const details = (a.authorDetails || []).filter(n => clean(n.family) || clean(n.name) || clean(n.given));
   // Do not guess family names from an unstructured name, or discard legacy
@@ -53,7 +65,7 @@ export function citationParts(a: Article, style: string) {
     : authors.length === 2 ? full(authors[0], true) + ', and ' + full(authors[1]) : authors.length === 1 ? full(authors[0], true) : '';
   const before = (author ? period(author) + ' ' : '') + (missingTitle ? title + '. ' : '“' + titlePeriod(title.replace(/(^|[\s([{:\u2014\u2013])"([^"\r\n]+)"/g,'$1‘$2’').replace(/“/g,'‘').replace(/”/g,'’')) + '” ');
   const details = [volume ? 'vol. ' + volume : '', issue ? 'no. ' + issue : '', a.year ? String(a.year) : '',
-    !number && pages ? (/[–-]/.test(pages) ? 'pp. ' : 'p. ') + pages.replace(/(?<=\d)-(?=\d)/g, '–') : ''].filter(Boolean);
+    !number && pages ? (/[–+,\-]/.test(pages) ? 'pp. ' : 'p. ') + mlaPages(pages) : ''].filter(Boolean);
   return { before, italic: journal, after: (journal && details.length ? ', ' : '') + details.join(', ') + (journal || details.length ? ', ' : '') + doi + '.' };
 }
 export function formatCitation(a: Article, style: string) { const p = citationParts(a, style); return p.before + p.italic + p.after; }
@@ -85,6 +97,8 @@ export function citationWarnings(a: Article, style = 'APA') {
     !a.journal.trim() || a.journal === 'Journal not listed' ? 'Journal missing.' : '',
     `Title capitalization is preserved to protect proper nouns and acronyms. Review ${style === 'APA' ? 'APA sentence case' : 'MLA title case'} before submitting.`,
     style === 'MLA' && (clean(a.articleNumber)||/^e\d+$/i.test(clean(a.pages))) ? 'This draft omits the article identifier and article-local page numbers. Verify their treatment against MLA 9; the DOI locates the original record.' : '',
-    style === 'MLA' && /\d{3,}[–-]\d{3,}/.test(clean(a.pages)) ? 'Review MLA page-range abbreviation against your handbook; full publisher page numbers are retained.' : '',
+    /\uFFFD/.test([a.journal,...a.authors,...authors.map(n=>[n.given,n.family,n.name].filter(Boolean).join(' '))].join(' ')) ? 'Journal or author metadata may contain a character-encoding error; verify it against the publisher.' : '',
+    authors.some(n=>clean(n.name)) && authors.some(n=>clean(n.family)||clean(n.given)) ? 'Mixed group and individual author metadata: verify the credited byline before using this draft; contributor lists may differ from citation authors.' : '',
+    style === 'MLA' ? 'This draft stores only the publication year. Check the original issue for a month or season, and check any italics within article titles; those details are not reconstructed from Crossref plain text.' : '',
     'Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied.'].filter(Boolean);
 }
