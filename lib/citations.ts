@@ -25,12 +25,15 @@ function full(a: Author, invert = false) {
   return (invert ? clean(a.family) + (clean(a.given) ? ', ' + clean(a.given) : '')
     : [clean(a.given), clean(a.family)].filter(Boolean).join(' ')) + (clean(a.suffix) ? ', ' + clean(a.suffix) : '');
 }
+// Compatibility text fields. Use citationRuns for formatting: APA has two
+// separate italic spans with an upright separator, not one continuous span.
 export function citationParts(a: Article, style: string) {
   const authors = citationAuthors(a);
   const missingTitle = !a.title.trim() || a.title === 'Untitled record';
   // A label describes the missing field; it is not an invented article title.
   const title = missingTitle ? '[Journal article; title unavailable]' : a.title.trim();
   const journal = a.journal === 'Journal not listed' ? '' : a.journal.trim();
+  const volume = clean(a.volume), issue = clean(a.issue);
   const doi = 'https://doi.org/' + doiKey(a.id);
   // Some deposits put an e-locator in both fields. It must never become a page.
   const number = clean(a.articleNumber) || (/^e\d+$/i.test(clean(a.pages)) ? clean(a.pages) : '');
@@ -41,28 +44,47 @@ export function citationParts(a: Article, style: string) {
       : names.length > 1 ? names.slice(0, -1).join(', ') + ', & ' + names[names.length - 1] : names[0];
     const before = author ? `${period(author)} (${a.year || 'n.d.'}). ${titlePeriod(title)} ` : `${titlePeriod(title)} (${a.year || 'n.d.'}). `;
     const location = number ? 'Article ' + number : pages.replace(/(?<=\d)-(?=\d)/g, '–');
-    return { before, italic: [journal, a.volume].filter(Boolean).join(', '), after:
-      (a.issue ? (journal && !a.volume ? ', ' : '') + '(' + a.issue + ')' : '') +
-      (location ? ((journal || a.volume || a.issue) ? ', ' : '') + location : '') +
-      ((journal || a.volume || a.issue || location) ? '. ' : '') + doi };
+    return { before, italic: [journal, volume].filter(Boolean).join(', '), after:
+      (issue ? (journal && !volume ? ', ' : '') + '(' + issue + ')' : '') +
+      (location ? ((journal || volume || issue) ? ', ' : '') + location : '') +
+      ((journal || volume || issue || location) ? '. ' : '') + doi };
   }
   const author = authors.length >= 3 ? full(authors[0], true) + ', et al.'
     : authors.length === 2 ? full(authors[0], true) + ', and ' + full(authors[1]) : authors.length === 1 ? full(authors[0], true) : '';
   const before = (author ? period(author) + ' ' : '') + (missingTitle ? title + '. ' : '“' + titlePeriod(title.replace(/(^|[\s([{:\u2014\u2013])"([^"\r\n]+)"/g,'$1‘$2’').replace(/“/g,'‘').replace(/”/g,'’')) + '” ');
-  const details = [a.volume ? 'vol. ' + a.volume : '', a.issue ? 'no. ' + a.issue : '', a.year ? String(a.year) : '',
+  const details = [volume ? 'vol. ' + volume : '', issue ? 'no. ' + issue : '', a.year ? String(a.year) : '',
     !number && pages ? (/[–-]/.test(pages) ? 'pp. ' : 'p. ') + pages.replace(/(?<=\d)-(?=\d)/g, '–') : ''].filter(Boolean);
   return { before, italic: journal, after: (journal && details.length ? ', ' : '') + details.join(', ') + (journal || details.length ? ', ' : '') + doi + '.' };
 }
 export function formatCitation(a: Article, style: string) { const p = citationParts(a, style); return p.before + p.italic + p.after; }
+export type CitationRun = { text: string; italic?: boolean };
+/** Shared display/export spans. APA's journal-volume separator is upright. */
+export function citationRuns(a: Article, style: string): CitationRun[] {
+  const p = citationParts(a, style);
+  const journal = a.journal === 'Journal not listed' ? '' : clean(a.journal);
+  const volume = clean(a.volume);
+  const middle: CitationRun[] = style === 'APA'
+    ? [...(journal ? [{ text: journal, italic: true }] : []),
+       ...(journal && volume ? [{ text: ', ' }] : []),
+       ...(volume ? [{ text: volume, italic: true }] : [])]
+    : [{ text: p.italic, italic: true }];
+  return [{ text: p.before }, ...middle, { text: p.after }].filter(run => run.text);
+}
+const escapeHtml = (text: string) => text.replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]!));
+export function citationHtml(a: Article, style: string) {
+  return citationRuns(a, style).map(run => run.italic ? '<i>' + escapeHtml(run.text) + '</i>' : escapeHtml(run.text)).join('');
+}
 export function citationWarnings(a: Article, style = 'APA') {
   const authors = citationAuthors(a);
   return [authors.some(n => !clean(n.family) && !clean(n.name)) ? 'Some author metadata is incomplete; verify the names against the original record.' : '',
     a.authors.length && (!a.authorDetails?.length || a.authorDetails.filter(n => clean(n.family) || clean(n.name) || clean(n.given)).length < a.authors.length) ? 'Legacy author names lack family/given fields; verify their order and initials.' : '',
     !authors.length ? 'Author missing; title is used first.' : '', !a.year ? 'Publication date missing.' : '',
     !a.title.trim() || a.title === 'Untitled record' ? 'Title missing; a bracketed description is used. Check the original record.' : '',
+    /\uFFFD|^\?\p{Ll}/u.test(a.title) ? 'Title metadata may contain a character-encoding error; verify it against the publisher.' : '',
+    authors.length > 20 ? 'Long author list: verify whether the publisher byline credits individuals or a consortium.' : '',
     !a.journal.trim() || a.journal === 'Journal not listed' ? 'Journal missing.' : '',
     `Title capitalization is preserved to protect proper nouns and acronyms. Review ${style === 'APA' ? 'APA sentence case' : 'MLA title case'} before submitting.`,
     style === 'MLA' && (clean(a.articleNumber)||/^e\d+$/i.test(clean(a.pages))) ? 'This draft omits the article identifier and article-local page numbers. Verify their treatment against MLA 9; the DOI locates the original record.' : '',
     style === 'MLA' && /\d{3,}[–-]\d{3,}/.test(clean(a.pages)) ? 'Review MLA page-range abbreviation against your handbook; full publisher page numbers are retained.' : '',
-    'Plain-text copying does not preserve italics.'].filter(Boolean);
+    'Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied.'].filter(Boolean);
 }
