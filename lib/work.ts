@@ -1,7 +1,7 @@
 export type Author = { given?: string; family?: string; name?: string; suffix?: string };
-export type Article = { id: string; title: string; authors: string[]; authorDetails?: Author[]; year?: number; journal: string; url: string; abstract: string; free: boolean; volume?: string; issue?: string; pages?: string; articleNumber?: string; searchQuery?: string };
+export type Article = { id: string; title: string; authors: string[]; authorDetails?: Author[]; year?: number; journal: string; url: string; abstract: string; free: boolean; volume?: string; issue?: string; pages?: string; articleNumber?: string; searchQuery?: string; savedAt?: string };
 export type ChecklistItem = { id: string; text: string; complete: boolean };
-export type Assignment = { id: string; name: string; question: string; rubric: string; requirements: string; notes?: string; checklist?: ChecklistItem[]; sources: Article[] };
+export type Assignment = { id: string; name: string; question: string; rubric: string; requirements: string; notes?: string; checklist?: ChecklistItem[]; sources: Article[]; updatedAt?: string; lastOpenedAt?: string };
 export type Work = { saved: Article[]; assignments: Assignment[] };
 export const STORAGE_KEY = 'quillora-work';
 export const MAX_BACKUP_BYTES = 10_000_000;
@@ -18,6 +18,7 @@ function article(v: unknown): Article {
     if (!Array.isArray(v.authorDetails) || !v.authorDetails.every(a=>object(a) && Object.values(a).every(string))) throw Error('Invalid author details. Nothing was imported.');
     a.authorDetails=v.authorDetails.map(a=>Object.fromEntries(['given','family','name','suffix'].filter(k=>typeof a[k]==='string').map(k=>[k,a[k]]))); 
   }
+  if(validActivityDate(v.savedAt)) a.savedAt=v.savedAt;
   return a;
 }
 export function parseWork(input: unknown): Work {
@@ -32,6 +33,8 @@ export function parseWork(input: unknown): Work {
     if(a.checklist!==undefined){if(!Array.isArray(a.checklist)||!a.checklist.every(c=>object(c)&&string(c.id)&&!!c.id&&string(c.text)&&!!c.text.trim()&&typeof c.complete==='boolean')||new Set(a.checklist.map(c=>c.id)).size!==a.checklist.length)throw Error('Invalid checklist progress. Nothing was imported.');
       const lines=requirementLines(result.requirements);if(a.checklist.length!==lines.length||a.checklist.some((c,i)=>c.text!==lines[i]))throw Error('Checklist does not match its assignment requirements. Nothing was imported.');
       result.checklist=a.checklist.map(c=>({id:c.id,text:c.text,complete:c.complete}));}
+    if(validActivityDate(a.updatedAt))result.updatedAt=a.updatedAt;
+    if(validActivityDate(a.lastOpenedAt))result.lastOpenedAt=a.lastOpenedAt;
     return result;
   })};
 }
@@ -58,3 +61,6 @@ export function reconcileChecklist(requirements:string,previous:ChecklistItem[]=
 function checklistSignature(a:Assignment){return JSON.stringify(getChecklist(a).map(c=>({text:c.text,complete:c.complete})));}
 export function setRequirementComplete(work:Work,assignmentId:string,itemId:string,complete:boolean):Work{return {...work,assignments:work.assignments.map(a=>a.id===assignmentId?{...a,checklist:getChecklist(a).map(c=>c.id===itemId?{...c,complete}:c)}:a)};}
 export function updateAssignment(a:Assignment,question:string,rubric:string,requirements:string,notes=a.notes,name=a.name):Assignment{return {...a,name,question,rubric,requirements,...(notes!==undefined?{notes}:{}),checklist:reconcileChecklist(requirements,getChecklist(a))};}
+
+/** Optional activity metadata; legacy research remains valid without timestamps. */
+export function validActivityDate(value:unknown):value is string{return typeof value==='string'&&/^\d{4}-\d{2}-\d{2}T/.test(value)&&Number.isFinite(Date.parse(value));}

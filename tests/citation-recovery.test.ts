@@ -20,7 +20,7 @@ test('SIMULATED copy failure clears prior success and provides selectable keyboa
   const cite=(Array.from(container.querySelectorAll('button')) as HTMLButtonElement[]).find(b=>b.textContent?.includes('Cite'))!;await act(async()=>cite.click());
   for(const style of ['APA','MLA']){
    const select=container.querySelector('select')!;if(select.value!==style)await act(async()=>{select.value=style;select.dispatchEvent(new dom.window.Event('change',{bubbles:true}));});
-   denied=false;await click('Copy citation');assert.match(container.querySelector('[role="status"]')!.textContent!,/Copied as plain text/);
+   denied=false;await click('Copy citation');assert.match(container.querySelector('[role="dialog"] [role="status"]')!.textContent!,/Copied as plain text/);
    denied=true;await click('Copied');assert.ok(!container.querySelector('[role="dialog"] [role="status"]'),'failed retry must not retain prior success');
    assert.match(container.querySelector('[role="alert"]')!.textContent!,/manually/);
    const fallback=container.querySelector('textarea[aria-label="Citation for manual copying"]') as HTMLTextAreaElement;assert.ok(fallback,'keyboard selectable recovery field');assert.equal(fallback.readOnly,true);assert.equal(fallback.value,formatCitation(seed.saved[0],style));assert.equal(dom.window.document.activeElement,fallback);assert.equal(fallback.selectionStart,0);assert.equal(fallback.selectionEnd,fallback.value.length);
