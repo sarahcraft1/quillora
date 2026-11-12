@@ -22,9 +22,9 @@ test('APA7 official missing-issue example preserves a question within the title 
 
 // An application of MLA's public core-element template to frozen real metadata;
 // not an official MLA example or independent full-handbook certification.
-test('MLA two-author real-record template preserves names and exposes unreviewed page-range abbreviation',()=>{
+test('MLA two-author real-record template preserves names and abbreviates the reviewed MLA page range',()=>{
  const a={...get('10.1017/s0144686x20001932'),title:'Ageing Consumers and E-Commerce Activities'};
- assert.equal(formatCitation(a,'MLA'),'Rybaczewska, Maria, and Leigh Sparks. “Ageing Consumers and E-Commerce Activities.” Ageing and Society, vol. 42, no. 8, 2022, pp. 1879–1898, https://doi.org/10.1017/s0144686x20001932.');
+ assert.equal(formatCitation(a,'MLA'),'Rybaczewska, Maria, and Leigh Sparks. “Ageing Consumers and E-Commerce Activities.” Ageing and Society, vol. 42, no. 8, 2022, pp. 1879–98, https://doi.org/10.1017/s0144686x20001932.');
 });
 test('MLA9 core-element order on real Su/Yang record with reviewed title case',()=>assert.equal(formatCitation({...get('10.1016/j.caeai.2022.100049'),title:'Artificial Intelligence in Early Childhood Education: A Scoping Review'},'MLA'),'Su, Jiahong, and Weipeng Yang. “Artificial Intelligence in Early Childhood Education: A Scoping Review.” Computers and Education: Artificial Intelligence, vol. 3, 2022, https://doi.org/10.1016/j.caeai.2022.100049.'));
 test('missing metadata perturbations are clearly synthetic omissions of a real source, not extra corpus records',()=>{const a=get('10.1037/ppm0000185');const stripped={...a,authors:[],authorDetails:[],year:undefined,journal:'',volume:undefined,issue:undefined,pages:undefined};assert.ok(formatCitation(stripped,'APA').includes('(n.d.)'));assert.ok(!formatCitation(stripped,'MLA').includes('n.d.'));assert.ok(!formatCitation(stripped,'APA').includes('Anonymous'));});

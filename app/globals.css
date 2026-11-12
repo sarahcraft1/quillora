@@ -11,3 +11,4 @@
 /* Normal-size secondary text: WCAG AA contrast while retaining the sage palette. */
 .workspace-label,.side-label,.side-project p,.new-assignment,.side-bottom p,.local-status,header,.eyebrow,.intro>p,.page-title>p,.suggestions>span,.suggestions button,.rubric-bar p,.optional,.record-label,.art-number,.topic-body>span,.topic-body p,.promise,footer,.footer-brand,.article-meta,.access,.authors,.authors span,.relevance,.article-status,.muted,.requirements small{color:var(--muted)}
 .nav:not(.active){color:var(--muted)}
+.citation-title textarea{width:100%;min-width:0}
