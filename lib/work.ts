@@ -1,8 +1,12 @@
 export type Author = { given?: string; family?: string; name?: string; suffix?: string };
 export type Article = { id: string; title: string; authors: string[]; authorDetails?: Author[]; year?: number; journal: string; url: string; abstract: string; free: boolean; volume?: string; issue?: string; pages?: string; articleNumber?: string; searchQuery?: string; savedAt?: string };
 export type ChecklistItem = { id: string; text: string; complete: boolean };
-export type Assignment = { id: string; name: string; question: string; rubric: string; requirements: string; notes?: string; checklist?: ChecklistItem[]; sources: Article[]; updatedAt?: string; lastOpenedAt?: string };
-export type Work = { saved: Article[]; assignments: Assignment[] };
+export type Assignment = { id: string; name: string; question: string; rubric: string; requirements: string; notes?: string; checklist?: ChecklistItem[]; sources: Article[]; updatedAt?: string; lastOpenedAt?: string; classId?: string; pinned?: boolean; dueDate?: string; status?: 'active'|'completed' };
+export const CLASS_ICONS=['book','science','design','globe','code','language'] as const;
+export type Course={id:string;name:string;code?:string;icon:typeof CLASS_ICONS[number];color:string};
+export type Work = { saved: Article[]; assignments: Assignment[]; classes?:Course[] };
+export function validDueDate(v:unknown):v is string{return typeof v==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v)&&Number.isFinite(Date.parse(v+'T12:00:00Z'))&&new Date(v+'T12:00:00Z').toISOString().slice(0,10)===v;}
+export function parseClasses(v:unknown):Course[]{if(!Array.isArray(v))throw Error('Invalid classes. Nothing was imported.');const ids=new Set<string>();return v.map(c=>{if(!c||typeof c!=='object'||!('id' in c)||typeof c.id!=='string'||!c.id||ids.has(c.id)||typeof c.name!=='string'||!c.name.trim()||!CLASS_ICONS.includes(c.icon)||!/^#[0-9a-f]{6}$/i.test(c.color)||(c.code!==undefined&&typeof c.code!=='string'))throw Error('Invalid class details. Nothing was imported.');ids.add(c.id);return {id:c.id,name:c.name,...(c.code?{code:c.code}:{}),icon:c.icon,color:c.color};});}
 export const STORAGE_KEY = 'quillora-work';
 export const MAX_BACKUP_BYTES = 10_000_000;
 const string = (v: unknown): v is string => typeof v === 'string';
@@ -24,7 +28,7 @@ function article(v: unknown): Article {
 export function parseWork(input: unknown): Work {
   if (!object(input) || (input.version !== undefined && input.version !== 1) || !Array.isArray(input.saved) || !Array.isArray(input.assignments)) throw Error('Choose a valid Quillora backup (version 1). Nothing was imported.');
   const ids=new Set<string>();
-  return {saved: unique(input.saved.map(article)), assignments:input.assignments.map((a,i)=>{
+  return {...(input.classes!==undefined?{classes:parseClasses(input.classes)}:{}),saved: unique(input.saved.map(article)), assignments:input.assignments.map((a,i)=>{
     if(!object(a)||!['name','question','rubric','requirements'].every(k=>string(a[k]))||!Array.isArray(a.sources))throw Error('An assignment in this backup is invalid. Nothing was imported.');
     const id=string(a.id)&&a.id ? a.id : 'legacy-'+i;
     if(ids.has(id))throw Error('Duplicate assignment IDs in backup. Nothing was imported.'); ids.add(id);
@@ -35,21 +39,27 @@ export function parseWork(input: unknown): Work {
       result.checklist=a.checklist.map(c=>({id:c.id,text:c.text,complete:c.complete}));}
     if(validActivityDate(a.updatedAt))result.updatedAt=a.updatedAt;
     if(validActivityDate(a.lastOpenedAt))result.lastOpenedAt=a.lastOpenedAt;
+    if(a.classId!==undefined){if(!string(a.classId))throw Error('Invalid assignment class.');result.classId=a.classId;}
+    if(a.pinned!==undefined){if(typeof a.pinned!=='boolean')throw Error('Invalid assignment pin.');result.pinned=a.pinned;}
+    if(a.dueDate!==undefined){if(!validDueDate(a.dueDate))throw Error('Invalid assignment due date.');result.dueDate=a.dueDate;}
+    if(a.status!==undefined){if(a.status!=='active'&&a.status!=='completed')throw Error('Invalid assignment status.');result.status=a.status;}
     return result;
   })};
 }
 export function unique(sources: Article[]) { return sources.filter((a,i)=>sources.findIndex(b=>doiKey(b.id)===doiKey(a.id))===i); }
 export function mergeWork(existing: Work, incoming: Work): Work {
   const assignments=existing.assignments.map(a=>({...a,sources:[...a.sources]}));
-  for(const a of incoming.assignments){const same=assignments.find(b=>b.id===a.id);if(!same){assignments.push(a);continue;}
-    if(['name','question','rubric','requirements'].every(k=>a[k as keyof Assignment]===same[k as keyof Assignment])&&(a.notes||'')===(same.notes||'')&&checklistSignature(a)===checklistSignature(same)) same.sources=unique([...same.sources,...a.sources]);
-    else {const copy=assignments.find(b=>b.name===a.name+' (imported copy)'&&b.question===a.question&&b.rubric===a.rubric&&b.requirements===a.requirements&&(b.notes||'')===(a.notes||'')&&checklistSignature(b)===checklistSignature(a));if(copy)copy.sources=unique([...copy.sources,...a.sources]);else assignments.push({...a,id:crypto.randomUUID(),name:a.name+' (imported copy)'});}
+  const classes=[...(existing.classes||[])];const classMap=new Map<string,string>();
+  for(const course of incoming.classes||[]){const same=classes.find(c=>c.id===course.id);if(!same){classes.push(course);classMap.set(course.id,course.id);}else if(['name','code','icon','color'].every(k=>same[k as keyof Course]===course[k as keyof Course]))classMap.set(course.id,same.id);else{const copy=classes.find(c=>['name','code','icon','color'].every(k=>c[k as keyof Course]===course[k as keyof Course]));const id=copy?.id||crypto.randomUUID();if(!copy)classes.push({...course,id});classMap.set(course.id,id);}}
+  for(const original of incoming.assignments){const a=original.classId?{...original,classId:classMap.get(original.classId)||original.classId}:original;const same=assignments.find(b=>b.id===a.id);if(!same){assignments.push(a);continue;}
+    if(['name','question','rubric','requirements','classId','pinned','dueDate','status'].every(k=>a[k as keyof Assignment]===same[k as keyof Assignment])&&(a.notes||'')===(same.notes||'')&&checklistSignature(a)===checklistSignature(same)) same.sources=unique([...same.sources,...a.sources]);
+    else {const copy=assignments.find(b=>['classId','pinned','dueDate','status'].every(k=>b[k as keyof Assignment]===a[k as keyof Assignment])&&b.name===a.name+' (imported copy)'&&b.question===a.question&&b.rubric===a.rubric&&b.requirements===a.requirements&&(b.notes||'')===(a.notes||'')&&checklistSignature(b)===checklistSignature(a));if(copy)copy.sources=unique([...copy.sources,...a.sources]);else assignments.push({...a,id:crypto.randomUUID(),name:a.name+' (imported copy)'});}
   }
-  return {saved:unique([...existing.saved,...incoming.saved,...incoming.assignments.flatMap(a=>a.sources)]),assignments};
+  return {...(existing.classes!==undefined||incoming.classes!==undefined?{classes}:{}),saved:unique([...existing.saved,...incoming.saved,...incoming.assignments.flatMap(a=>a.sources)]),assignments};
 }
 export function toggleSource(work: Work, a: Article, assignmentId: string|null): Work {
   const exists=work.saved.some(s=>doiKey(s.id)===doiKey(a.id));
-  return {saved:exists?work.saved.filter(s=>doiKey(s.id)!==doiKey(a.id)):[...work.saved,a],assignments:work.assignments.map(x=>({...x,sources:exists?x.sources.filter(s=>doiKey(s.id)!==doiKey(a.id)):x.id===assignmentId?unique([...x.sources,a]):x.sources}))};
+  return {...work,saved:exists?work.saved.filter(s=>doiKey(s.id)!==doiKey(a.id)):[...work.saved,a],assignments:work.assignments.map(x=>({...x,sources:exists?x.sources.filter(s=>doiKey(s.id)!==doiKey(a.id)):x.id===assignmentId?unique([...x.sources,a]):x.sources}))};
 }
 export function linkSource(work:Work,a:Article,assignmentId:string):Work{return {...work,saved:unique([...work.saved,a]),assignments:work.assignments.map(x=>x.id===assignmentId?{...x,sources:unique([...x.sources,a])}:x)}}
 export function unlinkSource(work:Work,articleId:string,assignmentId:string):Work{return {...work,assignments:work.assignments.map(a=>a.id===assignmentId?{...a,sources:a.sources.filter(s=>doiKey(s.id)!==doiKey(articleId))}:a)};}
