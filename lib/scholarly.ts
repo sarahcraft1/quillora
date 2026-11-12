@@ -20,5 +20,5 @@ export function normalizeCrossref(input:unknown):Article|null{
   ? mainTitle+(/[?!:]$/.test(mainTitle)?' ':': ')+subtitle : mainTitle;
  return {id,title:title||'Untitled record',authors,authorDetails,
   year:year(input['published-print'])||year(input.published)||year(input['published-online']),journal:firstText(input['container-title'])||'Journal not listed',
-  url:articleUrl(id),abstract:text(input.abstract),volume:scalar(input.volume),issue:scalar(input.issue),pages:pages===articleNumber?undefined:pages,articleNumber,free:false};
+  ...(typeof input.type==='string'?{publicationType:input.type}:{}),url:articleUrl(id),abstract:text(input.abstract),volume:scalar(input.volume),issue:scalar(input.issue),pages:pages===articleNumber?undefined:pages,articleNumber,free:false};
 }

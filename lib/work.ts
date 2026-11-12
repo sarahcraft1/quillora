@@ -1,9 +1,12 @@
 export type Author = { given?: string; family?: string; name?: string; suffix?: string };
-export type Article = { id: string; title: string; authors: string[]; authorDetails?: Author[]; year?: number; journal: string; url: string; abstract: string; free: boolean; volume?: string; issue?: string; pages?: string; articleNumber?: string; searchQuery?: string; savedAt?: string };
+export type Article = { id: string; title: string; authors: string[]; authorDetails?: Author[]; year?: number; journal: string; url: string; abstract: string; free: boolean; volume?: string; issue?: string; pages?: string; articleNumber?: string; searchQuery?: string; savedAt?: string; publicationType?: string };
 export type ChecklistItem = { id: string; text: string; complete: boolean };
-export type Assignment = { id: string; name: string; question: string; rubric: string; requirements: string; notes?: string; checklist?: ChecklistItem[]; sources: Article[]; updatedAt?: string; lastOpenedAt?: string; classId?: string; pinned?: boolean; dueDate?: string; status?: 'active'|'completed' };
+export type Assignment = { id: string; name: string; question: string; rubric: string; requirements: string; notes?: string; checklist?: ChecklistItem[]; sources: Article[]; updatedAt?: string; lastOpenedAt?: string; classId?: string; pinned?: boolean; dueDate?: string; status?: 'active'|'completed'; research?: Research };
 export const CLASS_ICONS=['book','science','design','globe','code','language'] as const;
 export type Course={id:string;name:string;code?:string;icon:typeof CLASS_ICONS[number];color:string};
+export type SourceNote={id:string;source:Article;text:string;category:'Summary'|'Key Finding'|'Quotation'|'Question'|'Personal Insight';location?:string;stance:'supporting'|'opposing'|'contextual';groupId?:string;updatedAt:string};
+export type EvidenceGroup={id:string;name:string;requirementId?:string;question?:boolean};
+export type Research={notes:SourceNote[];groups:EvidenceGroup[];reading:Record<string,'To Read'|'Reading'|'Reviewed'>};
 export type Work = { saved: Article[]; assignments: Assignment[]; classes?:Course[] };
 export function validDueDate(v:unknown):v is string{return typeof v==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v)&&Number.isFinite(Date.parse(v+'T12:00:00Z'))&&new Date(v+'T12:00:00Z').toISOString().slice(0,10)===v;}
 export function parseClasses(v:unknown):Course[]{if(!Array.isArray(v))throw Error('Invalid classes. Nothing was imported.');const ids=new Set<string>();return v.map(c=>{if(!c||typeof c!=='object'||!('id' in c)||typeof c.id!=='string'||!c.id||ids.has(c.id)||typeof c.name!=='string'||!c.name.trim()||!CLASS_ICONS.includes(c.icon)||!/^#[0-9a-f]{6}$/i.test(c.color)||(c.code!==undefined&&typeof c.code!=='string'))throw Error('Invalid class details. Nothing was imported.');ids.add(c.id);return {id:c.id,name:c.name,...(c.code?{code:c.code}:{}),icon:c.icon,color:c.color};});}
@@ -20,8 +23,9 @@ function article(v: unknown): Article {
   for (const key of ['volume','issue','pages','articleNumber','searchQuery'] as const) if(string(v[key])) a[key]=v[key];
   if (v.authorDetails !== undefined) {
     if (!Array.isArray(v.authorDetails) || !v.authorDetails.every(a=>object(a) && Object.values(a).every(string))) throw Error('Invalid author details. Nothing was imported.');
-    a.authorDetails=v.authorDetails.map(a=>Object.fromEntries(['given','family','name','suffix'].filter(k=>typeof a[k]==='string').map(k=>[k,a[k]]))); 
+    a.authorDetails=v.authorDetails.map(a=>Object.fromEntries(['given','family','name','suffix'].filter(k=>typeof a[k]==='string').map(k=>[k,a[k]])));
   }
+  if(v.publicationType!==undefined){if(!string(v.publicationType))throw Error('Invalid publication type.');a.publicationType=v.publicationType;}
   if(validActivityDate(v.savedAt)) a.savedAt=v.savedAt;
   return a;
 }
@@ -43,6 +47,7 @@ export function parseWork(input: unknown): Work {
     if(a.pinned!==undefined){if(typeof a.pinned!=='boolean')throw Error('Invalid assignment pin.');result.pinned=a.pinned;}
     if(a.dueDate!==undefined){if(!validDueDate(a.dueDate))throw Error('Invalid assignment due date.');result.dueDate=a.dueDate;}
     if(a.status!==undefined){if(a.status!=='active'&&a.status!=='completed')throw Error('Invalid assignment status.');result.status=a.status;}
+    if(a.research!==undefined)result.research=parseResearch(a.research);
     return result;
   })};
 }
@@ -52,8 +57,8 @@ export function mergeWork(existing: Work, incoming: Work): Work {
   const classes=[...(existing.classes||[])];const classMap=new Map<string,string>();
   for(const course of incoming.classes||[]){const same=classes.find(c=>c.id===course.id);if(!same){classes.push(course);classMap.set(course.id,course.id);}else if(['name','code','icon','color'].every(k=>same[k as keyof Course]===course[k as keyof Course]))classMap.set(course.id,same.id);else{const copy=classes.find(c=>['name','code','icon','color'].every(k=>c[k as keyof Course]===course[k as keyof Course]));const id=copy?.id||crypto.randomUUID();if(!copy)classes.push({...course,id});classMap.set(course.id,id);}}
   for(const original of incoming.assignments){const a=original.classId?{...original,classId:classMap.get(original.classId)||original.classId}:original;const same=assignments.find(b=>b.id===a.id);if(!same){assignments.push(a);continue;}
-    if(['name','question','rubric','requirements','classId','pinned','dueDate','status'].every(k=>a[k as keyof Assignment]===same[k as keyof Assignment])&&(a.notes||'')===(same.notes||'')&&checklistSignature(a)===checklistSignature(same)) same.sources=unique([...same.sources,...a.sources]);
-    else {const copy=assignments.find(b=>['classId','pinned','dueDate','status'].every(k=>b[k as keyof Assignment]===a[k as keyof Assignment])&&b.name===a.name+' (imported copy)'&&b.question===a.question&&b.rubric===a.rubric&&b.requirements===a.requirements&&(b.notes||'')===(a.notes||'')&&checklistSignature(b)===checklistSignature(a));if(copy)copy.sources=unique([...copy.sources,...a.sources]);else assignments.push({...a,id:crypto.randomUUID(),name:a.name+' (imported copy)'});}
+    if(['name','question','rubric','requirements','classId','pinned','dueDate','status'].every(k=>a[k as keyof Assignment]===same[k as keyof Assignment])&&JSON.stringify(a.research||null)===JSON.stringify(same.research||null)&&(a.notes||'')===(same.notes||'')&&checklistSignature(a)===checklistSignature(same)) same.sources=unique([...same.sources,...a.sources]);
+    else {const copy=assignments.find(b=>['classId','pinned','dueDate','status'].every(k=>b[k as keyof Assignment]===a[k as keyof Assignment])&&b.name===a.name+' (imported copy)'&&b.question===a.question&&b.rubric===a.rubric&&b.requirements===a.requirements&&JSON.stringify(b.research||null)===JSON.stringify(a.research||null)&&(b.notes||'')===(a.notes||'')&&checklistSignature(b)===checklistSignature(a));if(copy)copy.sources=unique([...copy.sources,...a.sources]);else assignments.push({...a,id:crypto.randomUUID(),name:a.name+' (imported copy)'});}
   }
   return {...(existing.classes!==undefined||incoming.classes!==undefined?{classes}:{}),saved:unique([...existing.saved,...incoming.saved,...incoming.assignments.flatMap(a=>a.sources)]),assignments};
 }
@@ -74,3 +79,12 @@ export function updateAssignment(a:Assignment,question:string,rubric:string,requ
 
 /** Optional activity metadata; legacy research remains valid without timestamps. */
 export function validActivityDate(value:unknown):value is string{return typeof value==='string'&&/^\d{4}-\d{2}-\d{2}T/.test(value)&&Number.isFinite(Date.parse(value));}
+
+function parseResearch(v:unknown):Research{
+ if(!object(v)||!Array.isArray(v.notes)||!Array.isArray(v.groups)||!object(v.reading))throw Error('Invalid source notes. Nothing was imported.');
+ const groups:EvidenceGroup[]=v.groups.map(g=>{if(!object(g)||!string(g.id)||!g.id||!string(g.name)||!g.name.trim()||(g.requirementId!==undefined&&!string(g.requirementId))||(g.question!==undefined&&typeof g.question!=='boolean'))throw Error('Invalid evidence group.');return {id:g.id,name:g.name,...(g.requirementId?{requirementId:g.requirementId as string}:{}),...(g.question?{question:true}:{})};});
+ const notes:SourceNote[]=v.notes.map(n=>{if(!object(n)||!string(n.id)||!n.id||!string(n.text)||!n.text.trim()||!['Summary','Key Finding','Quotation','Question','Personal Insight'].includes(n.category as string)||!['supporting','opposing','contextual'].includes(n.stance as string)||!validActivityDate(n.updatedAt)||(n.location!==undefined&&!string(n.location))||(n.groupId!==undefined&&!string(n.groupId)))throw Error('Invalid source note.');return {id:n.id,source:article(n.source),text:n.text,category:n.category as SourceNote['category'],stance:n.stance as SourceNote['stance'],updatedAt:n.updatedAt,...(n.location?{location:n.location as string}:{}),...(n.groupId?{groupId:n.groupId as string}:{})};});
+ if(new Set(groups.map(g=>g.id)).size!==groups.length||new Set(notes.map(n=>n.id)).size!==notes.length)throw Error('Duplicate evidence IDs. Nothing was imported.');
+ const reading:Research['reading']={};for(const [id,state] of Object.entries(v.reading)){if(!/^10\.\d{4,9}\/\S+$/i.test(doiKey(id))||!['To Read','Reading','Reviewed'].includes(state as string))throw Error('Invalid reading status.');reading[doiKey(id)]=state as Research['reading'][string];}
+ return {groups,notes,reading};
+}

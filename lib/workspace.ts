@@ -1,9 +1,12 @@
 import {type Work,type Assignment,type Course,validDueDate} from './work';
 import {type StoragePort} from './storage';
 export const THEMES=['scholarly','bookish','after-hours'] as const;
-export type Preferences={theme:typeof THEMES[number];density:'comfortable'|'compact'};
+export const BUDDIES=['quill','inky','sprig','folio'] as const;
+export const ACCENTS=['theme','forest','rose','ocean','plum'] as const;
+export type Buddy=typeof BUDDIES[number];
+export type Preferences={theme:typeof THEMES[number];density:'comfortable'|'compact';buddy?:Buddy|'none';animateBuddy?:boolean;accent?:typeof ACCENTS[number];deskName?:string;decorations?:boolean;widgets?:{recentSources:boolean;nextSteps:boolean}};
 export const DEFAULT_PREFERENCES:Preferences={theme:'scholarly',density:'comfortable'};
-export function readPreferences(storage:Pick<StoragePort,'getItem'>,key:string):Preferences{try{const v=JSON.parse(storage.getItem(key+':preferences')||'null');return {theme:THEMES.includes(v?.theme)?v.theme:'scholarly',density:v?.density==='compact'?'compact':'comfortable'};}catch{return {...DEFAULT_PREFERENCES};}}
+export function readPreferences(storage:Pick<StoragePort,'getItem'>,key:string):Preferences{try{const v=JSON.parse(storage.getItem(key+':preferences')||'null');return {theme:THEMES.includes(v?.theme)?v.theme:'scholarly',density:v?.density==='compact'?'compact':'comfortable',...(v&&typeof v==='object'?{...(BUDDIES.includes(v.buddy)||v.buddy==='none'?{buddy:v.buddy}:{}),...(typeof v.animateBuddy==='boolean'?{animateBuddy:v.animateBuddy}:{}),...(ACCENTS.includes(v.accent)?{accent:v.accent}:{}),...(typeof v.deskName==='string'?{deskName:v.deskName.slice(0,60)}:{}),...(typeof v.decorations==='boolean'?{decorations:v.decorations}:{}),...(v.widgets&&typeof v.widgets.recentSources==='boolean'&&typeof v.widgets.nextSteps==='boolean'?{widgets:{recentSources:v.widgets.recentSources,nextSteps:v.widgets.nextSteps}}:{})}:{} )};}catch{return {...DEFAULT_PREFERENCES};}}
 export function persistPreferences(storage:Pick<StoragePort,'setItem'>,key:string,p:Preferences){try{storage.setItem(key+':preferences',JSON.stringify(p));return true;}catch{return false;}}
 export function saveClass(work:Work,course:Course):Work{const classes=work.classes||[];return {...work,classes:classes.some(c=>c.id===course.id)?classes.map(c=>c.id===course.id?course:c):[...classes,course]};}
 export function removeClass(work:Work,id:string):Work{return {...work,classes:(work.classes||[]).filter(c=>c.id!==id),assignments:work.assignments.map(a=>{if(a.classId!==id)return a;const {classId,...rest}=a;return rest;})};}
