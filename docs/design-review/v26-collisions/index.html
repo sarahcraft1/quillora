@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quillora V2.6 — Collision review</title>
+<style>
+:root{color-scheme:light;font-family:system-ui,sans-serif;color:#293129;background:#f6f4ee}*{box-sizing:border-box}body{margin:0 auto;max-width:1260px;padding:32px 24px 80px}h1,h2,h3{font-family:Georgia,serif;line-height:1.2}h1{font-size:38px}h2{font-size:28px;margin-top:42px}h3{font-size:23px;margin:0 0 10px}p,li{line-height:1.7}a{color:#385c43;text-underline-offset:3px}a:focus-visible{outline:3px solid #385c43;outline-offset:4px}nav{display:flex;flex-wrap:wrap;gap:16px}article{background:#fffefa;border:1px solid #d9dcd2;border-radius:20px;padding:24px;margin:24px 0}.pair{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}figure{margin:0;text-align:center}figure img{display:block;max-width:100%;height:auto;max-height:850px;margin:12px auto 0;border:1px solid #d4d7ce;border-radius:10px}figcaption{font-size:14px;line-height:1.6}small,.meta{color:#566052;font-size:14px}.single img{max-width:375px}table{border-collapse:collapse;width:100%;background:#fffefa}th,td{text-align:left;vertical-align:top;padding:14px;border:1px solid #d9dcd2;line-height:1.8}.links{display:flex;flex-wrap:wrap;gap:8px 18px}.note{padding:16px 20px;border-left:4px solid #6e8064;background:#eef1e8;border-radius:0 12px 12px 0}details{border:1px solid #d9dcd2;border-radius:14px;padding:18px;background:#fffefa;margin:14px 0}summary{font-weight:600;cursor:pointer}summary+div{margin-top:14px}@media(max-width:700px){body{padding:20px 14px 50px}h1{font-size:30px}article{padding:16px}.pair{grid-template-columns:1fr}table{font-size:13px}th,td{padding:9px}}
+</style>
+<header>
+<p class="meta">LOCAL REVIEW · NOVEMBER 13, 2026 · QUILLORA V2.6</p>
+<h1>More room for the work.</h1>
+<p>Eight before-and-after comparisons document confirmed layout defects and their corrections. These are screenshots of the running application, using sample assignments and preferences on a separate local browser origin.</p>
+<nav aria-label="Review sections"><a href="#collisions">Before and after</a><a href="#themes">Three-theme desk review</a><a href="#panels">Other reviewed panels</a><a href="#checks">Verification</a></nav>
+<p class="note">Your normal preview: <a href="http://127.0.0.1:3035/">http://127.0.0.1:3035/</a>. Sample workspace: <a href="http://localhost:3035/">http://localhost:3035/</a>. Browser storage is separate at each address; your research was not replaced with the sample data.</p>
+</header>
+<main>
+<h2 id="collisions">Before and after</h2>
+<article>
+<h3>1. Tablet desk: a readable current assignment</h3>
+<p><strong>Cause:</strong> The full two-column desktop structure remained at 768px, even after the sidebar reduced the available space. The assignment title broke into six short lines. <strong>Correction:</strong> My Desk uses one content column from 761–900px, while retaining the next deadline and resume action.</p>
+<div class="pair"><figure><figcaption>Before · Bookish · 768 × 1024</figcaption><a href="before-tablet-desk.jpg"><img src="before-tablet-desk.jpg" alt="Before: current assignment compressed into six short title lines" loading="lazy"></a></figure><figure><figcaption>After · same theme and viewport</figcaption><a href="after-tablet-desk.jpg"><img src="after-tablet-desk.jpg" alt="After: deadline and current assignment use the available tablet width" loading="lazy"></a></figure></div>
+</article>
+<article>
+<h3>2. Tablet classes: remove the nested squeeze</h3>
+<p><strong>Cause:</strong> A two-column class grid was nested inside the already narrow desktop content column, producing roughly 120px cards. <strong>Correction:</strong> The parent reflows, and class grids share a 200px minimum that adapts to available space.</p>
+<div class="pair"><figure><figcaption>Before · After Hours · 768 × 1024</figcaption><a href="before-tablet-classes.jpg"><img src="before-tablet-classes.jpg" alt="Before: narrow class cards break titles and metadata into cramped lines" loading="lazy"></a></figure><figure><figcaption>After · same theme and viewport</figcaption><a href="after-tablet-classes.jpg"><img src="after-tablet-classes.jpg" alt="After: two comfortable class cards and a readable Uncategorized card" loading="lazy"></a></figure></div>
+</article>
+<article>
+<h3>3. Phone Classes: stop splitting the final letter</h3>
+<p><strong>Cause:</strong> Classes forced two columns above 360px, regardless of how much space its titles needed. “Uncategorized” ended with a lone letter. <strong>Correction:</strong> The shared minimum width lets the grid choose a full-width card on narrow phones.</p>
+<div class="pair"><figure><figcaption>Before · Scholarly · 375 × 812 · empty desk</figcaption><a href="before-mobile-classes.jpg"><img src="before-mobile-classes.jpg" alt="Before: Uncategorized splits onto a final-letter line in a half-width card" loading="lazy"></a></figure><figure><figcaption>After · same theme, data and viewport</figcaption><a href="after-mobile-classes.jpg"><img src="after-mobile-classes.jpg" alt="After: a full-width class card keeps the name readable" loading="lazy"></a></figure></div>
+</article>
+<article>
+<h3>4. Phone My Desk: keep the class strip readable</h3>
+<p><strong>Cause:</strong> The horizontal class strip fixed cards at 160px, leaving too little text space after the existing inner margins. <strong>Correction:</strong> Cards use the same 200px minimum as the class grid, preserving the existing horizontal strip.</p>
+<div class="pair"><figure><figcaption>Before · Scholarly · 375 × 812</figcaption><a href="before-mobile-desk-classes.jpg"><img src="before-mobile-desk-classes.jpg" alt="Before: the My Desk class strip breaks the Uncategorized label" loading="lazy"></a></figure><figure><figcaption>After · same theme and viewport</figcaption><a href="after-mobile-desk-classes.jpg"><img src="after-mobile-desk-classes.jpg" alt="After: the wider class strip card keeps the complete label on one line" loading="lazy"></a></figure></div>
+</article>
+<article>
+<h3>5. Buddy choices: give the artwork its own row</h3>
+<p><strong>Cause:</strong> A later flex rule replaced the buddy grid, making the radio control, picture and name compete for one row. The artwork shrank. <strong>Correction:</strong> Explicit grid areas separate the name and radio from the 72px artwork area.</p>
+<div class="pair"><figure><figcaption>Before · After Hours · 768 × 1024</figcaption><a href="before-buddy-cards.jpg"><img src="before-buddy-cards.jpg" alt="Before: tiny buddy artwork is squeezed beside each name" loading="lazy"></a></figure><figure><figcaption>After · same theme and viewport</figcaption><a href="after-buddy-cards.jpg"><img src="after-buddy-cards.jpg" alt="After: buddy illustrations have their own clear space below their names" loading="lazy"></a></figure></div>
+</article>
+<article>
+<h3>6. Assignment actions: wrap whole controls</h3>
+<p><strong>Cause:</strong> Two action buttons became individual children of an uneven card grid. The wider Evidence Board button squeezed “Open assignment” into two lines. <strong>Correction:</strong> A separate wrapping action row keeps each label intact and separates the controls when necessary.</p>
+<div class="pair"><figure><figcaption>Before · After Hours · 320 × 812</figcaption><a href="before-assignment-actions.jpg"><img src="before-assignment-actions.jpg" alt="Before: Open assignment is squeezed beside the evidence button" loading="lazy"></a></figure><figure><figcaption>After · same theme and viewport</figcaption><a href="after-assignment-actions.jpg"><img src="after-assignment-actions.jpg" alt="After: each assignment action occupies a clear separate row" loading="lazy"></a></figure></div>
+</article>
+<article>
+<h3>7. Short Quick Notes: keep paper below the title</h3>
+<p><strong>Cause:</strong> The whole panel scrolled under a sticky title. At short heights, the description appeared above the heading and content slipped behind it. <strong>Correction:</strong> The title has its own non-scrolling area; the note and actions scroll inside a separate body.</p>
+<div class="pair"><figure><figcaption>Before · After Hours · 375 × 350 · clear confirmation</figcaption><a href="before-notes-stacking.jpg"><img src="before-notes-stacking.jpg" alt="Before: description text appears above the Quick Notes title" loading="lazy"></a></figure><figure><figcaption>After · same theme, state and viewport</figcaption><a href="after-notes-stacking.jpg"><img src="after-notes-stacking.jpg" alt="After: the title stays separate from the scrolling note and clear confirmation" loading="lazy"></a></figure></div>
+</article>
+<article>
+<h3>8. Assignment overview: separate the wrapped header</h3>
+<p><strong>Cause:</strong> The title and Continue research button wrapped, but their header had no separation from the following research question. <strong>Correction:</strong> The header uses the existing spacing tokens for its gap and following margin, and the button retains its width.</p>
+<div class="pair"><figure><figcaption>Before · After Hours · 375 × 812</figcaption><a href="before-overview-header.jpg"><img src="before-overview-header.jpg" alt="Before: the question sits directly against the Continue research button" loading="lazy"></a></figure><figure><figcaption>After · same theme and viewport</figcaption><a href="after-overview-header.jpg"><img src="after-overview-header.jpg" alt="After: visible separation between the button and research question" loading="lazy"></a></figure></div>
+</article>
+<h2 id="themes">My Desk in all three themes</h2>
+<p>The personalized workspace includes Maya’s name, desk identity, motto, bulletin, a current assignment with checked requirements, an upcoming deadline, and saved research. Each linked screenshot was inspected after rendering. Dimensions are CSS viewport widths.</p>
+<table><thead><tr><th>Theme</th><th>Desktop</th><th>Phone widths</th><th>Tablet</th><th>Empty desk</th></tr></thead><tbody>
+<tr><th>Scholarly</th><td><a href="scholarly-desktop.jpg">1440px</a></td><td><a href="scholarly-320.jpg">320px</a> · <a href="scholarly-375.jpg">375px</a> · <a href="scholarly-430.jpg">430px</a></td><td><a href="scholarly-768.jpg">768px</a></td><td><a href="empty-scholarly-375.jpg">375px</a></td></tr>
+<tr><th>Bookish</th><td><a href="bookish-desktop.jpg">1440px</a></td><td><a href="bookish-320.jpg">320px</a> · <a href="bookish-375.jpg">375px</a> · <a href="bookish-430.jpg">430px</a></td><td><a href="bookish-768.jpg">768px</a></td><td><a href="empty-bookish-375.jpg">375px</a></td></tr>
+<tr><th>After Hours</th><td><a href="after-hours-desktop.jpg">1440px</a></td><td><a href="after-hours-320.jpg">320px</a> · <a href="after-hours-375.jpg">375px</a> · <a href="after-hours-430.jpg">430px</a></td><td><a href="after-hours-768.jpg">768px</a></td><td><a href="empty-after-hours-375.jpg">375px</a></td></tr>
+</tbody></table>
+<h2 id="panels">Other reviewed panels</h2>
+<details><summary>Personalization: every category in every theme</summary><div>
+<p>Scholarly, 320px: <a href="scholarly-studio-atmosphere-320.jpg">Atmosphere</a> · <a href="scholarly-studio-buddy-320.jpg">My Buddy</a> · <a href="scholarly-studio-decorations-320.jpg">Decorations</a> · <a href="scholarly-studio-layout-320.jpg">Layout</a>.</p>
+<p>Bookish, 375px: <a href="bookish-studio-atmosphere-375.jpg">Atmosphere</a> · <a href="bookish-studio-buddy-375.jpg">My Buddy</a> · <a href="bookish-studio-decorations-375.jpg">Decorations</a> · <a href="bookish-studio-layout-375.jpg">Layout</a>.</p>
+<p>After Hours, 320px: <a href="after-hours-studio-atmosphere-320.jpg">Atmosphere</a> · <a href="after-hours-studio-buddy-320.jpg">My Buddy</a> · <a href="after-hours-studio-decorations-320.jpg">Decorations</a> · <a href="after-hours-studio-layout-320.jpg">Layout</a>.</p>
+<p>Desktop: <a href="studio-draft-preview-desktop.jpg">unsaved botanical preview</a> · <a href="studio-discarded-preview-desktop.jpg">Discard restores the saved moon ornament</a>.</p>
+</div></details>
+<details><summary>Classes, assignment research and empty evidence</summary><div>
+<p>Classes: <a href="scholarly-classes-320.jpg">Scholarly 320px</a> · <a href="bookish-classes-320.jpg">Bookish 320px</a> · <a href="bookish-classes-desktop.jpg">Bookish desktop</a> · <a href="after-hours-classes-430.jpg">After Hours 430px</a> · <a href="empty-classes-375.jpg">empty Classes</a>.</p>
+<p>Research: <a href="scholarly-research-320.jpg">discovery at 320px</a> · <a href="scholarly-source-card-320.jpg">saved source at 320px</a> · <a href="scholarly-evidence-actions-320.jpg">evidence actions at 320px</a> · <a href="bookish-sources-desktop.jpg">Bookish sources</a> · <a href="after-hours-sources-375.jpg">After Hours sources</a> · <a href="after-hours-overview-1024.jpg">assignment overview at 1024px</a> · <a href="after-hours-notebook-375.jpg">expanded source notebook</a> · <a href="empty-evidence-430.jpg">empty Evidence Board</a>.</p>
+</div></details>
+<details><summary>Quick Notes: all themes, dock, sheet and keyboard focus</summary><div>
+<p><a href="scholarly-notepad-320.jpg">Scholarly 320px</a> · <a href="bookish-notepad-375.jpg">Bookish 375px</a> · <a href="after-hours-notepad-375.jpg">After Hours 375px</a> · <a href="bookish-notepad-desktop.jpg">desktop dock beside research</a> · <a href="empty-notepad-430.jpg">empty pad at 430px</a> · <a href="after-notes-stacking.jpg">short-height confirmation</a>.</p>
+<p>A real browser also exposed a focus timing defect: closing the mobile sheet tried to focus its launcher while it was still hidden. Focus now returns after the closed state is rendered. The staged personalization choice survived Escape and could still be discarded.</p>
+<figure class="single"><figcaption>Visible focus returns to the Quick Notes launcher after Escape.</figcaption><a href="after-notes-focus-return.jpg"><img src="after-notes-focus-return.jpg" alt="Purple keyboard focus ring around the Quick Notes launcher after closing the sheet" loading="lazy"></a></figure>
+</div></details>
+<h2 id="checks">Relevant verification</h2>
+<ul><li>15 targeted cases passed across assignment navigation, classes, personalization, and Quick Notes. After the focus correction, all 11 affected Quick Notes and navigation cases passed again.</li><li>TypeScript and whitespace checks passed. No full test suite or production build was run.</li><li>Existing package-lock stayed unchanged. No dependencies, deployment, merge, credential changes, or research data replacement.</li><li>Local preview returned HTTP 200. Working branch remains <code>codex/v2-my-research-desk</code>; changes remain local.</li></ul>
+<p class="note">No remaining unintended overlap was observed in the reviewed screenshots. Physical-phone keyboard behavior remains unverified; the short-height sheet was inspected in the browser at 375 × 350. These screenshots document the reviewed states, not every possible user content length or device.</p>
+<p><a href="review.md">Detailed change and verification notes</a></p>
+</main>
+</html>
