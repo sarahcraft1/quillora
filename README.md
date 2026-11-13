@@ -2,7 +2,9 @@
 
 Academic source discovery using Next.js App Router, TypeScript, Tailwind, and Crossref.
 
-**Current priority: local product readiness. Hosting, paid provisioning and deployment are paused.** See the [feature audit and current validation](docs/LOCAL_FUNCTIONAL_AUDIT.md) and [persistence decision](docs/LOCAL_PERSISTENCE_DECISION.md). Assignment notes/names are edited in Continue research and saved with Save assignment details; backups include notes. Older hosting proposals are historical preparation, not authorization to proceed.
+**Development continuity:** Read [AGENTS.md](AGENTS.md), [ROADMAP.md](ROADMAP.md), and the [VS Code handoff](docs/VS_CODE_HANDOFF.md) before resuming work. V2.6 is preserved in `43f0a67`; V2.7 Canvas integration remains unfinished in the existing local checkout and is not available in the UI. Complete that bounded integration before starting another major feature. Hosting, paid provisioning and deployment remain paused.
+
+See the [feature audit and earlier validation](docs/LOCAL_FUNCTIONAL_AUDIT.md) and [local-first persistence decision](docs/LOCAL_PERSISTENCE_DECISION.md) for historical context and data safeguards. Assignment notes/names are edited in Continue research and saved with Save assignment details; backups include notes. Older hosting proposals are historical preparation, not authorization to proceed.
 
 - `npm ci`
 - `QUILLORA_ACCESS_MODE=local npm run dev` for loopback-only local development (PowerShell: set `$env:QUILLORA_ACCESS_MODE='local'`, then `npm run dev`)
