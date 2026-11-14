@@ -1,15 +1,17 @@
+import {validCanvasReference,validCanvasAssignmentReference,type CanvasCourseReference,type CanvasAssignmentReference} from './canvas/types';
 export type Author = { given?: string; family?: string; name?: string; suffix?: string };
 export type Article = { id: string; title: string; authors: string[]; authorDetails?: Author[]; year?: number; journal: string; url: string; abstract: string; free: boolean; volume?: string; issue?: string; pages?: string; articleNumber?: string; searchQuery?: string; savedAt?: string; publicationType?: string };
 export type ChecklistItem = { id: string; text: string; complete: boolean };
-export type Assignment = { id: string; name: string; question: string; rubric: string; requirements: string; notes?: string; checklist?: ChecklistItem[]; sources: Article[]; updatedAt?: string; lastOpenedAt?: string; classId?: string; pinned?: boolean; dueDate?: string; status?: 'active'|'completed'; research?: Research };
+export type Assignment = { id: string; name: string; question: string; rubric: string; requirements: string; notes?: string; checklist?: ChecklistItem[]; sources: Article[]; updatedAt?: string; lastOpenedAt?: string; classId?: string; pinned?: boolean; dueDate?: string; status?: 'active'|'completed'; research?: Research;canvas?:CanvasAssignmentReference };
 export const CLASS_ICONS=['book','science','design','globe','code','language'] as const;
-export type Course={id:string;name:string;code?:string;icon:typeof CLASS_ICONS[number];color:string};
+export type Course={id:string;name:string;code?:string;icon:typeof CLASS_ICONS[number];color:string;canvas?:CanvasCourseReference[]};
 export type SourceNote={id:string;source:Article;text:string;category:'Summary'|'Key Finding'|'Quotation'|'Question'|'Personal Insight';location?:string;stance:'supporting'|'opposing'|'contextual';groupId?:string;updatedAt:string};
 export type EvidenceGroup={id:string;name:string;requirementId?:string;question?:boolean};
 export type Research={notes:SourceNote[];groups:EvidenceGroup[];reading:Record<string,'To Read'|'Reading'|'Reviewed'>};
 export type Work = { saved: Article[]; assignments: Assignment[]; classes?:Course[] };
 export function validDueDate(v:unknown):v is string{return typeof v==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v)&&Number.isFinite(Date.parse(v+'T12:00:00Z'))&&new Date(v+'T12:00:00Z').toISOString().slice(0,10)===v;}
-export function parseClasses(v:unknown):Course[]{if(!Array.isArray(v))throw Error('Invalid classes. Nothing was imported.');const ids=new Set<string>();return v.map(c=>{if(!c||typeof c!=='object'||!('id' in c)||typeof c.id!=='string'||!c.id||ids.has(c.id)||typeof c.name!=='string'||!c.name.trim()||!CLASS_ICONS.includes(c.icon)||!/^#[0-9a-f]{6}$/i.test(c.color)||(c.code!==undefined&&typeof c.code!=='string'))throw Error('Invalid class details. Nothing was imported.');ids.add(c.id);return {id:c.id,name:c.name,...(c.code?{code:c.code}:{}),icon:c.icon,color:c.color};});}
+function parseClassesBase(v:unknown):Course[]{if(!Array.isArray(v))throw Error('Invalid classes. Nothing was imported.');const ids=new Set<string>();return v.map(c=>{if(!c||typeof c!=='object'||!('id' in c)||typeof c.id!=='string'||!c.id||ids.has(c.id)||typeof c.name!=='string'||!c.name.trim()||!CLASS_ICONS.includes(c.icon)||!/^#[0-9a-f]{6}$/i.test(c.color)||(c.code!==undefined&&typeof c.code!=='string'))throw Error('Invalid class details. Nothing was imported.');ids.add(c.id);return {id:c.id,name:c.name,...(c.code?{code:c.code}:{}),icon:c.icon,color:c.color};});}
+export function parseClasses(v:unknown):Course[]{return parseClassesBase(v).map((course,index)=>{const raw=(v as {canvas?:unknown}[])[index].canvas;if(raw===undefined)return course;if(!Array.isArray(raw)||!raw.every(validCanvasReference))throw Error('Invalid Canvas course metadata. Nothing was imported.');return {...course,canvas:raw.map(c=>({origin:c.origin,courseId:c.courseId,url:c.url}))};});}
 export const STORAGE_KEY = 'quillora-work';
 export const MAX_BACKUP_BYTES = 10_000_000;
 const string = (v: unknown): v is string => typeof v === 'string';
@@ -48,17 +50,23 @@ export function parseWork(input: unknown): Work {
     if(a.dueDate!==undefined){if(!validDueDate(a.dueDate))throw Error('Invalid assignment due date.');result.dueDate=a.dueDate;}
     if(a.status!==undefined){if(a.status!=='active'&&a.status!=='completed')throw Error('Invalid assignment status.');result.status=a.status;}
     if(a.research!==undefined)result.research=parseResearch(a.research);
+    if(a.canvas!==undefined){
+      if(!validCanvasAssignmentReference(a.canvas))throw Error('Invalid Canvas assignment metadata. Nothing was imported.');
+      const c=a.canvas;result.canvas={id:c.id,courseId:c.courseId,name:c.name,url:c.url,description:c.description,dueAt:c.dueAt,rubric:c.rubric.map(r=>({id:r.id,description:r.description,detail:r.detail,points:r.points})),origin:c.origin,timeZone:c.timeZone,syncedAt:c.syncedAt,localClassId:c.localClassId,...(c.submissionStatus?{submissionStatus:c.submissionStatus}:{})};
+    }
     return result;
   })};
 }
 export function unique(sources: Article[]) { return sources.filter((a,i)=>sources.findIndex(b=>doiKey(b.id)===doiKey(a.id))===i); }
 export function mergeWork(existing: Work, incoming: Work): Work {
   const assignments=existing.assignments.map(a=>({...a,sources:[...a.sources]}));
-  const classes=[...(existing.classes||[])];const classMap=new Map<string,string>();
-  for(const course of incoming.classes||[]){const same=classes.find(c=>c.id===course.id);if(!same){classes.push(course);classMap.set(course.id,course.id);}else if(['name','code','icon','color'].every(k=>same[k as keyof Course]===course[k as keyof Course]))classMap.set(course.id,same.id);else{const copy=classes.find(c=>['name','code','icon','color'].every(k=>c[k as keyof Course]===course[k as keyof Course]));const id=copy?.id||crypto.randomUUID();if(!copy)classes.push({...course,id});classMap.set(course.id,id);}}
-  for(const original of incoming.assignments){const a=original.classId?{...original,classId:classMap.get(original.classId)||original.classId}:original;const same=assignments.find(b=>b.id===a.id);if(!same){assignments.push(a);continue;}
-    if(['name','question','rubric','requirements','classId','pinned','dueDate','status'].every(k=>a[k as keyof Assignment]===same[k as keyof Assignment])&&JSON.stringify(a.research||null)===JSON.stringify(same.research||null)&&(a.notes||'')===(same.notes||'')&&checklistSignature(a)===checklistSignature(same)) same.sources=unique([...same.sources,...a.sources]);
-    else {const copy=assignments.find(b=>['classId','pinned','dueDate','status'].every(k=>b[k as keyof Assignment]===a[k as keyof Assignment])&&b.name===a.name+' (imported copy)'&&b.question===a.question&&b.rubric===a.rubric&&b.requirements===a.requirements&&JSON.stringify(b.research||null)===JSON.stringify(a.research||null)&&(b.notes||'')===(a.notes||'')&&checklistSignature(b)===checklistSignature(a));if(copy)copy.sources=unique([...copy.sources,...a.sources]);else assignments.push({...a,id:crypto.randomUUID(),name:a.name+' (imported copy)'});}
+  const classes=(existing.classes||[]).map(c=>({...c,...(c.canvas?{canvas:[...c.canvas]}:{})}));const classMap=new Map<string,string>();
+  const sameCourse=(a:Course,b:Course)=>['name','code','icon','color'].every(k=>a[k as keyof Course]===b[k as keyof Course]);
+  const mergeReferences=(target:Course,incoming:Course)=>{if(incoming.canvas?.length)target.canvas=[...(target.canvas||[]),...incoming.canvas.filter(ref=>!target.canvas?.some(existing=>existing.origin===ref.origin&&existing.courseId===ref.courseId))];};
+  for(const course of incoming.classes||[]){const same=classes.find(c=>c.id===course.id);if(!same){classes.push({...course});classMap.set(course.id,course.id);}else if(sameCourse(same,course)){mergeReferences(same,course);classMap.set(course.id,same.id);}else{const copy=classes.find(c=>sameCourse(c,course));const id=copy?.id||crypto.randomUUID();if(copy)mergeReferences(copy,course);else classes.push({...course,id});classMap.set(course.id,id);}}
+  for(const original of incoming.assignments){const a={...original,...(original.classId?{classId:classMap.get(original.classId)||original.classId}:{}),...(original.canvas?{canvas:{...original.canvas,localClassId:classMap.get(original.canvas.localClassId)||original.canvas.localClassId}}:{})};const same=assignments.find(b=>b.id===a.id);if(!same){assignments.push(a);continue;}
+    if(['name','question','rubric','requirements','classId','pinned','dueDate','status'].every(k=>a[k as keyof Assignment]===same[k as keyof Assignment])&&JSON.stringify(a.research||null)===JSON.stringify(same.research||null)&&canvasSignature(a)===canvasSignature(same)&&(a.notes||'')===(same.notes||'')&&checklistSignature(a)===checklistSignature(same)) same.sources=unique([...same.sources,...a.sources]);
+    else {const copy=assignments.find(b=>['classId','pinned','dueDate','status'].every(k=>b[k as keyof Assignment]===a[k as keyof Assignment])&&b.name===a.name+' (imported copy)'&&b.question===a.question&&b.rubric===a.rubric&&b.requirements===a.requirements&&JSON.stringify(b.research||null)===JSON.stringify(a.research||null)&&canvasSignature(b)===canvasSignature(a)&&(b.notes||'')===(a.notes||'')&&checklistSignature(b)===checklistSignature(a));if(copy)copy.sources=unique([...copy.sources,...a.sources]);else assignments.push({...a,id:crypto.randomUUID(),name:a.name+' (imported copy)'});}
   }
   return {...(existing.classes!==undefined||incoming.classes!==undefined?{classes}:{}),saved:unique([...existing.saved,...incoming.saved,...incoming.assignments.flatMap(a=>a.sources)]),assignments};
 }
@@ -74,6 +82,7 @@ export function requirementLines(requirements:string){return requirements.split(
 export function getChecklist(a:Assignment):ChecklistItem[]{return a.checklist||requirementLines(a.requirements).map((text,i)=>({id:'requirement-'+i,text,complete:false}));}
 export function reconcileChecklist(requirements:string,previous:ChecklistItem[]=[]):ChecklistItem[]{const used=new Set<string>();return requirementLines(requirements).map(text=>{const old=previous.find(c=>c.text===text&&!used.has(c.id));if(old){used.add(old.id);return {...old};}return {id:crypto.randomUUID(),text,complete:false};});}
 function checklistSignature(a:Assignment){return JSON.stringify(getChecklist(a).map(c=>({text:c.text,complete:c.complete})));}
+function canvasSignature(a:Assignment){const c=a.canvas;return JSON.stringify(c?[c.origin,c.courseId,c.id,c.url,c.name,c.description,c.dueAt,c.rubric.map(r=>[r.id,r.description,r.detail,r.points]),c.timeZone,c.syncedAt,c.localClassId,c.submissionStatus||null]:null);}
 export function setRequirementComplete(work:Work,assignmentId:string,itemId:string,complete:boolean):Work{return {...work,assignments:work.assignments.map(a=>a.id===assignmentId?{...a,checklist:getChecklist(a).map(c=>c.id===itemId?{...c,complete}:c)}:a)};}
 export function updateAssignment(a:Assignment,question:string,rubric:string,requirements:string,notes=a.notes,name=a.name):Assignment{return {...a,name,question,rubric,requirements,...(notes!==undefined?{notes}:{}),checklist:reconcileChecklist(requirements,getChecklist(a))};}
 
