@@ -20,14 +20,14 @@ This is a single Next.js App Router project using TypeScript and React. There is
 | `app/quick-notes.tsx`, `lib/quick-notes.ts` | Separate persistent scratchpad. |
 | `lib/work.ts`, `lib/storage.ts`, `app/backup.tsx` | Research document validation, merging, local persistence, backup and recovery. |
 | `lib/scholarly.ts`, `lib/extraction.ts`, `lib/citations.ts`, `lib/citation-copy.ts`, `lib/source-quality.ts` | Crossref metadata, rubric extraction, citation formatting/copying and source-quality disclosure. |
-| `app/api/{search,rubric,session,health}/route.ts` | Existing server routes. There are currently no Canvas API routes. |
+| `app/api/{search,rubric,session,health}/route.ts`, `app/api/canvas/` | Existing academic/access routes and verified-owner Canvas status/connect/refresh/disconnect routes. |
 | `lib/access.ts`, `lib/access-gate.ts` | Cloudflare Access pilot identity verification and origin checks. |
-| `lib/canvas/`, `db/migrations/001_canvas.sql` | Unfinished local V2.7 code; see the status distinction below. These paths are not in the synchronized baseline until separately reviewed and committed. |
+| `lib/canvas/`, `app/canvas-reader.tsx`, `db/migrations/001_canvas.sql` | Optional V2.7 personal-token reader, encrypted PostgreSQL repository, import review and settings. See [Canvas setup and acceptance limits](docs/CANVAS_READER.md). No live institutional/SQL verification is implied. |
 | `public/buddies/` | Original Quill, Inky, Sprig and Folio animation/still assets. |
 | `tests/`, `tests/fixtures/`, `scripts/` | Node/tsx tests, JSDOM UI checks, frozen research fixtures and opt-in integration/recovery tooling. |
 | `docs/`, `.github/workflows/ci.yml` | Historical acceptance reports/screenshots and existing GitHub CI. Check report dates and commit scope before citing them as current evidence. |
 
-Styles are imported in `app/layout.tsx`: `globals.css`, `desk-design.css`, `desk-home.css`, `workspace-spacing.css`, then `quick-notes.css`. Respect selector specificity and import order. Shared spacing tokens belong in `workspace-spacing.css`; diagnose layout structure before adding padding.
+Styles are imported in `app/layout.tsx`: `globals.css`, `desk-design.css`, `desk-home.css`, `workspace-spacing.css`, then `quick-notes.css` and `canvas-reader.css`. Respect selector specificity and import order. Shared spacing tokens belong in `workspace-spacing.css`; diagnose layout structure before adding padding.
 
 ## Environment and commands
 
@@ -64,18 +64,18 @@ The current pilot gate verifies signed Cloudflare Access claims and derives a na
 
 All new account/integration work must isolate independent users. Derive ownership from a verified server identity. Never authorize through a submitted owner ID, an email string alone, an unverified header, or a browser storage key. Reject stale-session operations. Keep browser research, preferences, and scratchpads separate per identity and preserve explicit migration/recovery choices.
 
-Unfinished V2.7 includes Canvas DTOs/import helpers, a bounded read client, configuration/error handling, AES-256-GCM vault helpers, a repository interface, a PostgreSQL adapter and a draft RLS migration. Its existence is not evidence of a working OAuth connection. No service orchestration, callback/routes, connection UI, or Canvas-specific test suite currently connects these pieces.
+V2.7 connects the bounded Canvas client, encrypted per-user repository and import helpers through authenticated routes and Workspace settings. The user explicitly authorized a personal-token MVP for institutions that permit it, superseding the earlier OAuth-only plan. Real credentials require a verified pilot identity and configured PostgreSQL vault; shared local mode fails closed. OAuth callback/refresh is not exposed. Synthetic tests do not establish live Canvas or SQL/RLS acceptance; see [the reader guide](docs/CANVAS_READER.md).
 
-When Canvas development is resumed:
+When extending or operating Canvas:
 
-- Use institution-approved OAuth2 developer keys for each supported HTTPS Canvas origin. Do not hardcode a university, student account, course, assignment, or credential. Never ask students to paste personal access tokens as the multi-user connection flow.
+- The current MVP accepts personal tokens only for operator-registered HTTPS Canvas origins whose institutions permit them. Keep the verified-owner server vault and fail-closed local mode. Do not hardcode a university, student account, course, assignment or credential. Broader institutional support requires approved OAuth2 developer keys.
 - Handle secrets/tokens only on the server. Never send them to browser storage, client bundles, URLs, logs, screenshots, backups or Git. Keep crypto/database modules out of client imports.
-- Implement short-lived, one-use OAuth state bound to the verified user and an HttpOnly secure cookie; verify the callback and prevent replay, CSRF, account switching and arbitrary redirects.
+- If adding OAuth, implement short-lived, one-use state bound to the verified user and an HttpOnly secure cookie; verify the callback and prevent replay, CSRF, account switching and arbitrary redirects. Do not expose the preserved OAuth helpers as a working flow without these pieces.
 - Use the registered institution allowlist, least-privilege read scopes, request limits and safe pagination. Do not submit assignments, write grades or modify Canvas course content. Disconnect may revoke this application's OAuth authorization.
 - Preserve stable institution/course/assignment IDs and original links. Test matching, repeat imports, edited local fields, due-date time zones, malformed responses, interrupted refreshes and research preservation. Review `mergeWork` metadata comparisons before enabling imports.
 - Validate encrypted owner/origin/purpose binding and PostgreSQL RLS with a non-superuser, non-BYPASSRLS runtime role. Never apply a migration to an existing database as part of ordinary setup without an identified, authorized target.
 - Verify refresh-token persistence, sync leases, disconnect/reconnect races, session handling and deletion/retention boundaries. Do not provide a production in-memory fallback or silently use the shared local identity for credentials.
-- Document missing identity/database services, institutional approvals, account deletion and public-launch requirements honestly. No real Canvas authorization or database integration has been verified yet.
+- Document missing identity/database services, institutional permissions, account deletion and public-launch requirements honestly. No real Canvas authorization or database integration has been verified yet. Personal-token disconnect deletes our primary stored copy and snapshot; it must not revoke a token used by other apps.
 
 Environment variable names are documented in [docs/VS_CODE_HANDOFF.md](docs/VS_CODE_HANDOFF.md). Only placeholder templates may be committed. Do not change production configuration, operating-system security, repository visibility, permissions or credentials to bypass a restriction.
 

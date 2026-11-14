@@ -2,6 +2,12 @@
 
 Audited November 13, 2026. This handoff organizes existing work; it does not enable Canvas or authorize deployment. [AGENTS.md](../AGENTS.md) contains persistent working instructions; [ROADMAP.md](../ROADMAP.md) separates existing features from planned work.
 
+## V2.7 reader update
+
+The earlier audit below is retained as historical workstation/recovery context. Its unfinished-file descriptions are superseded by the implemented reader in this checkout. Start with [Canvas Reader setup and current acceptance limits](CANVAS_READER.md) and [ROADMAP.md](../ROADMAP.md). The reader now has authenticated status/connect/refresh/disconnect routes, Workspace settings, My Desk import review and targeted synthetic tests. It still refuses credentials in shared local mode. No live PostgreSQL or institutional connection has been verified, and actual browser visual inspection was blocked in this session.
+
+The personal-token connection is a controlled testing path. Canvas requires OAuth for multi-user applications; an approved OAuth connection and live acceptance remain rollout blockers. The institution registry now requires `personalTokens: true` per enabled origin; OAuth client ID/secret are not required for this test path. Server configuration and the migration must be supplied/reviewed by an authorized operator, not copied blindly from this historical audit.
+
 ## Open the existing checkout
 
 Use the project folder whose root contains `AGENTS.md`, `ROADMAP.md`, `package.json`, `app/`, `lib/`, and `.git`. On the audited Windows workstation this is the inner **`quillora\citation-release`** folder, not the outer Quillora copy and not the Codex chat-artifact folder. The completion report supplies its exact absolute path without putting a personal workstation path into repository instructions.
@@ -56,7 +62,7 @@ Invoke-WebRequest -Uri 'http://127.0.0.1:3035/api/health' -UseBasicParsing
 
 Do not launch another dev server in the same checkout or stop an unrelated process. After stopping this checkout's own server, another free port can be selected with `--port 3036`. A new origin has separate browser data. Preserve the usual hostname/port when continuing existing research; `http://localhost:3035/` was used for synthetic QA and is not the same saved workspace.
 
-## Environment boundaries
+## Historical environment boundaries (see V2.7 update above)
 
 Ordinary local research preview needs the process-scoped `QUILLORA_ACCESS_MODE=local` above; it does not need Canvas credentials, a database, an OpenAI key or institutional login. The local bypass is development-only and cannot enable production access.
 
@@ -70,7 +76,7 @@ Ordinary local research preview needs the process-scoped `QUILLORA_ACCESS_MODE=l
 
 No real environment values were read, added or published for this handoff. Only `.env.example` was present at repository root in the audit. Do not copy its placeholder staging values into a production environment or enable Canvas by weakening its origin/authentication checks. Never use `NEXT_PUBLIC_` variables for credentials. A future Canvas configuration needs institutional developer-key approval and a registered HTTPS callback after the callback itself exists.
 
-## Preserved unfinished Canvas work
+## Historical preserved unfinished Canvas work
 
 Three tracked files remain modified: `lib/work.ts`, `package.json`, `package-lock.json`.
 

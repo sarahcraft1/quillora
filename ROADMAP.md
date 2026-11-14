@@ -19,57 +19,48 @@ V2.6 is preserved in **`43f0a67`**, following V2.5 **`85f4a0e`**. Its [layout re
 
 The migration audit confirmed the current local preview returns HTTP 200 and opens in a browser. The installed dependency check, locked-install dry run and current TypeScript readiness check passed. Six extraneous native/WASM support packages remain installed; no cleanup was attempted. The audit did not repeat full feature tests, a production build, or the complete responsive/theme matrix. Type-checking the working tree does not verify the unfinished Canvas integration.
 
-## Current V2.7 Canvas development
+## V2.7 Canvas Reader ? implemented, live acceptance blocked
 
-**Unfinished, local, uncommitted and not included in the migration documentation commit.** A fresh GitHub clone will not contain these changes until they are separately reviewed and committed. Reopen the existing local checkout to retain them. The migration task created an additional recovery copy outside Git; see the completion report for its location.
+The optional reader now connects the preserved client, encrypted repository and import logic through Workspace settings, authenticated APIs and My Desk. See [Canvas Reader setup and acceptance](docs/CANVAS_READER.md). This is a read-only, manually refreshed reader; it does not submit assignments, write grades or modify Canvas content.
 
-| Current local path | Code present; not an integration acceptance claim |
-| --- | --- |
-| `lib/canvas/types.ts` | Browser-safe DTOs, institution-origin/reference validation and course-time-zone date conversion. |
-| `lib/canvas/client.ts` | Token exchange/refresh/revoke helpers; bounded, same-origin read requests; pagination and course/assignment normalization, plain descriptions and available rubrics. |
-| `lib/canvas/config.ts`, `errors.ts` | Operator-supplied institution registry, read scopes, server configuration parsing and fixed user-facing errors. |
-| `lib/canvas/vault.ts` | AES-256-GCM helpers with owner/origin/purpose authenticated data. |
-| `lib/canvas/repository.ts`, `postgres.ts` | Storage contract and PostgreSQL adapter: owner-scoped transactions, authorization epochs, sync leases and generation checks. |
-| `lib/canvas/import.ts` | Proposed course matching/import helpers, external-ID matching and preservation of student-edited research fields. |
-| `db/migrations/001_canvas.sql` | Draft Canvas owner/connection/OAuth-state schema, indexes and forced owner RLS policies. Not applied or tested against a live database. |
-| `lib/work.ts` | Uncommitted optional Canvas references and validation in existing research records. |
-| `package.json`, `package-lock.json` | Uncommitted `pg` and `@types/pg` additions, installed locally. |
+Delivered code:
 
-There is **no Canvas service orchestration, authenticated Canvas route/callback, connection screen, or Canvas-specific test suite**. The PostgreSQL schema does not store the complete Quillora research/account system. No Canvas institution has been authorized or tested, and no working student connection is claimed.
+- Verified-owner `GET/POST/DELETE /api/canvas` and `POST /api/canvas/refresh`; canonical-origin and stale-session checks, request limits and no-store DTOs.
+- Operator-registered HTTPS institutions and personal-token validation against the current-user API. Tokens and server snapshots are encrypted per verified owner/origin/purpose in PostgreSQL. Shared local-development identity refuses credentials; there is no production memory fallback.
+- Active student courses, upcoming and undated published assignments, plain descriptions, course-zone deadlines, requester submission state when available and original Canvas assignment links. Pagination, response limits and whole-refresh failure handling are bounded.
+- Workspace settings connect/reconnect/disconnect; My Desk cards, Refresh Canvas and last successful sync. Review course matches and create/link research workspaces before one conflict-aware local save.
+- Stable external-ID matching, repeat-import reuse, preservation of local edits/research, and Canvas metadata in version-1 backups/non-destructive merges. Refresh never deletes older imported research when an assignment becomes past or disappears. Disconnect deletes the server copy and snapshot while keeping imported research.
+- Synthetic client, vault, service, HTTP, import and JSDOM checks, plus affected existing backup/merge regressions. See the reader guide for exact evidence and limitations.
 
-## Remaining integration requirements
+The user requested personal-token support where permitted, superseding the earlier OAuth-only implementation plan. **Canvas's official guidance limits manually generated tokens to testing and requires OAuth for applications used by multiple users.** A token-enabled institution alone does not establish permission to collect student tokens. This flow is a controlled testing path; institutional/public rollout remains blocked on an approved OAuth connection. [Official guidance](https://developerdocs.instructure.com/services/canvas/oauth2/file.oauth#manual-token-generation).
 
-1. Review and test the existing modules before exposing them. Cover vault isolation/tampering, import idempotency, class matching, user edits, time zones, malformed data, pagination/redirect boundaries and size limits. Verify Canvas metadata survives backup/merge/conflict handling; `mergeWork` comparisons still need review.
-2. Add a narrow server-side Canvas service using verified user ownership. Implement one-use OAuth state/cookie binding, expiry, callback validation, safe failures and replay/account-switch prevention. Do not permit token persistence for the shared local-development identity.
-3. Wire authenticated, same-origin routes for institution resolution/connection, callback, status, manual refresh and disconnection. Serialize safe DTOs only, use no-store responses, and reject stale-session mutations. Do not trust a browser-provided owner ID/header as identity.
-4. Exercise the PostgreSQL migration and adapter using a disposable, identified test database and a non-superuser/non-BYPASSRLS role. Verify cross-user reads/writes, transaction rollback, lease contention, stale callbacks, interrupted token refresh and disconnect/reconnect races. Mocked repository tests alone do not establish SQL/RLS correctness.
-5. Add a theme-aware connection/status panel within the existing workspace, reviewable course matching and atomic import through the existing save path. Retain Canvas URLs/metadata and let imported assignments open in the existing research tools. Explain refresh errors/last success and preserve student-created assignments, notes and checklists on refresh/disconnect.
-6. Obtain institution-specific, approved confidential OAuth developer keys and registered HTTPS callback addresses through authorized administrators. Use only the read scopes needed for courses/assignments. Never collect student personal access tokens or add grades/submission/content writes.
-7. Verify a real institutional account separately from simulations. Inspect new screens and error states at 320, 375, 430, 768, 1024px and desktop in all themes, with keyboard and reduced-motion behavior.
+### Verification boundaries
 
-## Release blockers
+- Mocked checks establish behavior against synthetic API responses and repository doubles, not live institutional authorization or SQL/RLS correctness.
+- TypeScript and a browser bundling check pass. The browser bundle contains no Canvas vault, database, server service or API-client modules. The running local Next route returns unavailable/account-required status and rejects token connection with HTTP 401.
+- No running PostgreSQL target was verified; Docker's daemon is unavailable. No migration was applied, database provisioned, real token requested or real account connected. The SQL adapter checks non-superuser/non-BYPASSRLS roles and enabled forced RLS, but those checks still require execution against a real disposable database.
+- Computer use stopped because it could not confidently identify the current browser URL. Actual rendered desktop/mobile screenshots were not inspected. New Canvas UI in Scholarly, Bookish and After Hours, widths 320/375/430/768/1024px and desktop, keyboard and physical-phone acceptance remain open. JSDOM behavior is not visual acceptance.
+- Three selected existing navigation/session checks passed. One older storage-UI search-race check fails before search because its harness still expects a `Search` sidebar button; the pre-V2.7 app already labels it `Research`. This unrelated baseline mismatch is documented in the reader guide and was not changed. Existing GitHub CI may run the full checks after the push; its result must be observed separately.
 
-- Public identity/account lifecycle, secure session ownership, per-user durable research/preferences storage and explicit legacy-data migration are not complete. Cloudflare Access pilot verification plus browser namespaces does not satisfy public multi-user accounts.
-- Canvas orchestration, API/UI wiring, isolated authorization, integration tests and live institution approval are incomplete.
-- No verified running PostgreSQL service or applied migration is available for this integration. Docker CLI exists on the audited workstation, but the prior check could not reach its daemon; no database was provisioned during migration.
-- Account deletion, provider revocation failures, retention/backup recovery, credential/key rotation and operational ownership need implementation/validation appropriate to a public service.
-- Physical-phone keyboard behavior, spoken screen-reader coverage, wider browser/accessibility acceptance and unsupported citation cases remain open. Do not claim unrestricted release readiness.
-- Review current dependency/security findings before release. The earlier V2.7 install reported six moderate findings; this documentation task did not perform a fresh vulnerability audit or upgrade dependencies.
-- Hosting, production identity/database setup, monitoring, backup/restore and deployment authorization remain outstanding. No purchase, deployment, production setting change or merge is authorized by this roadmap.
+## Remaining release requirements
+
+1. Provision an identified, authorized PostgreSQL test target and non-bypass runtime role. Review/apply the migration with a separate role; validate owner RLS, rollback, lease contention, reconnect/disconnect races and retention against that database.
+2. Obtain institution-approved OAuth developer keys and HTTPS callback registrations for a multi-user rollout. Add one-use state/cookie binding, callback/session/replay protection and durable refresh-token handling before exposing OAuth. Preserved OAuth helper functions are not a completed OAuth flow.
+3. Verify a real permitted test account separately from mocks; confirm course enrollment, pagination, assignment overrides, undated/empty states, expired authorization and refresh preservation.
+4. Complete the rendered responsive/theme and keyboard matrix, then physical-device/assistive-technology acceptance. Do not claim WCAG or broad citation certification.
+5. Public account lifecycle, account deletion, credential/key rotation, database backup retention/recovery, hosting/monitoring and explicit local-data migration remain launch work. Cloudflare Access pilot identities do not provide public sign-up or cross-device research storage.
+6. Review dependency/security findings before release. Earlier work reported six moderate development-tooling findings; V2.7 did not run a fresh audit or force dependency upgrades.
 
 ## Deferred enhancements
 
-Finish the bounded Canvas connection before considering another major feature. Defer multiple scratchpad notes/dragging, shared or collaborative research, additional LMS providers, broader citation/source formats, offline installation and other unrelated personalization/feature expansion unless explicitly reprioritized. Future cloud research storage is a launch requirement to plan deliberately, not an automatic dual-write migration in a Canvas UI task.
+Complete reader acceptance and an approved student authorization flow before another major feature. Defer additional LMS providers, submission/grade writes, shared research, expanded scratchpads, citation formats and unrelated personalization unless explicitly reprioritized. Cloud research storage requires deliberate account/data migration design.
 
-## Known limitations and repository state
+## Data and Git continuity
 
-- Research is origin/profile/device local and can be lost through storage eviction, clearing or device loss. GitHub backs up code, not browser research. Academic JSON backups are plaintext and exclude Quick Notes.
-- Local mode is a shared namespace within an origin. Per-identity preferences and scratchpads are local; no independent public account or cross-device recovery is implied.
-- Imported Canvas metadata currently exists only in unfinished source code. The UI cannot connect, refresh or disconnect Canvas yet.
-- Existing historical documentation can describe earlier readiness decisions; consult its date and source commit. [Historical privacy risks](docs/HISTORY_PRIVACY_RISK.md) are not erased by this migration or a new commit.
-- At audit start, local `codex/v2-my-research-desk` was at `43f0a67`; GitHub was at `85f4a0e`. Fetch corrected a stale tracking ref that had pointed at `fdc934d`. The migration push is intended to synchronize V2.6 and these documentation changes only. Verify actual SHAs with Git rather than treating this dated snapshot as a live status.
-- Keep [PR #7](https://github.com/sarahcraft1/quillora/pull/7) on `codex/v2-my-research-desk` in draft. Keep citation [PR #6](https://github.com/sarahcraft1/quillora/pull/6), head `c758ba0`, in draft and separate. Do not merge either PR or rewrite history.
+Research remains origin/profile/device local; academic JSON backups are plaintext and exclude Quick Notes. Preferences and scratchpads remain separate per browser namespace. No existing research or credentials were accessed for the new synthetic tests. Historical privacy risks remain documented in [the privacy assessment](docs/HISTORY_PRIVACY_RISK.md).
 
-## Next recommended development task
+V2.6 remains at `43f0a67`, documentation handoff at `7a8ecb7`. V2.7 is synchronized to the existing `codex/v2-my-research-desk` branch with a normal fast-forward push; verify actual SHA with Git. Keep [PR #7](https://github.com/sarahcraft1/quillora/pull/7) in draft, separate from citation [PR #6](https://github.com/sarahcraft1/quillora/pull/6), also draft. No merge, history rewrite, production setting change or deployment is authorized.
 
-**After this organization task, add a focused regression suite for the preserved Canvas vault, API boundary and import/backup behavior before wiring OAuth or changing UI.** Start by reproducing cross-owner vault rejection, repeat-import duplicate prevention and Canvas-reference round trips/merge conflicts with synthetic fixtures. Inspect existing code and make the smallest corrections warranted by those tests. No live credentials, hosting or major redesign is needed for that bounded next step. Commit verified changes separately; do not bundle the entire unfinished integration merely because it type-checks.
+## Next development task
+
+Unblock the identified PostgreSQL test target and approved OAuth institution setup, then complete live connection and actual browser visual acceptance. Do not weaken identity/storage checks to make the shared local preview accept real credentials.
