@@ -1,0 +1,805 @@
+{
+  "reviewDate": "2026-11-11",
+  "note": "Observed output pairs, not an independent full-reference gold standard. Original inputs and review worksheet unchanged.",
+  "results": [
+    {
+      "caseId": "MLA-01",
+      "doi": "10.1016/j.caeai.2022.100049",
+      "synthetic": false,
+      "inputMetadataSha256": "81a4840cbf33b3c05dac2eb6a342562f34a5c66aaae8e7acde5b89c1ff0e5ba7",
+      "verdict": "CONDITIONAL: supported supplied-field formatting; source/title/date review still required",
+      "baselineCommit": "91f3e48389e678f6885712550b2e197a827fca88",
+      "before": {
+        "caseId": "MLA-01",
+        "text": "Su, Jiahong, and Weipeng Yang. “Artificial intelligence in early childhood education: A scoping review.” Computers and Education: Artificial Intelligence, vol. 3, 2022, https://doi.org/10.1016/j.caeai.2022.100049.",
+        "htmlRuns": [
+          {
+            "text": "Su, Jiahong, and Weipeng Yang. “Artificial intelligence in early childhood education: A scoping review.” "
+          },
+          {
+            "text": "Computers and Education: Artificial Intelligence",
+            "italic": true
+          },
+          {
+            "text": ", vol. 3, 2022, https://doi.org/10.1016/j.caeai.2022.100049."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "This draft omits the article identifier and article-local page numbers. Verify their treatment against MLA 9; the DOI locates the original record.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      },
+      "after": {
+        "text": "Su, Jiahong, and Weipeng Yang. “Artificial intelligence in early childhood education: A scoping review.” Computers and Education: Artificial Intelligence, vol. 3, 2022, https://doi.org/10.1016/j.caeai.2022.100049.",
+        "htmlRuns": [
+          {
+            "text": "Su, Jiahong, and Weipeng Yang. “Artificial intelligence in early childhood education: A scoping review.” "
+          },
+          {
+            "text": "Computers and Education: Artificial Intelligence",
+            "italic": true
+          },
+          {
+            "text": ", vol. 3, 2022, https://doi.org/10.1016/j.caeai.2022.100049."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "This draft omits the article identifier and article-local page numbers. Verify their treatment against MLA 9; the DOI locates the original record.",
+          "This draft stores only the publication year. Check the original issue for a month or season, and check any italics within article titles; those details are not reconstructed from Crossref plain text.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      }
+    },
+    {
+      "caseId": "MLA-02",
+      "doi": "10.1371/journal.pone.0193972",
+      "synthetic": false,
+      "inputMetadataSha256": "a2eb1070cf1fef2139a2fd5e598d589e622fb1c220167c0f9a0453f126d3d1c1",
+      "verdict": "CONDITIONAL: supported supplied-field formatting; source/title/date review still required",
+      "baselineCommit": "91f3e48389e678f6885712550b2e197a827fca88",
+      "before": {
+        "caseId": "MLA-02",
+        "text": "Jerrentrup, Andreas, et al. “Teaching medicine with the help of ‘Dr. House.’” PLOS ONE, vol. 13, no. 3, 2018, https://doi.org/10.1371/journal.pone.0193972.",
+        "htmlRuns": [
+          {
+            "text": "Jerrentrup, Andreas, et al. “Teaching medicine with the help of ‘Dr. House.’” "
+          },
+          {
+            "text": "PLOS ONE",
+            "italic": true
+          },
+          {
+            "text": ", vol. 13, no. 3, 2018, https://doi.org/10.1371/journal.pone.0193972."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "This draft omits the article identifier and article-local page numbers. Verify their treatment against MLA 9; the DOI locates the original record.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      },
+      "after": {
+        "text": "Jerrentrup, Andreas, et al. “Teaching medicine with the help of ‘Dr. House.’” PLOS ONE, vol. 13, no. 3, 2018, https://doi.org/10.1371/journal.pone.0193972.",
+        "htmlRuns": [
+          {
+            "text": "Jerrentrup, Andreas, et al. “Teaching medicine with the help of ‘Dr. House.’” "
+          },
+          {
+            "text": "PLOS ONE",
+            "italic": true
+          },
+          {
+            "text": ", vol. 13, no. 3, 2018, https://doi.org/10.1371/journal.pone.0193972."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "This draft omits the article identifier and article-local page numbers. Verify their treatment against MLA 9; the DOI locates the original record.",
+          "This draft stores only the publication year. Check the original issue for a month or season, and check any italics within article titles; those details are not reconstructed from Crossref plain text.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      }
+    },
+    {
+      "caseId": "MLA-03",
+      "doi": "10.1037/ppm0000185",
+      "synthetic": false,
+      "inputMetadataSha256": "f2894333721f568a6d4fafb7de175c590ba1603c718a96b36d523898d9b7eb76",
+      "verdict": "CONDITIONAL: supported supplied-field formatting; source/title/date review still required",
+      "baselineCommit": "91f3e48389e678f6885712550b2e197a827fca88",
+      "before": {
+        "caseId": "MLA-03",
+        "text": "Grady, Jessica Stoltzfus, et al. “Emotions in storybooks: A comparison of storybooks that represent ethnic and racial groups in the United States.” Psychology of Popular Media Culture, vol. 8, no. 3, 2019, pp. 207–217, https://doi.org/10.1037/ppm0000185.",
+        "htmlRuns": [
+          {
+            "text": "Grady, Jessica Stoltzfus, et al. “Emotions in storybooks: A comparison of storybooks that represent ethnic and racial groups in the United States.” "
+          },
+          {
+            "text": "Psychology of Popular Media Culture",
+            "italic": true
+          },
+          {
+            "text": ", vol. 8, no. 3, 2019, pp. 207–217, https://doi.org/10.1037/ppm0000185."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "Review MLA page-range abbreviation against your handbook; full publisher page numbers are retained.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      },
+      "after": {
+        "text": "Grady, Jessica Stoltzfus, et al. “Emotions in storybooks: A comparison of storybooks that represent ethnic and racial groups in the United States.” Psychology of Popular Media Culture, vol. 8, no. 3, 2019, pp. 207–17, https://doi.org/10.1037/ppm0000185.",
+        "htmlRuns": [
+          {
+            "text": "Grady, Jessica Stoltzfus, et al. “Emotions in storybooks: A comparison of storybooks that represent ethnic and racial groups in the United States.” "
+          },
+          {
+            "text": "Psychology of Popular Media Culture",
+            "italic": true
+          },
+          {
+            "text": ", vol. 8, no. 3, 2019, pp. 207–17, https://doi.org/10.1037/ppm0000185."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "This draft stores only the publication year. Check the original issue for a month or season, and check any italics within article titles; those details are not reconstructed from Crossref plain text.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      }
+    },
+    {
+      "caseId": "MLA-04",
+      "doi": "10.1002/andp.19053221004",
+      "synthetic": false,
+      "inputMetadataSha256": "6aded51bd3c4563700b3e0137820fed5bf0b594292e1cb16434866ececf319e4",
+      "verdict": "CONDITIONAL: supported supplied-field formatting; source/title/date review still required",
+      "baselineCommit": "91f3e48389e678f6885712550b2e197a827fca88",
+      "before": {
+        "caseId": "MLA-04",
+        "text": "Einstein, A. “Zur Elektrodynamik bewegter Körper.” Annalen der Physik, vol. 322, no. 10, 1905, pp. 891–921, https://doi.org/10.1002/andp.19053221004.",
+        "htmlRuns": [
+          {
+            "text": "Einstein, A. “Zur Elektrodynamik bewegter Körper.” "
+          },
+          {
+            "text": "Annalen der Physik",
+            "italic": true
+          },
+          {
+            "text": ", vol. 322, no. 10, 1905, pp. 891–921, https://doi.org/10.1002/andp.19053221004."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "Review MLA page-range abbreviation against your handbook; full publisher page numbers are retained.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      },
+      "after": {
+        "text": "Einstein, A. “Zur Elektrodynamik bewegter Körper.” Annalen der Physik, vol. 322, no. 10, 1905, pp. 891–921, https://doi.org/10.1002/andp.19053221004.",
+        "htmlRuns": [
+          {
+            "text": "Einstein, A. “Zur Elektrodynamik bewegter Körper.” "
+          },
+          {
+            "text": "Annalen der Physik",
+            "italic": true
+          },
+          {
+            "text": ", vol. 322, no. 10, 1905, pp. 891–921, https://doi.org/10.1002/andp.19053221004."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "This draft stores only the publication year. Check the original issue for a month or season, and check any italics within article titles; those details are not reconstructed from Crossref plain text.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      }
+    },
+    {
+      "caseId": "MLA-05",
+      "doi": "10.1016/s0140-6736(20)30183-5",
+      "synthetic": false,
+      "inputMetadataSha256": "8579ae683bcde663b97967a31cd47fec49fc1949a4ecce9881c9476cd902344f",
+      "verdict": "CONDITIONAL: supported supplied-field formatting; source/title/date review still required",
+      "baselineCommit": "91f3e48389e678f6885712550b2e197a827fca88",
+      "before": {
+        "caseId": "MLA-05",
+        "text": "Huang, Chaolin, et al. “Clinical features of patients infected with 2019 novel coronavirus in Wuhan, China.” The Lancet, vol. 395, no. 10223, 2020, pp. 497–506, https://doi.org/10.1016/s0140-6736(20)30183-5.",
+        "htmlRuns": [
+          {
+            "text": "Huang, Chaolin, et al. “Clinical features of patients infected with 2019 novel coronavirus in Wuhan, China.” "
+          },
+          {
+            "text": "The Lancet",
+            "italic": true
+          },
+          {
+            "text": ", vol. 395, no. 10223, 2020, pp. 497–506, https://doi.org/10.1016/s0140-6736(20)30183-5."
+          }
+        ],
+        "warnings": [
+          "Long author list: verify whether the publisher byline credits individuals or a consortium.",
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "Review MLA page-range abbreviation against your handbook; full publisher page numbers are retained.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      },
+      "after": {
+        "text": "Huang, Chaolin, et al. “Clinical features of patients infected with 2019 novel coronavirus in Wuhan, China.” The Lancet, vol. 395, no. 10223, 2020, pp. 497–506, https://doi.org/10.1016/s0140-6736(20)30183-5.",
+        "htmlRuns": [
+          {
+            "text": "Huang, Chaolin, et al. “Clinical features of patients infected with 2019 novel coronavirus in Wuhan, China.” "
+          },
+          {
+            "text": "The Lancet",
+            "italic": true
+          },
+          {
+            "text": ", vol. 395, no. 10223, 2020, pp. 497–506, https://doi.org/10.1016/s0140-6736(20)30183-5."
+          }
+        ],
+        "warnings": [
+          "Long author list: verify whether the publisher byline credits individuals or a consortium.",
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "This draft stores only the publication year. Check the original issue for a month or season, and check any italics within article titles; those details are not reconstructed from Crossref plain text.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      }
+    },
+    {
+      "caseId": "MLA-06",
+      "doi": "10.1038/35057062",
+      "synthetic": false,
+      "inputMetadataSha256": "493964f2b0393be42b0a0535d7afc9142d52fc8d88b26861c76c98ebcb606f3c",
+      "verdict": "BLOCKED: byline, damaged or insufficient metadata; see report",
+      "baselineCommit": "91f3e48389e678f6885712550b2e197a827fca88",
+      "before": {
+        "caseId": "MLA-06",
+        "text": "International Human Genome Sequencing Consortium, et al. “Initial sequencing and analysis of the human genome.” Nature, vol. 409, no. 6822, 2001, pp. 860–921, https://doi.org/10.1038/35057062.",
+        "htmlRuns": [
+          {
+            "text": "International Human Genome Sequencing Consortium, et al. “Initial sequencing and analysis of the human genome.” "
+          },
+          {
+            "text": "Nature",
+            "italic": true
+          },
+          {
+            "text": ", vol. 409, no. 6822, 2001, pp. 860–921, https://doi.org/10.1038/35057062."
+          }
+        ],
+        "warnings": [
+          "Long author list: verify whether the publisher byline credits individuals or a consortium.",
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "Review MLA page-range abbreviation against your handbook; full publisher page numbers are retained.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      },
+      "after": {
+        "text": "International Human Genome Sequencing Consortium, et al. “Initial sequencing and analysis of the human genome.” Nature, vol. 409, no. 6822, 2001, pp. 860–921, https://doi.org/10.1038/35057062.",
+        "htmlRuns": [
+          {
+            "text": "International Human Genome Sequencing Consortium, et al. “Initial sequencing and analysis of the human genome.” "
+          },
+          {
+            "text": "Nature",
+            "italic": true
+          },
+          {
+            "text": ", vol. 409, no. 6822, 2001, pp. 860–921, https://doi.org/10.1038/35057062."
+          }
+        ],
+        "warnings": [
+          "Long author list: verify whether the publisher byline credits individuals or a consortium.",
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "Mixed group and individual author metadata: verify the credited byline before using this draft; contributor lists may differ from citation authors.",
+          "This draft stores only the publication year. Check the original issue for a month or season, and check any italics within article titles; those details are not reconstructed from Crossref plain text.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      }
+    },
+    {
+      "caseId": "MLA-07",
+      "doi": "10.33184/dokbsu-2018.1.8",
+      "synthetic": false,
+      "inputMetadataSha256": "d28c1dbf0235ddb6047b23ee5b9e2e58c84cdbbb15e485b3ed74cd4149843735",
+      "verdict": "BLOCKED: byline, damaged or insufficient metadata; see report",
+      "baselineCommit": "91f3e48389e678f6885712550b2e197a827fca88",
+      "before": {
+        "caseId": "MLA-07",
+        "text": "“Connection of the visual system functional condition with person social well-being.” Доклады башкирского университета, 2018, p. 49, https://doi.org/10.33184/dokbsu-2018.1.8.",
+        "htmlRuns": [
+          {
+            "text": "“Connection of the visual system functional condition with person social well-being.” "
+          },
+          {
+            "text": "Доклады башкирского университета",
+            "italic": true
+          },
+          {
+            "text": ", 2018, p. 49, https://doi.org/10.33184/dokbsu-2018.1.8."
+          }
+        ],
+        "warnings": [
+          "Author missing; title is used first.",
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      },
+      "after": {
+        "text": "“Connection of the visual system functional condition with person social well-being.” Доклады башкирского университета, 2018, p. 49, https://doi.org/10.33184/dokbsu-2018.1.8.",
+        "htmlRuns": [
+          {
+            "text": "“Connection of the visual system functional condition with person social well-being.” "
+          },
+          {
+            "text": "Доклады башкирского университета",
+            "italic": true
+          },
+          {
+            "text": ", 2018, p. 49, https://doi.org/10.33184/dokbsu-2018.1.8."
+          }
+        ],
+        "warnings": [
+          "Author missing; title is used first.",
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "This draft stores only the publication year. Check the original issue for a month or season, and check any italics within article titles; those details are not reconstructed from Crossref plain text.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      }
+    },
+    {
+      "caseId": "MLA-08",
+      "doi": "10.1016/j.uclim.2025.102290",
+      "synthetic": false,
+      "inputMetadataSha256": "48dba64bc4a85bb81b709e5921534a2f88f91723186d0c29ba7fe297310ceb06",
+      "verdict": "CONDITIONAL: supported supplied-field formatting; source/title/date review still required",
+      "baselineCommit": "91f3e48389e678f6885712550b2e197a827fca88",
+      "before": {
+        "caseId": "MLA-08",
+        "text": "Fereshtehpour, Mohammad, and Mohammad Reza Najafi. “Urban stormwater resilience: Global insights and strategies for climate adaptation.” Urban Climate, vol. 59, 2025, https://doi.org/10.1016/j.uclim.2025.102290.",
+        "htmlRuns": [
+          {
+            "text": "Fereshtehpour, Mohammad, and Mohammad Reza Najafi. “Urban stormwater resilience: Global insights and strategies for climate adaptation.” "
+          },
+          {
+            "text": "Urban Climate",
+            "italic": true
+          },
+          {
+            "text": ", vol. 59, 2025, https://doi.org/10.1016/j.uclim.2025.102290."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "This draft omits the article identifier and article-local page numbers. Verify their treatment against MLA 9; the DOI locates the original record.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      },
+      "after": {
+        "text": "Fereshtehpour, Mohammad, and Mohammad Reza Najafi. “Urban stormwater resilience: Global insights and strategies for climate adaptation.” Urban Climate, vol. 59, 2025, https://doi.org/10.1016/j.uclim.2025.102290.",
+        "htmlRuns": [
+          {
+            "text": "Fereshtehpour, Mohammad, and Mohammad Reza Najafi. “Urban stormwater resilience: Global insights and strategies for climate adaptation.” "
+          },
+          {
+            "text": "Urban Climate",
+            "italic": true
+          },
+          {
+            "text": ", vol. 59, 2025, https://doi.org/10.1016/j.uclim.2025.102290."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "This draft omits the article identifier and article-local page numbers. Verify their treatment against MLA 9; the DOI locates the original record.",
+          "This draft stores only the publication year. Check the original issue for a month or season, and check any italics within article titles; those details are not reconstructed from Crossref plain text.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      }
+    },
+    {
+      "caseId": "MLA-09",
+      "doi": "10.1016/j.chb.2017.02.038",
+      "synthetic": false,
+      "inputMetadataSha256": "2f1baeda1219f0da9e58c8407c5deeedce975fe2b0b8c57af8434faab805e143",
+      "verdict": "CONDITIONAL: supported supplied-field formatting; source/title/date review still required",
+      "baselineCommit": "91f3e48389e678f6885712550b2e197a827fca88",
+      "before": {
+        "caseId": "MLA-09",
+        "text": "Sanchiz, M., et al. “How do older and young adults start searching for information? Impact of age, domain knowledge and problem complexity on the different steps of information searching.” Computers in Human Behavior, vol. 72, 2017, pp. 67–78, https://doi.org/10.1016/j.chb.2017.02.038.",
+        "htmlRuns": [
+          {
+            "text": "Sanchiz, M., et al. “How do older and young adults start searching for information? Impact of age, domain knowledge and problem complexity on the different steps of information searching.” "
+          },
+          {
+            "text": "Computers in Human Behavior",
+            "italic": true
+          },
+          {
+            "text": ", vol. 72, 2017, pp. 67–78, https://doi.org/10.1016/j.chb.2017.02.038."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      },
+      "after": {
+        "text": "Sanchiz, M., et al. “How do older and young adults start searching for information? Impact of age, domain knowledge and problem complexity on the different steps of information searching.” Computers in Human Behavior, vol. 72, 2017, pp. 67–78, https://doi.org/10.1016/j.chb.2017.02.038.",
+        "htmlRuns": [
+          {
+            "text": "Sanchiz, M., et al. “How do older and young adults start searching for information? Impact of age, domain knowledge and problem complexity on the different steps of information searching.” "
+          },
+          {
+            "text": "Computers in Human Behavior",
+            "italic": true
+          },
+          {
+            "text": ", vol. 72, 2017, pp. 67–78, https://doi.org/10.1016/j.chb.2017.02.038."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "This draft stores only the publication year. Check the original issue for a month or season, and check any italics within article titles; those details are not reconstructed from Crossref plain text.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      }
+    },
+    {
+      "caseId": "MLA-10",
+      "doi": "10.1038/nbt.1754",
+      "synthetic": false,
+      "inputMetadataSha256": "2f94051f869200631027782c29e167ffd31ef1a064ff00b8d7da5ecf7c1bb057",
+      "verdict": "CONDITIONAL: supported supplied-field formatting; source/title/date review still required",
+      "baselineCommit": "91f3e48389e678f6885712550b2e197a827fca88",
+      "before": {
+        "caseId": "MLA-10",
+        "text": "Robinson, James T, et al. “Integrative genomics viewer.” Nature Biotechnology, vol. 29, no. 1, 2011, pp. 24–26, https://doi.org/10.1038/nbt.1754.",
+        "htmlRuns": [
+          {
+            "text": "Robinson, James T, et al. “Integrative genomics viewer.” "
+          },
+          {
+            "text": "Nature Biotechnology",
+            "italic": true
+          },
+          {
+            "text": ", vol. 29, no. 1, 2011, pp. 24–26, https://doi.org/10.1038/nbt.1754."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      },
+      "after": {
+        "text": "Robinson, James T, et al. “Integrative genomics viewer.” Nature Biotechnology, vol. 29, no. 1, 2011, pp. 24–26, https://doi.org/10.1038/nbt.1754.",
+        "htmlRuns": [
+          {
+            "text": "Robinson, James T, et al. “Integrative genomics viewer.” "
+          },
+          {
+            "text": "Nature Biotechnology",
+            "italic": true
+          },
+          {
+            "text": ", vol. 29, no. 1, 2011, pp. 24–26, https://doi.org/10.1038/nbt.1754."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "This draft stores only the publication year. Check the original issue for a month or season, and check any italics within article titles; those details are not reconstructed from Crossref plain text.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      }
+    },
+    {
+      "caseId": "MLA-11",
+      "doi": "10.1016/s0140-6736(20)30566-3",
+      "synthetic": false,
+      "inputMetadataSha256": "35213deb6739be8c7b437920816cc5fd44a9ff7cc242ef9d40be677a921256ea",
+      "verdict": "CONDITIONAL: supported supplied-field formatting; source/title/date review still required",
+      "baselineCommit": "91f3e48389e678f6885712550b2e197a827fca88",
+      "before": {
+        "caseId": "MLA-11",
+        "text": "Zhou, Fei, et al. “Clinical course and risk factors for mortality of adult inpatients with COVID-19 in Wuhan, China: a retrospective cohort study.” The Lancet, vol. 395, no. 10229, 2020, pp. 1054–1062, https://doi.org/10.1016/s0140-6736(20)30566-3.",
+        "htmlRuns": [
+          {
+            "text": "Zhou, Fei, et al. “Clinical course and risk factors for mortality of adult inpatients with COVID-19 in Wuhan, China: a retrospective cohort study.” "
+          },
+          {
+            "text": "The Lancet",
+            "italic": true
+          },
+          {
+            "text": ", vol. 395, no. 10229, 2020, pp. 1054–1062, https://doi.org/10.1016/s0140-6736(20)30566-3."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "Review MLA page-range abbreviation against your handbook; full publisher page numbers are retained.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      },
+      "after": {
+        "text": "Zhou, Fei, et al. “Clinical course and risk factors for mortality of adult inpatients with COVID-19 in Wuhan, China: a retrospective cohort study.” The Lancet, vol. 395, no. 10229, 2020, pp. 1054–62, https://doi.org/10.1016/s0140-6736(20)30566-3.",
+        "htmlRuns": [
+          {
+            "text": "Zhou, Fei, et al. “Clinical course and risk factors for mortality of adult inpatients with COVID-19 in Wuhan, China: a retrospective cohort study.” "
+          },
+          {
+            "text": "The Lancet",
+            "italic": true
+          },
+          {
+            "text": ", vol. 395, no. 10229, 2020, pp. 1054–62, https://doi.org/10.1016/s0140-6736(20)30566-3."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "This draft stores only the publication year. Check the original issue for a month or season, and check any italics within article titles; those details are not reconstructed from Crossref plain text.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      }
+    },
+    {
+      "caseId": "MLA-12",
+      "doi": "10.1038/nmeth.1226",
+      "synthetic": false,
+      "inputMetadataSha256": "f62a3dfd4e78c574d75afa26db06ed34f552ef8546309f632b0fd04e9cd77829",
+      "verdict": "CONDITIONAL: supported supplied-field formatting; source/title/date review still required",
+      "baselineCommit": "91f3e48389e678f6885712550b2e197a827fca88",
+      "before": {
+        "caseId": "MLA-12",
+        "text": "Mortazavi, Ali, et al. “Mapping and quantifying mammalian transcriptomes by RNA-Seq.” Nature Methods, vol. 5, no. 7, 2008, pp. 621–628, https://doi.org/10.1038/nmeth.1226.",
+        "htmlRuns": [
+          {
+            "text": "Mortazavi, Ali, et al. “Mapping and quantifying mammalian transcriptomes by RNA-Seq.” "
+          },
+          {
+            "text": "Nature Methods",
+            "italic": true
+          },
+          {
+            "text": ", vol. 5, no. 7, 2008, pp. 621–628, https://doi.org/10.1038/nmeth.1226."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "Review MLA page-range abbreviation against your handbook; full publisher page numbers are retained.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      },
+      "after": {
+        "text": "Mortazavi, Ali, et al. “Mapping and quantifying mammalian transcriptomes by RNA-Seq.” Nature Methods, vol. 5, no. 7, 2008, pp. 621–28, https://doi.org/10.1038/nmeth.1226.",
+        "htmlRuns": [
+          {
+            "text": "Mortazavi, Ali, et al. “Mapping and quantifying mammalian transcriptomes by RNA-Seq.” "
+          },
+          {
+            "text": "Nature Methods",
+            "italic": true
+          },
+          {
+            "text": ", vol. 5, no. 7, 2008, pp. 621–28, https://doi.org/10.1038/nmeth.1226."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "This draft stores only the publication year. Check the original issue for a month or season, and check any italics within article titles; those details are not reconstructed from Crossref plain text.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      }
+    },
+    {
+      "caseId": "MLA-13",
+      "doi": "10.1007/bf01397280",
+      "synthetic": false,
+      "inputMetadataSha256": "ca63fa02f54990c4472cc8c9c97ac5aeb5b32c48097e080feae4f4792747eea7",
+      "verdict": "BLOCKED: byline, damaged or insufficient metadata; see report",
+      "baselineCommit": "91f3e48389e678f6885712550b2e197a827fca88",
+      "before": {
+        "caseId": "MLA-13",
+        "text": "Heisenberg, W. “�ber den anschaulichen Inhalt der quantentheoretischen Kinematik und Mechanik.” Zeitschrift f�r Physik, vol. 43, no. 3-4, 1927, pp. 172–198, https://doi.org/10.1007/bf01397280.",
+        "htmlRuns": [
+          {
+            "text": "Heisenberg, W. “�ber den anschaulichen Inhalt der quantentheoretischen Kinematik und Mechanik.” "
+          },
+          {
+            "text": "Zeitschrift f�r Physik",
+            "italic": true
+          },
+          {
+            "text": ", vol. 43, no. 3-4, 1927, pp. 172–198, https://doi.org/10.1007/bf01397280."
+          }
+        ],
+        "warnings": [
+          "Title metadata may contain a character-encoding error; verify it against the publisher.",
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "Review MLA page-range abbreviation against your handbook; full publisher page numbers are retained.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      },
+      "after": {
+        "text": "Heisenberg, W. “�ber den anschaulichen Inhalt der quantentheoretischen Kinematik und Mechanik.” Zeitschrift f�r Physik, vol. 43, no. 3-4, 1927, pp. 172–98, https://doi.org/10.1007/bf01397280.",
+        "htmlRuns": [
+          {
+            "text": "Heisenberg, W. “�ber den anschaulichen Inhalt der quantentheoretischen Kinematik und Mechanik.” "
+          },
+          {
+            "text": "Zeitschrift f�r Physik",
+            "italic": true
+          },
+          {
+            "text": ", vol. 43, no. 3-4, 1927, pp. 172–98, https://doi.org/10.1007/bf01397280."
+          }
+        ],
+        "warnings": [
+          "Title metadata may contain a character-encoding error; verify it against the publisher.",
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "Journal or author metadata may contain a character-encoding error; verify it against the publisher.",
+          "This draft stores only the publication year. Check the original issue for a month or season, and check any italics within article titles; those details are not reconstructed from Crossref plain text.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      }
+    },
+    {
+      "caseId": "MLA-14",
+      "doi": "10.1037/ppm0000185",
+      "synthetic": true,
+      "inputMetadataSha256": "f2894333721f568a6d4fafb7de175c590ba1603c718a96b36d523898d9b7eb76",
+      "verdict": "CONDITIONAL: supported supplied-field formatting; source/title/date review still required",
+      "baselineCommit": "91f3e48389e678f6885712550b2e197a827fca88",
+      "before": {
+        "caseId": "MLA-14",
+        "text": "Grady, Jessica Stoltzfus, et al. “Emotions in storybooks: A comparison of storybooks that represent ethnic and racial groups in the United States.” Psychology of Popular Media Culture, vol. 8, no. 3, pp. 207–217, https://doi.org/10.1037/ppm0000185.",
+        "htmlRuns": [
+          {
+            "text": "Grady, Jessica Stoltzfus, et al. “Emotions in storybooks: A comparison of storybooks that represent ethnic and racial groups in the United States.” "
+          },
+          {
+            "text": "Psychology of Popular Media Culture",
+            "italic": true
+          },
+          {
+            "text": ", vol. 8, no. 3, pp. 207–217, https://doi.org/10.1037/ppm0000185."
+          }
+        ],
+        "warnings": [
+          "Publication date missing.",
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "Review MLA page-range abbreviation against your handbook; full publisher page numbers are retained.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      },
+      "after": {
+        "text": "Grady, Jessica Stoltzfus, et al. “Emotions in storybooks: A comparison of storybooks that represent ethnic and racial groups in the United States.” Psychology of Popular Media Culture, vol. 8, no. 3, pp. 207–17, https://doi.org/10.1037/ppm0000185.",
+        "htmlRuns": [
+          {
+            "text": "Grady, Jessica Stoltzfus, et al. “Emotions in storybooks: A comparison of storybooks that represent ethnic and racial groups in the United States.” "
+          },
+          {
+            "text": "Psychology of Popular Media Culture",
+            "italic": true
+          },
+          {
+            "text": ", vol. 8, no. 3, pp. 207–17, https://doi.org/10.1037/ppm0000185."
+          }
+        ],
+        "warnings": [
+          "Publication date missing.",
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "This draft stores only the publication year. Check the original issue for a month or season, and check any italics within article titles; those details are not reconstructed from Crossref plain text.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      }
+    },
+    {
+      "caseId": "MLA-15",
+      "doi": "10.1037/ppm0000185",
+      "synthetic": true,
+      "inputMetadataSha256": "f2894333721f568a6d4fafb7de175c590ba1603c718a96b36d523898d9b7eb76",
+      "verdict": "BLOCKED: byline, damaged or insufficient metadata; see report",
+      "baselineCommit": "91f3e48389e678f6885712550b2e197a827fca88",
+      "before": {
+        "caseId": "MLA-15",
+        "text": "[Journal article; title unavailable]. Psychology of Popular Media Culture, vol. 8, no. 3, 2019, pp. 207–217, https://doi.org/10.1037/ppm0000185.",
+        "htmlRuns": [
+          {
+            "text": "[Journal article; title unavailable]. "
+          },
+          {
+            "text": "Psychology of Popular Media Culture",
+            "italic": true
+          },
+          {
+            "text": ", vol. 8, no. 3, 2019, pp. 207–217, https://doi.org/10.1037/ppm0000185."
+          }
+        ],
+        "warnings": [
+          "Author missing; title is used first.",
+          "Title missing; a bracketed description is used. Check the original record.",
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "Review MLA page-range abbreviation against your handbook; full publisher page numbers are retained.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      },
+      "after": {
+        "text": "[Journal article; title unavailable]. Psychology of Popular Media Culture, vol. 8, no. 3, 2019, pp. 207–17, https://doi.org/10.1037/ppm0000185.",
+        "htmlRuns": [
+          {
+            "text": "[Journal article; title unavailable]. "
+          },
+          {
+            "text": "Psychology of Popular Media Culture",
+            "italic": true
+          },
+          {
+            "text": ", vol. 8, no. 3, 2019, pp. 207–17, https://doi.org/10.1037/ppm0000185."
+          }
+        ],
+        "warnings": [
+          "Author missing; title is used first.",
+          "Title missing; a bracketed description is used. Check the original record.",
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "This draft stores only the publication year. Check the original issue for a month or season, and check any italics within article titles; those details are not reconstructed from Crossref plain text.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      }
+    },
+    {
+      "caseId": "MLA-16",
+      "doi": "10.1037/ppm0000185",
+      "synthetic": true,
+      "inputMetadataSha256": "f2894333721f568a6d4fafb7de175c590ba1603c718a96b36d523898d9b7eb76",
+      "verdict": "CONDITIONAL: supported supplied-field formatting; source/title/date review still required",
+      "baselineCommit": "91f3e48389e678f6885712550b2e197a827fca88",
+      "before": {
+        "caseId": "MLA-16",
+        "text": "Grady, Jessica Stoltzfus, et al. “Emotions in storybooks: A comparison of storybooks that represent ethnic and racial groups in the United States.” Psychology of Popular Media Culture, 2019, https://doi.org/10.1037/ppm0000185.",
+        "htmlRuns": [
+          {
+            "text": "Grady, Jessica Stoltzfus, et al. “Emotions in storybooks: A comparison of storybooks that represent ethnic and racial groups in the United States.” "
+          },
+          {
+            "text": "Psychology of Popular Media Culture",
+            "italic": true
+          },
+          {
+            "text": ", 2019, https://doi.org/10.1037/ppm0000185."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      },
+      "after": {
+        "text": "Grady, Jessica Stoltzfus, et al. “Emotions in storybooks: A comparison of storybooks that represent ethnic and racial groups in the United States.” Psychology of Popular Media Culture, 2019, https://doi.org/10.1037/ppm0000185.",
+        "htmlRuns": [
+          {
+            "text": "Grady, Jessica Stoltzfus, et al. “Emotions in storybooks: A comparison of storybooks that represent ethnic and racial groups in the United States.” "
+          },
+          {
+            "text": "Psychology of Popular Media Culture",
+            "italic": true
+          },
+          {
+            "text": ", 2019, https://doi.org/10.1037/ppm0000185."
+          }
+        ],
+        "warnings": [
+          "Title capitalization is preserved to protect proper nouns and acronyms. Review MLA title case before submitting.",
+          "This draft stores only the publication year. Check the original issue for a month or season, and check any italics within article titles; those details are not reconstructed from Crossref plain text.",
+          "Formatted copying preserves italics where supported. Plain-text destinations require italics to be reapplied."
+        ]
+      }
+    }
+  ]
+}

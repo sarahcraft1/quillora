@@ -1,0 +1,52 @@
+.shell{--space-card:24px;--space-panel:20px;--space-nested:12px;--space-control:14px;--space-icon:10px;--space-accent-gap:20px;--accent-width:5px;--space-accent:calc(var(--accent-width) + var(--space-accent-gap));--class-card-min:200px}
+.shell .research-desk[data-view='classes'] .class-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--class-card-min)),1fr))}
+.shell aside .nav{padding-inline:var(--space-accent) var(--space-control);gap:var(--space-icon);min-height:44px;line-height:1.5;overflow-wrap:anywhere}
+.shell aside .nav svg{flex-shrink:0}
+.shell .side-project{padding-inline:var(--space-control)}
+.shell .project{padding-inline:var(--space-control);line-height:1.6;overflow-wrap:anywhere}
+.shell .research-desk .resume-copy,.shell .research-desk[data-view='desk'] .resume-copy{padding-inline:var(--space-accent) var(--space-card)}
+.shell .research-desk[data-view='desk'] .desk-resume:before{width:var(--accent-width)}
+.shell .research-desk .desk-resume :focus-visible{outline-color:var(--focus)}
+.shell .research-desk[data-view='desk'] .desk-home-heading{padding-inline:var(--space-card)!important}
+.shell .research-desk[data-view='desk'] .desk-assignment,.shell .desk-assignment{padding-inline:var(--space-card)!important}
+.shell .research-desk[data-view='desk'] .desk-bulletin,.shell .research-desk[data-view='desk'] .desk-buddy{padding-inline:var(--space-panel)}
+.shell .desk-attention{padding-inline:var(--space-panel)}
+.shell :is(.class-open,.uncategorized){padding-inline:var(--space-panel)}
+.shell :is(.assignment,.article,.class-editor,.note-composer,.group-composer,.evidence-column,.evidence-card,.backup){padding-inline:var(--space-card);min-width:0}
+.shell .assignment>.section-head{gap:var(--space-icon) var(--space-control);margin-block-end:var(--space-nested)}
+.shell .assignment>.section-head>h2{min-width:0}
+.shell .assignment>.section-head>.outline{flex-shrink:0}
+.shell .evidence-column{padding-inline:var(--space-nested)}
+.shell .evidence-card{padding-inline:var(--space-panel)}
+.shell .evidence-context{padding-inline:var(--space-panel)}
+.shell .evidence-card blockquote{margin-inline:0;padding-inline:var(--space-accent-gap) 0;border-inline-start:3px solid var(--green);overflow-wrap:anywhere}
+.shell .metadata-warning{padding-inline-start:var(--space-accent-gap);border-inline-start:3px solid var(--green)}
+.shell .assignment-context{padding-inline:var(--space-panel)}
+.shell :is(.desk-source,.desk-source>div,.article-main,.article-body,.assignment-body,.evidence-attribution){min-width:0}
+.shell :is(.article,.assignment,.evidence-card,.desk-source,.research-breadcrumb) :is(h2,h3,p,a,strong){overflow-wrap:anywhere}
+.shell .research-navigation nav button{padding-inline:var(--space-control);line-height:1.45}
+.shell .research-breadcrumb :is(.text-button,.focus-toggle){padding-inline:var(--space-control)}
+.shell .personalize-panel :is(.theme-choice,.buddy-choice,.accent-option){padding-inline:var(--space-control);gap:var(--space-icon);min-width:0}
+.shell .personalize-panel :is(.theme-choice,.buddy-choice,.accent-option) input{flex-shrink:0}
+.shell .personalize-panel :is(input:not([type='radio']):not([type='checkbox']):not([type='color']),textarea,select){padding-inline:var(--space-control);min-width:0}
+.shell .studio-page-preview .preview-desk{padding-inline:var(--space-panel)}
+.shell .studio-page-preview :is(.preview-titlebar,.preview-caption){padding-inline:var(--space-panel)}
+.shell .studio-controls .preset{padding-inline:var(--space-control)}
+.shell :is(.desk-card-meta,.article-actions,.assignment-context,.research-breadcrumb){gap:var(--space-icon) var(--space-control)}
+.shell :is(button,input,select,textarea,summary):focus-visible{outline-width:2px;outline-offset:4px}
+@media(max-width:760px){
+ .shell .class-grid>.class-card{min-width:min(100%,var(--class-card-min));flex-basis:var(--class-card-min)}
+ .shell{--space-card:18px;--space-panel:16px;--space-nested:10px;--space-control:12px;--space-accent-gap:16px;--space-icon:8px}
+ .shell .research-desk[data-view='desk'] .desk-home-heading .primary{min-width:44px;width:44px;min-height:44px;padding:12px}
+ .shell .research-desk[data-view='desk'] .desk-home-heading>div{max-width:calc(100% - 54px)}
+ .shell .research-navigation nav button{padding-inline:var(--space-icon);min-height:44px}
+ .shell .research-breadcrumb{align-items:center}
+ .shell .research-breadcrumb .focus-toggle{margin-inline-start:auto}
+ .shell .studio-controls .preset-choices{grid-template-columns:1fr}
+ .shell .studio-controls .preset{grid-template-columns:54px minmax(0,1fr);gap:4px var(--space-icon);padding:10px var(--space-control)}
+ .shell .studio-controls .preset-paper{grid-row:1/3;height:42px}
+ .shell .studio-controls .preset small{grid-column:2}
+ .shell .research-desk[data-view='desk'] .desk-small-progress>div{gap:var(--space-icon);align-items:start}
+ .shell .research-desk[data-view='desk'] .desk-small-progress small{padding-top:3px}
+ .shell .article-actions button{min-height:44px;white-space:normal;line-height:1.5}
+}

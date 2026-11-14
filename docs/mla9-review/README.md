@@ -1,5 +1,7 @@
 # Quillora independent MLA 9 review package
 
+Follow-up: [MLA accuracy review, 11 November 2026](FINAL-ACCURACY-2026-11-11.md) records supported formatting corrections, all 16 current-output pairs, evidence limits and conditional pilot recommendations. The original independent-review packet below remains preserved; the follow-up is not librarian sign-off.
+
 Prepared 28 October 2026 against application commit `90045ea`. **Not yet reviewed or approved by an independent reviewer.** No package has been sent to anyone. Contains public bibliographic metadata only; no student questions, rubrics, backups, credentials or full articles.
 
 ## Files and independent workflow
